@@ -41,8 +41,6 @@ Route::get('/contacts', ['as'=>'contacts', 'uses'=>'PageController@contacts']);
 Route::get('/mail', ['as'=>'mail', 'uses'=>'PageController@mail']);
 Route::post('/mail', ['as'=>'send.mail', 'uses'=>'PageController@send_mail']);
 Route::get('/stock', ['as'=>'stock', 'uses'=>'PageController@stock']);
-//Route::get('/about', ['as'=>'about', 'uses'=>'PageController@about']);
-//Route::get('/service', ['as'=>'service', 'uses'=>'PageController@service']);
 Route::get('/news', ['as'=>'news', 'uses'=>'NewsController@index']);
 Route::get('/news/{id}', ['as'=>'news_id', 'uses'=>'NewsController@news']);
 
