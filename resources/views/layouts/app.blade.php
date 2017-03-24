@@ -42,7 +42,7 @@
 <div class="container">
     <div class="row">
     <div class="rcol-sm-12 col-md-12 col-lg-4">
-        <div class="logo"><img src="/images/logo_snow.jpg"></div>
+        <div class="logo"><img src="/images/logo.jpg"></div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top: 10px; padding-left: 0px; color: #808080; font-family: 'Lato', sans-serif; font-size: 12px">
         <div class="clear"></div>
@@ -276,19 +276,6 @@
 </script>
 @endif
 <script type="text/javascript">
-    imageDir = "http://mvcreative.ru/example/6/2/snow/";
-    sflakesMax = 65;
-    sflakesMaxActive = 65;
-    svMaxX = 2;
-    svMaxY = 6;
-    ssnowStick = 1;
-    ssnowCollect = 0;
-    sfollowMouse = 1;
-    sflakeBottom = 0;
-    susePNG = 1;
-    sflakeTypes = 5;
-    sflakeWidth = 15;
-    sflakeHeight = 15;
 
     $('.edit_panel').hide();
     $('.avatar').hover(function() {
@@ -299,6 +286,6 @@
         $('.avatar-upload').attr('data-text', $(this).val());
     });
 </script>
-<script type="text/javascript" src="http://mvcreative.ru/example/6/2/snow.js"></script>
+
 </body>
 </html>

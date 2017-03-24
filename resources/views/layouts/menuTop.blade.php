@@ -71,7 +71,7 @@
 
                     <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
                         <li><div class="row">
-                                <div class="col-md-12"><a href="{{ url('/user/'.Auth::user()->id) }}">Личный кабинет</a></div></div></li>
+                                <div class="col-md-12"><a href="{{ url('/user/') }}">Личный кабинет</a></div></div></li>
                         <li><div class="row">
                                 <div class="col-md-12"><a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         <i class="fa fa-sign-out"></i> Выход
