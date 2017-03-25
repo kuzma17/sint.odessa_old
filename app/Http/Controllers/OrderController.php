@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
+    public function order(){
+        $user = Auth::user();
+        if($orders = Order::all()->where('user_id', $user->id)){
+            return view('order.order', ['orders'=>$orders]);
+        }else{
+            Session::flash('ok_message', $user->id);
+            return redirect('/user');
+        }
+    }
+
     public function add_order(Request $request){
         if($request->isMethod('post')){
             $order = new Order();

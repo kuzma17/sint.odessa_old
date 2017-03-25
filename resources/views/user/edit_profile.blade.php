@@ -6,6 +6,19 @@
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/user/edit') }}">
                 {{ csrf_field() }}
 
+                <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
+                    <label for="phone" class="col-md-4 control-label">ФИО</label>
+
+                    <div class="col-md-6">
+                        <input id="phone" type="text" class="form-control" name="fio" value="{{ $profile->fio or '' }}" required autofocus>
+
+                        @if ($errors->has('fio'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
                 <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
                     <label for="phone" class="col-md-4 control-label">телефон</label>
 

@@ -30,6 +30,7 @@ class UserProfileController extends Controller
         $profile = UserProfile::find($user->id);
         if($request->isMethod('post')) {
                 $this->validate($request, [
+                    'fio' => 'required',
                 //'name' => 'required|max:200',
                 'phone' => 'required|max:20',
                 'address' => 'required'
@@ -40,12 +41,13 @@ class UserProfileController extends Controller
                     $profile = new UserProfile();
                 }
                 $profile->id = $user->id;
+            $profile->fio = $request->input('fio');
             $profile->phone = $request->input('phone');
             $profile->icq = $request->input('icq');
             $profile->skype = $request->input('skype');
             $profile->address = $request->input('address');
             $profile->save();
-            Session::flash('ok_message', 'Даненые Вашего профиля успещно сохранены.');
+            Session::flash('ok_message', 'Данные Вашего профиля успещно сохранены.');
                 return $this->profile();
         }else {
                 return view('user.edit_profile', ['profile' => $profile]);
