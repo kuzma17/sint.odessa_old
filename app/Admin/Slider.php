@@ -27,9 +27,9 @@ AdminSection::registerModel(Slider::class, function (ModelConfiguration $model) 
         $form = AdminForm::panel()
             ->setHtmlAttribute('enctype', 'multipart/form-data')
             ->addBody(
-                AdminFormElement::columns()->addColumn(function (){ return[
+               // AdminFormElement::columns()->addColumn(function (){ return[
                     AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
-                ];}),
+                //];}),
                 AdminFormElement::text('weight', 'weight'),
                 AdminFormElement::image('image', 'image')->setUploadPath(function() {return 'images/slider';}),
                 AdminFormElement::text('slogan', 'slogan')

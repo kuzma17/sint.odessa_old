@@ -26,12 +26,14 @@ return [
         'title' => 'Dashboard',
         'icon'  => 'fa fa-dashboard',
         'url'   => route('admin.dashboard'),
+        'priority' => 100,
     ],
 
     [
         'title' => 'Information',
         'icon'  => 'fa fa-exclamation-circle',
         'url'   => route('admin.information'),
+        'priority' => 200,
     ],
 
     [
@@ -56,7 +58,13 @@ return [
         'priority' => 500,
     ],
 
+    [
+        'title'=>'Pages',
+        'icon'=>'fa fa-file-text',
+        'model'   => \App\Page::class,
+        'priority' => 600,
 
+    ],
 
     [
         'title'=>'Slider',
@@ -88,11 +96,12 @@ return [
 
     [
         'title'=>'Выход',
-        'icon'=>'fa fa-sign-out',
+            'icon'=>'fa fa-sign-out',
         'url'   => '/admin/logout',
         'priority' => 1100,
 
     ]
+
 
     // Examples
     // [

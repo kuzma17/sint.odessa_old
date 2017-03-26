@@ -164,10 +164,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
+        * SleepingOwl Service Provider
+        */
 
-        //
+        SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
+        App\Providers\AdminSectionsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -182,11 +183,6 @@ return [
         // Develop
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-
-        /*
-     * SleepingOwl Service Provider
-     */
-        SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
 
         // Socialise
         SocialiteProviders\Manager\ServiceProvider::class,

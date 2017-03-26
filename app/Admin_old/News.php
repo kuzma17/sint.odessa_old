@@ -33,9 +33,9 @@ AdminSection::registerModel(News::class, function (ModelConfiguration $model) {
             AdminFormElement::text('title', 'Title')->required()->unique(),
             AdminFormElement::wysiwyg('content', 'текс статьи'),
             //AdminFormElement::checkbox('published', 'published'),
-            //AdminFormElement::columns()->addColumn(function (){ return[
+            AdminFormElement::columns()->addColumn(function (){ return[
                 AdminFormElement::select('published', 'published',['0'=>'off', '1'=>'on'])->required(),
-            //];}),
+            ];}),
 
             // AdminFormElement::select('userInfo.marital_id', trans('labels.user.info.marital'))->setModelForOptions(new RefMarital)->setDisplay('name'),
             //AdminFormElement::radio('userInfo.gender', trans('labels.user.info.gender'))->setOptions(array('0' => trans('labels.user.info.gender_woman'), '1' => trans('labels.user.info.gender_man'))),

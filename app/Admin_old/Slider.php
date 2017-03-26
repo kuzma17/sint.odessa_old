@@ -6,19 +6,18 @@
  * Time: 12:22
  */
 
-use App\Menu;
+use App\Slider;
 use SleepingOwl\Admin\Model\ModelConfiguration;
 
-AdminSection::registerModel(Menu::class, function (ModelConfiguration $model) {
+AdminSection::registerModel(Slider::class, function (ModelConfiguration $model) {
     $model->setTitle('Slider');
     // Display
     $model->onDisplay(function () {
         $display = AdminDisplay::table()->setColumns(
             AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('url', 'url'),
-            AdminColumn::link('title', 'title'),
+            AdminColumnEditable::checkbox('active')->setLabel('active'),
             AdminColumn::link('weight')->setLabel('weight'),
-            AdminColumnEditable::checkbox('active')->setLabel('active')
+            AdminColumn::image('image', 'image')
         );
         $display->paginate(10);
         return $display;
@@ -28,14 +27,14 @@ AdminSection::registerModel(Menu::class, function (ModelConfiguration $model) {
         $form = AdminForm::panel()
             ->setHtmlAttribute('enctype', 'multipart/form-data')
             ->addBody(
-                AdminFormElement::text('url', 'url'),
-                AdminFormElement::text('title', 'title'),
+                AdminFormElement::columns()->addColumn(function (){ return[
+                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
+                ];}),
                 AdminFormElement::text('weight', 'weight'),
-               // AdminFormElement::columns()->addColumn(function (){ return[
-                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
-               // ];})
+                AdminFormElement::image('image', 'image')->setUploadPath(function() {return 'images/slider';}),
+                AdminFormElement::text('slogan', 'slogan')
             );
         return $form;
     });
 })
-    ->addMenuPage(Menu::class, 0);
+    ->addMenuPage(Slider::class, 0);

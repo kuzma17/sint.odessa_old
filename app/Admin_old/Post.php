@@ -3,16 +3,15 @@
  * Created by PhpStorm.
  * User: kuzma
  * Date: 16.11.16
- * Time: 14:44
+ * Time: 15:27
  */
 
-use App\News;
+use App\Post;
 use SleepingOwl\Admin\Model\ModelConfiguration;
 
-AdminSection::registerModel(News::class, function (ModelConfiguration $model) {
-    //$model->enableAccessCheck();
-    //$model->setTitle('статьи')->enableAccessCheck();
-    $model->setTitle('Новости');
+AdminSection::registerModel(Post::class, function (ModelConfiguration $model) {
+   // $model->setTitle('статьи')->enableAccessCheck();
+    $model->setTitle('статьи');
     // Display
     $model->onDisplay(function () {
         $display = AdminDisplay::table()->setColumns(
@@ -33,15 +32,14 @@ AdminSection::registerModel(News::class, function (ModelConfiguration $model) {
             AdminFormElement::text('title', 'Title')->required()->unique(),
             AdminFormElement::wysiwyg('content', 'текс статьи'),
             //AdminFormElement::checkbox('published', 'published'),
-            //AdminFormElement::columns()->addColumn(function (){ return[
+            AdminFormElement::columns()->addColumn(function (){ return[
                 AdminFormElement::select('published', 'published',['0'=>'off', '1'=>'on'])->required(),
-            //];}),
+            ];}),
 
-            // AdminFormElement::select('userInfo.marital_id', trans('labels.user.info.marital'))->setModelForOptions(new RefMarital)->setDisplay('name'),
-            //AdminFormElement::radio('userInfo.gender', trans('labels.user.info.gender'))->setOptions(array('0' => trans('labels.user.info.gender_woman'), '1' => trans('labels.user.info.gender_man'))),
             AdminFormElement::date('published_at', 'published_at')
         );
         return $form;
     });
 })
-    ->addMenuPage(News::class, 0);
+    ->addMenuPage(Post::class, 0)
+    ->setIcon('fa fa-bank');

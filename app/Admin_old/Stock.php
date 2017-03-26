@@ -36,9 +36,9 @@ AdminSection::registerModel(Stock::class, function (ModelConfiguration $model) {
                 //AdminFormElement::custom()->setDisplay(function (\Illuminate\Database\Eloquent\Model $model){ return view('admin/editor',['text'=>$model]);}),
                 AdminFormElement::date('from', 'from'),
                 AdminFormElement::date('to', 'to'),
-                //AdminFormElement::columns()->addColumn(function (){ return[
-                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
-                //];})
+                AdminFormElement::columns()->addColumn(function (){ return[
+                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
+                ];})
             );
         return $form;
     });

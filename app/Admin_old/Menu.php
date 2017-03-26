@@ -31,9 +31,9 @@ AdminSection::registerModel(Menu::class, function (ModelConfiguration $model) {
                 AdminFormElement::text('url', 'url'),
                 AdminFormElement::text('title', 'title'),
                 AdminFormElement::text('weight', 'weight'),
-               // AdminFormElement::columns()->addColumn(function (){ return[
-                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
-               // ];})
+                AdminFormElement::columns()->addColumn(function (){ return[
+                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
+                ];})
             );
         return $form;
     });
