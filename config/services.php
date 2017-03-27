@@ -62,13 +62,13 @@ return [
     'twitter' => [
         'client_id' => 'LZ9v30wr0ir0LrZ63eiZiIZta',
         'client_secret' => 'YsmOjZhS18xHhzFpQ0kpD3vv2j5oliS7a0GIgHGIjjMI5SXmdn',
-        'redirect' => 'http://sint.odessa.ru/social_login/callback/twitter',
+        'redirect' => 'http://sint.odessa.ru/social/callback/twitter',
     ],
 
     'google' => [
         'client_id' => '412806846123-q200ls7tbfv34olsvdth72onh8akg3e6.apps.googleusercontent.com',
         'client_secret' => 'TllOUeLkLdNFFf-sELr1r3H9',
-        'redirect' => 'http://sint.odessa.ru/social_login/callback/google',
+        'redirect' => 'http://sint.odessa.ru/social/callback/google',
     ],
 
 ];

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <?php $avatar = \App\User::avatar(); ?>
+    <?php @$avatar = Auth::user()->profile->avatar; ?>
     <h3>Личный кабинет пользователя</h3>
     @if($message = Session::pull('ok_message'))
         <div class="alert alert-success alert-message">
@@ -25,7 +25,7 @@
 
     <div class="rcol-sm-6 col-md-4 col-lg-3">
         <div class="avatar" style="width:162px; border: 1px #cccccc solid;">
-            <img src="/{{ $avatar or 'images/no_image.png' }}" style="width: 160px; height: 160px">
+            <img src="{{ $avatar or '/images/no_image.png' }}" style="width: 160px; height: 160px">
             <div class="edit_panel" style="position: absolute; margin-top:-30px;z-index: 100; border: 1px #cccccc solid;width:162px; height: 30px; text-align: center; background-color: black; opacity: 0.7; ">
                 @if(isset($avatar))
                     <a href="{{ url('/user/avatar') }}" style="color: white">обновить фото</a><br>

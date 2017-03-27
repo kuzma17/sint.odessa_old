@@ -21,13 +21,12 @@ class UserProfileController extends Controller
 
     public function profile(){
         $user = Auth::user();
-        $profile = UserProfile::find($user->id);
-        return view('user.profile', ['user'=>$user, 'profile'=>$profile]);
+        return view('user.profile', ['user'=>$user]);
     }
 
     public function edit(Request $request){
         $user = Auth::user();
-        $profile = UserProfile::find($user->id);
+        $profile = $user->profile;
         if($request->isMethod('post')) {
                 $this->validate($request, [
                     'fio' => 'required',
@@ -35,8 +34,8 @@ class UserProfileController extends Controller
                 'phone' => 'required|max:20',
                 'address' => 'required'
             ]);
-                if(UserProfile::find($user->id)){
-                    $profile = UserProfile::find($user->id);
+                if($user->profile){
+                    $profile = $user->profile;;
                 }else{
                     $profile = new UserProfile();
                 }
@@ -54,7 +53,7 @@ class UserProfileController extends Controller
         }
     }
 
-    public function avatar(Request $request){
+    public function avatar_(Request $request){
         $user = Auth::user();
         if($request->isMethod('post')) {
             //if($request->file('avatar')->isValid()) {
@@ -74,6 +73,31 @@ class UserProfileController extends Controller
             $avatar->id = $user->id;
                 $avatar->avatar = $image->move('images/avatars', $saveImageName);
                 $avatar->save();
+            Session::flash('ok_message', 'Ваше фото успешно соxранено.');
+            return $this->profile();
+        }else{
+            return view('user.edit_avatar');
+        }
+    }
+
+    public function avatar(Request $request){
+        $user = Auth::user();
+        if($request->isMethod('post')) {
+
+            $this->validate($request, [
+                'avatar'  =>  'required|image|max:100',
+            ]);
+            $image = $request->file('avatar');
+            Image::make($image->getRealPath())->resize(160, 160)->save();
+            $saveImageName = str_random(10) . '.' . $image->getClientOriginalExtension();
+
+            if($user->profile) {
+                $profile = $user->profile;;
+            }else{
+                $profile = new UserProfile();
+            }
+            $profile->avatar = $image->move('images/avatars', $saveImageName);
+            $profile->save();
             Session::flash('ok_message', 'Ваше фото успешно соxранено.');
             return $this->profile();
         }else{

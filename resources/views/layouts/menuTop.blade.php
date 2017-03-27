@@ -18,12 +18,12 @@
                                 <div class="col-md-12">
                                     Авторизация через соцсети
                                     <div class="social-buttons">
-					                    <a href="url('/social/facebook')" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                        <a href="url('/social/twitter')" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                                        <a href="url('/social/odniklassniki')" class="btn btn-od"><i class="fa fa-odnoklassniki"></i> Odniklassniki</a>
-                                        <a href="url('/social/vkontakte')" class="btn btn-vk"><i class="fa fa-vk"></i> Vkontakte</a>
-                                        <a href="url('/social/mailru')" class="btn btn-mr"><i class="fa fa-at"></i> Mail.ru</a>
-                                        <a href="url('/social/google')" class="btn btn-go"><i class="fa fa-google"></i> Google</a>
+					                    <a href="{{ url('/social/facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                        <a href="{{ url('/social/twitter') }}" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                        <a href="{{ url('/social/odnoklassniki') }}" class="btn btn-od"><i class="fa fa-odnoklassniki"></i> Odniklassniki</a>
+                                        <a href="{{ url('/social/vkontakte') }}" class="btn btn-vk"><i class="fa fa-vk"></i> Vkontakte</a>
+                                        <a href="{{ url('/social/mailru') }}" class="btn btn-mr"><i class="fa fa-at"></i> Mail.ru</a>
+                                        <a href="{{ url('/social/google') }}" class="btn btn-go"><i class="fa fa-google"></i> Google</a>
                                     </div>
                                     или
                                     <form class="form" role="form" method="post" action="{{ url('/login') }}" accept-charset="UTF-8" id="login-nav">
