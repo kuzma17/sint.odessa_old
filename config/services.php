@@ -54,8 +54,8 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '903990703036517',
-        'client_secret' => '4797a2691dd2799baba4eafd73d86997',
+        'client_id' => '1706334072997949',
+        'client_secret' => '62996483f087569f838ee28c48f8b3ab',
         'redirect' => 'http://sint.odessa.ru/social/callback/facebook',
     ],
 
