@@ -7,10 +7,10 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
-                    <label for="phone" class="col-md-4 control-label">ФИО</label>
+                    <label for="phone" class="col-md-4 control-label">Имя</label>
 
                     <div class="col-md-6">
-                        <input id="phone" type="text" class="form-control" name="fio" value="{{ $profile->fio or '' }}" required autofocus>
+                        <input id="phone" type="text" class="form-control" name="name" value="{{ $user->name or '' }}" required autofocus>
 
                         @if ($errors->has('fio'))
                             <span class="help-block">
@@ -23,7 +23,7 @@
                     <label for="phone" class="col-md-4 control-label">телефон</label>
 
                     <div class="col-md-6">
-                        <input id="phone" type="text" class="form-control" name="phone" value="{{ $profile->phone or '' }}" required autofocus>
+                        <input id="phone" type="text" class="form-control" name="phone" value="{{ $user->profile->phone or '' }}" required autofocus>
 
                         @if ($errors->has('phone'))
                             <span class="help-block">
@@ -36,7 +36,7 @@
                     <label for="icq" class="col-md-4 control-label">icq</label>
 
                     <div class="col-md-6">
-                        <input id="icq" type="text" class="form-control" name="icq" value="{{ $profile->icq or '' }}" required>
+                        <input id="icq" type="text" class="form-control" name="icq" value="{{ $user->profile->icq or '' }}" required>
 
                         @if ($errors->has('icq'))
                             <span class="help-block">
@@ -49,7 +49,7 @@
                     <label for="skype" class="col-md-4 control-label">skype</label>
 
                     <div class="col-md-6">
-                        <input id="skype" type="text" class="form-control" name="skype" value="{{ $profile->skype or '' }}" required>
+                        <input id="skype" type="text" class="form-control" name="skype" value="{{ $user->profile->skype or '' }}" required>
 
                         @if ($errors->has('skype'))
                             <span class="help-block">
@@ -62,7 +62,7 @@
                     <label for="address" class="col-md-4 control-label">адрес</label>
 
                     <div class="col-md-6">
-                        <input id="address" type="text" class="form-control" name="address" value="{{ $profile->address or '' }}" required>
+                        <input id="address" type="text" class="form-control" name="address" value="{{ $user->profile->address or '' }}" required>
 
                         @if ($errors->has('address'))
                             <span class="help-block">

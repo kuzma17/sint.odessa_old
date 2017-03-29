@@ -26,7 +26,7 @@ class UserProfileController extends Controller
 
     public function edit(Request $request){
         $user = Auth::user();
-        $profile = $user->profile;
+        //$profile = $user->profile;
         if($request->isMethod('post')) {
                 $this->validate($request, [
                     'fio' => 'required',
@@ -40,16 +40,17 @@ class UserProfileController extends Controller
                     $profile = new UserProfile();
                 }
                 $profile->id = $user->id;
-            $profile->fio = $request->input('fio');
+            $user->name = $request->input('fio');
             $profile->phone = $request->input('phone');
             $profile->icq = $request->input('icq');
             $profile->skype = $request->input('skype');
             $profile->address = $request->input('address');
+            $user->save();
             $profile->save();
             Session::flash('ok_message', 'Данные Вашего профиля успещно сохранены.');
                 return $this->profile();
         }else {
-                return view('user.edit_profile', ['profile' => $profile]);
+                return view('user.edit_profile', ['user' => $user]);
         }
     }
 

@@ -71,4 +71,10 @@ return [
         'redirect' => 'http://sint.odessa.ru/social/callback/google',
     ],
 
+    'github' => [
+        'client_id' => '7c16f745876a83d2a47b',
+        'client_secret' => 'f380526df3810dcebe0472fc48614b698863ae7c',
+        'redirect' => 'http://sint.odessa.ru/social/callback/github',
+    ],
+
 ];

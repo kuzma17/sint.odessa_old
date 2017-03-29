@@ -326,6 +326,16 @@ ul.top-menu a:hover{
     background-color: #dd4b39;
 }
 
+.btn-git{
+    color: #fff;
+    background-color: #262626;
+}
+
+.btn-git:hover{
+    color: #fff;
+    background-color: #1a1a1a;
+}
+
 @media(max-width:768px){
     #login-dp{
         background-color: inherit;

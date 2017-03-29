@@ -46,7 +46,7 @@ class User extends Authenticatable
         return self::create([
             'email' => $providerUser->getEmail(),
             //'email' => 'tw', // IF Odnoklassniki
-            'username' => $providerUser->getNickname(),
+            //'username' => $providerUser->getNickname(),
             'name' => $providerUser->getName(),
         ]);
     }
