@@ -286,6 +286,29 @@
         $('.avatar-upload').attr('data-text', $(this).val());
     });
 </script>
+<script type="text/javascript">
+    $('#client_company').click(function () {
+        $('#name_client').html('Ответственное лицо <span class="red">*</span>');
+        $('.client_company').animate({height: "show"}, 500);
+    });
+    $('#client_user').click(function () {
+        $('#name_client').html('ФИО <span class="red">*</span>');
+        $('.client_company').animate({height: "hide"}, 500);
+    });
+
+    $('#payment_b_nal').click(function () {
+        $('.payment_b_nal').animate({height: "show"}, 500);
+        $('.payment_nds').animate({height: "hide"}, 500);
+    });
+    $('#payment_nds').click(function () {
+        $('.payment_b_nal').animate({height: "show"}, 500);
+        $('.payment_nds').animate({height: "show"}, 500);
+    });
+    $('#payment_nal').click(function () {
+        $('.payment_b_nal').animate({height: "hide"}, 500);
+        $('.payment_nds').animate({height: "hide"}, 500);
+    });
+</script>
 
 </body>
 </html>
