@@ -33,6 +33,7 @@ class UserProfileController extends Controller
                     $profile = $user->profile;;
                 }else{
                     $profile = new UserProfile();
+                    $profile->user_id = $user->id;
                 }
 
             $list_validate = [
@@ -69,7 +70,7 @@ class UserProfileController extends Controller
 
             $this->validate($request, $list_validate );
 
-                $profile->id = $user->id;
+                //$profile->id = $user->id;
             $user->name = $request->input('name');
             //$user->email = $request->input('email');
             $profile->phone = $request->input('phone');
@@ -87,7 +88,7 @@ class UserProfileController extends Controller
                     $profile->city = $request->input('city');
                     $profile->street = $request->input('street');
                     $profile->house = $request->input('house');
-                    $profile->case = $request->input('case');
+                    $profile->house_block = $request->input('house_block');
                     $profile->office = $request->input('office');
                 }
 

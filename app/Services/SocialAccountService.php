@@ -24,14 +24,12 @@ class SocialAccountService
                 'provider' => $providerName]);
 
             $profile = new UserProfile([
-                'avatar' => $providerUser->getAvatar(),
-                //'fio' => $providerUser->getName()
-            ]); // User Profile
+                'avatar' => $providerUser->getAvatar()]); // User Profile
 
             //$user = User::whereEmail($providerUser->getEmail())->first();
             //$user = User::find($account->user_id);
 
-            //if (!$user) {
+           // if (!$user) {
                 $user = User::createBySocialProvider($providerUser);
            // }
 

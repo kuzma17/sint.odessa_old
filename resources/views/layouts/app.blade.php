@@ -288,11 +288,11 @@
 </script>
 <script type="text/javascript">
     $('#client_company').click(function () {
-        $('#name_client').html('Ответственное лицо <span class="red">*</span>');
+        $('#info_user').html('Фамилия Имя Отчество ответственного лица компании.');
         $('.client_company').animate({height: "show"}, 500);
     });
     $('#client_user').click(function () {
-        $('#name_client').html('ФИО <span class="red">*</span>');
+        $('#info_user').html('Фамилия Имя Отчество.');
         $('.client_company').animate({height: "hide"}, 500);
     });
 
