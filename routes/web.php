@@ -33,9 +33,9 @@ Route::get('/user/avatar/delete', ['as'=>'user.avatar.delete', 'uses'=>'UserProf
 Route::get('/user/password', ['as'=>'user.password.edit', 'uses'=>'UserProfileController@edit_password']);
 Route::post('/user/password', ['as'=>'user.password.save', 'uses'=>'UserProfileController@edit_password']);
 
-Route::get('/user/order', ['as'=>'user.order', 'uses'=>'OrderController@order']);
-Route::get('/user/order/add', ['as'=>'user.order.add', 'uses'=>'OrderController@add_order']);
-Route::post('/user/order/add', ['as'=>'user.order.save', 'uses'=>'OrderController@add_order']);
+//Route::get('/order', ['as'=>'user.order', 'uses'=>'OrderController@order']);
+Route::get('/order', ['as'=>'user.order.add', 'uses'=>'OrderController@add_order']);
+Route::post('/order', ['as'=>'user.order.save', 'uses'=>'OrderController@add_order']);
 
 Route::get('/home', ['as'=>'home', 'uses'=>'PageController@home']);
 Route::get('/contacts', ['as'=>'contacts', 'uses'=>'PageController@contacts']);

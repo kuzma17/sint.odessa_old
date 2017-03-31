@@ -60,7 +60,7 @@
         <div class="clear"></div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top: 15px">
-        <a href="{{ url('/user/order/add') }}" class="btn btn-success btn-top" target="_blank"><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+        <a href="#" class="btn btn-success btn-top" data-toggle="modal" data-target="#orderModal"><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         <a href="http://sint-market.com" class="btn btn-info btn-top" target="_blank"><i class="glyphicon glyphicon-shopping-cart"></i> Интернет магазин</a>
     </div>
     <div class="clear"></div>
@@ -266,6 +266,8 @@
     </div>
 </div>
 
+@include('order.orderModal')
+
     <script src="/js/app.js"></script>
 @if(Request::path() == '/')
 <script type="text/javascript">
@@ -288,11 +290,13 @@
 </script>
 <script type="text/javascript">
     $('#client_company').click(function () {
-        $('#info_user').html('Фамилия Имя Отчество ответственного лица компании.');
+        $('#name_account').html('Компания <span class="red">*</span>');
+        $('#info_account').html('Наименование компании.');
         $('.client_company').animate({height: "show"}, 500);
     });
     $('#client_user').click(function () {
-        $('#info_user').html('Фамилия Имя Отчество.');
+        $('#name_account').html('ФИО <span class="red">*</span>');
+        $('#info_account').html('Фамилия Имя Отчество.');
         $('.client_company').animate({height: "hide"}, 500);
     });
 

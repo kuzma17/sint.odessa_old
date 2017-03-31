@@ -20,7 +20,7 @@ class OrderController extends Controller
         }
     }
 
-    public function add_order(Request $request){
+    public function add_order_(Request $request){
         if($request->isMethod('post')){
             $order = new Order();
             $order->user_id = Auth::user()->id;
@@ -33,5 +33,10 @@ class OrderController extends Controller
             $type_order = Type_order::all();
             return view('order.add', ['type_order' => $type_order]);
         }
+    }
+
+    public function add_order(){
+        $user = Auth::user();
+        return view('order.order', ['user' => $user]);
     }
 }

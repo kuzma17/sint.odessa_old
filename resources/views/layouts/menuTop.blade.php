@@ -49,7 +49,7 @@
                                             <div class="help-block text-right"><a href="{{ url('/password/reset') }}">Забыли пароль?</a></div>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                                            <button type="submit" class="btn btn-success btn-block">Вход</button>
                                         </div>
                                         <div class="checkbox">
                                             <label>
@@ -59,7 +59,7 @@
                                     </form>
                                 </div>
                                 <div class="bottom text-center">
-                                    New here ? <a href="{{ url('/register') }}"><b>Регистрация</b></a>
+                                    Впервые здесь ? <a href="{{ url('/register') }}"><b>Регистрация</b></a>
                                 </div>
                             </div>
                         </li>

@@ -14,30 +14,30 @@
 
                     </div>
                 </div>
-                <div class="form-group client_company{{ $errors->has('company') ? ' has-error' : '' }}" @if((isset($user->profile) && $user->profile->type_client == 0 ) || !isset($user->profile)) style="display: none" @endif>
-                    <label for="phone" class="col-md-3 control-label">Компания <span class="red">*</span></label>
-
-                    <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="company" value="{{ $user->profile->company or '' }}" >
-                        <p>Наименование организации </p>
-
-                        @if ($errors->has('company'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('company') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                    <label for="phone" class="col-md-3 control-label">ФИО <span class="red">*</span></label>
+                    <label id="name_account" for="phone" class="col-md-3 control-label">@if((isset($user->profile) && $user->profile->type_client == 1 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
                         <input id="phone" type="text" class="form-control" name="name" value="{{ $user->name or '' }}" autofocus>
-                        <p id="info_user">Фамилия Имя Отчество</p>
+                        <p id="info_account">Фамилия Имя Отчество</p>
 
                         @if ($errors->has('name'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group client_company{{ $errors->has('user_company') ? ' has-error' : '' }}" @if((isset($user->profile) && $user->profile->type_client == 0 ) || !isset($user->profile)) style="display: none" @endif>
+                    <label for="phone" class="col-md-3 control-label">Имя</label>
+
+                    <div class="col-md-9">
+                        <input id="phone" type="text" class="form-control" name="user_company" value="{{ $user->profile->user_company or '' }}" >
+                        <p>Фамилия Имя Отчество контактного лица компании.</p>
+
+                        @if ($errors->has('user_company'))
+                            <span class="help-block">
+                                        <strong>{{ $errors->first('user_company') }}</strong>
                                     </span>
                         @endif
                     </div>

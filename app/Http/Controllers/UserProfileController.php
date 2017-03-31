@@ -43,9 +43,9 @@ class UserProfileController extends Controller
             ];
 
             if($request->input('type_client') == 1){
-                $list_validate += [
-                    'company' => 'required',
-                ];
+                //$list_validate += [
+                    //'company' => 'required',
+                //];
 
                 if($request->input('type_payment') == 1 || $request->input('type_payment') == 2){
                     $list_validate += [
@@ -63,10 +63,10 @@ class UserProfileController extends Controller
                         'inn' => 'required|size:10',
                     ];
                 }
-                $profile->type_payment = $request->input('type_payment');
-                $profile->type_client = $request->input('type_client');
-                $profile->save();
             }
+            $profile->type_payment = $request->input('type_payment');
+            $profile->type_client = $request->input('type_client');
+            $profile->save();
 
             $this->validate($request, $list_validate );
 
@@ -77,7 +77,7 @@ class UserProfileController extends Controller
             $profile->address = $request->input('address');
 
             if($request->input('type_client') == 1) {
-                $profile->company = $request->input('company');
+                $profile->user_company = $request->input('user_company');
 
                 if($request->input('type_payment') == 1 || $request->input('type_payment') == 2) {
                     $profile->company_full = $request->input('company_full');
@@ -99,7 +99,7 @@ class UserProfileController extends Controller
 
             $user->save();
             $profile->save();
-            Session::flash('ok_message', 'Данные Вашего профиля успещно сохранены.');
+            Session::flash('ok_message', 'Данные Вашего профиля успешно сохранены.');
                 return $this->profile();
         }else {
                 return view('user.edit_profile', ['user' => $user]);

@@ -532,3 +532,8 @@ h5{
 .red{
     color: red;
 }
+
+.modal-order{
+    padding-left: 20px;
+    padding-right: 20px;
+}

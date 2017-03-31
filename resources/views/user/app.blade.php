@@ -36,7 +36,8 @@
         </div>
 
         <a href="{{ url('/user/edit') }}" >редактировать личные параметры</a><br>
-        <a href="{{ url('/user/password') }}" >изменить пароль</a>
+        <a href="{{ url('/user/password') }}" >изменить пароль</a><br>
+        <a href="#" data-toggle="modal" data-target="#orderModal" >Сделать заказ</a><br>
     </div>
        @yield('profile')
 @endsection
