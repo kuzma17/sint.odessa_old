@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Type_order;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -35,8 +36,25 @@ class OrderController extends Controller
         }
     }
 
-    public function add_order(){
-        $user = Auth::user();
-        return view('order.order', ['user' => $user]);
+    public function add_order(Request $request){
+        if($request->isMethod('post')){
+          //  if(!Auth::user()){
+          //      $user = new User();
+           //     $user->name = $request->input('name');
+           //     $user->email = $request->input('email');
+           //     $user->save();
+           // }
+            $order = new Order();
+            $order->user_id = Auth::user()->id;
+            $order->type_order_id = $request->input('type_order');
+            $order->comment = $request->input('comment');
+            $order->save();
+            Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрн в ближайшее время.');
+            return redirect('/user');
+        }else {
+            $user = Auth::user();
+            $type_order = Type_order::all();
+            return view('order.order', ['user' => $user, 'type_order' => $type_order]);
+        }
     }
 }

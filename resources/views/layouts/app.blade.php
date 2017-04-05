@@ -60,7 +60,11 @@
         <div class="clear"></div>
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top: 15px">
-        <a href="#" class="btn btn-success btn-top" data-toggle="modal" data-target="#orderModal"><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+        @if (Auth::guest())
+            <a href="{{ url('login') }}" class="btn btn-success btn-top" ><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+        @else
+            <a href="#" class="btn btn-success btn-top" data-toggle="modal" data-target="#orderModal"><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+        @endif
         <a href="http://sint-market.com" class="btn btn-info btn-top" target="_blank"><i class="glyphicon glyphicon-shopping-cart"></i> Интернет магазин</a>
     </div>
     <div class="clear"></div>

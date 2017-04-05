@@ -4,14 +4,16 @@
     <div class="content-page">
 
         <h3>Оформление заказа</h3>
-        <form name="order" method="post" class="form-horizontal" action="">
+        <form name="order" method="post" class="form-horizontal" action="{{ url('/order') }}">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="phone" class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <select name="type_order" class="form-control">
-                        <option value="">заправка картриджей</option>
-                        <option value="">ремонт оргтехники</option>
+                        @foreach($type_order as $type)
+                            <option value="{{ $type->id }}">{{ $type->type_order }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

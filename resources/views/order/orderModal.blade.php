@@ -10,7 +10,7 @@ $user = Auth::user();
 ?>
 
 <div id="orderModal" class="modal fade">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 700px">
         <div class="modal-content modal-order">
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Оформить заказ</h4>
@@ -115,6 +115,9 @@ $user = Auth::user();
                             <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="1" @if(isset($user->profile) && $user->profile->type_payment == 1) checked @endif> безналичны расчет
                             <input type="radio" id="payment_nds" class="form-control" name="type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment == 2) checked @endif> безналичный с НДС
                         </div>
+                        <p style="font-family: Arial; size: 10px; font-style: italic">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
+                        Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
+                        Также Вы можете сами внести все недостающие данные, воспользовавшись <a href="{{ url('order') }}" >расшыренным заказом</a>.</p>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
