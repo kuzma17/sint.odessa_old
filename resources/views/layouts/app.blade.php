@@ -318,5 +318,10 @@
     });
 </script>
 
+@if( Auth::check() && URL::previous() == url('login'))
+<script type="text/javascript">
+    $('#orderModal').modal('show');
+</script>
+@endif
 </body>
 </html>
