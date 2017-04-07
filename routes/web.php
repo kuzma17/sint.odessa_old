@@ -34,8 +34,8 @@ Route::get('/user/password', ['as'=>'user.password.edit', 'uses'=>'UserProfileCo
 Route::post('/user/password', ['as'=>'user.password.save', 'uses'=>'UserProfileController@edit_password']);
 
 //Route::get('/order', ['as'=>'user.order', 'uses'=>'OrderController@order']);
-Route::get('/order', ['as'=>'user.order.add', 'uses'=>'OrderController@add_order']);
-Route::post('/order', ['as'=>'user.order.save', 'uses'=>'OrderController@add_order']);
+Route::get('/order-modal', ['as'=>'user.order.add', 'uses'=>'OrderController@add_order_modal']);
+Route::post('/order-modal', ['as'=>'user.order.save', 'uses'=>'OrderController@add_order_modal']);
 
 
 Route::get('/home', ['as'=>'home', 'uses'=>'PageController@home']);

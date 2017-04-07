@@ -36,8 +36,9 @@ class OrderController extends Controller
         }
     }
 
-    public function add_order(Request $request){
+    public function add_order_modal(Request $request){
         if($request->isMethod('post')){
+
             $list_validate = [
                 'order_name' => 'required',
                 //'order_email' => 'required',
@@ -51,10 +52,21 @@ class OrderController extends Controller
             $order->type_order_id = $request->input('type_order');
             $order->type_client = $request->input('order_type_client');
             //$order->name = $request->input('order_name');
+            $order->user_company = $request->input('order_user_company');
             $order->phone = $request->input('order_phone');
             $order->address = $request->input('order_address');
+            $order->type_payment = $request->input('order_type_payment');
             $order->comment = $request->input('comment');
+
+            if($request->input('all_order')){
+                $user = Auth::user();
+                $type_order = Type_order::all();
+
+                return view('order.order', ['order'=>$order, 'user' => $user, 'type_order' => $type_order]);
+            }
+
             $order->save();
+
             Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрн в ближайшее время.');
             return redirect('/user');
         }else {

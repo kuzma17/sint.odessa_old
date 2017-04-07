@@ -17,7 +17,7 @@ $type_order = \App\Type_order::all();
                 <h4 class="modal-title">Оформить заказ</h4>
             </div>
 s
-            <form name="order" method="post" class="form-horizontal" action="{{ url('/order') }}">
+            <form name="order" method="post" class="form-horizontal" action="{{ url('/order-modal') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
@@ -138,14 +138,13 @@ s
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            Сохранить
-                        </button>
+                        <input type="submit" name="all_order" class="btn btn-default" value="Расшыренный заказ">
+                        <input type="submit" name="add_order" class="btn btn-primary" value="Сохранить">
                     </div>
                 </div>
             </form>
             <div class="modal-footer">
-                <a href="{{ url('order') }}" >перейти в расшыренный заказ</a>
+                <a type="" href="{{ url('order') }}" >перейти в расшыренный заказ</a>
                 <button class="btn btn-default" type="button" data-dismiss="modal">Закрыть</button></div>
         </div>
     </div>
