@@ -316,9 +316,21 @@
         $('.payment_b_nal').animate({height: "hide"}, 500);
         $('.payment_nds').animate({height: "hide"}, 500);
     });
+
+
+    $('.type_company').click(function () {
+        $('.name_account').html('Компания <span class="red">*</span>');
+        $('.info_account').html('Наименование компании.');
+        $('.client_company_order').animate({height: "show"}, 500);
+    });
+    $('.type_user').click(function () {
+        $('.name_account').html('ФИО <span class="red">*</span>');
+        $('.info_account').html('Фамилия Имя Отчество.');
+        $('.client_company_order').animate({height: "hide"}, 500);
+    });
 </script>
 
-@if( Auth::check() && URL::previous() == url('login'))
+@if( Auth::check() && (URL::previous() == url('login') || strstr(URL::previous(), 'social/callback')))
 <script type="text/javascript">
     $('#orderModal').modal('show');
 </script>

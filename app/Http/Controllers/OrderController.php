@@ -38,15 +38,21 @@ class OrderController extends Controller
 
     public function add_order(Request $request){
         if($request->isMethod('post')){
-          //  if(!Auth::user()){
-          //      $user = new User();
-           //     $user->name = $request->input('name');
-           //     $user->email = $request->input('email');
-           //     $user->save();
-           // }
+            $list_validate = [
+                'order_name' => 'required',
+                //'order_email' => 'required',
+                'order_phone' => 'required'
+            ];
+
+            $this->validate($request, $list_validate );
+
             $order = new Order();
             $order->user_id = Auth::user()->id;
             $order->type_order_id = $request->input('type_order');
+            $order->type_client = $request->input('order_type_client');
+            //$order->name = $request->input('order_name');
+            $order->phone = $request->input('order_phone');
+            $order->address = $request->input('order_address');
             $order->comment = $request->input('comment');
             $order->save();
             Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрн в ближайшее время.');
