@@ -2,9 +2,8 @@
 
 @section('content')
     <div class="content-page">
-
         <h3>Оформление заказа</h3>
-        <form name="order" method="post" class="form-horizontal" action="{{ url('/order') }}">
+        <form name="order_order" method="post" class="form-horizontal" action="{{ url('/order') }}">
             {{ csrf_field() }}
             <div class="form-group">
                 <label  class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
@@ -12,7 +11,7 @@
                 <div class="col-md-9">
                     <select name="type_order" class="form-control">
                         @foreach($type_order as $type)
-                            <option value="{{ $type->id }}" @if(isset($order) && $type->id == $order->type_order_id) selected="selected" @endif>{{ $type->type_order }}</option>
+                            <option value="{{ $type->id }}" @if(old() && $type->id == old('type_order') || isset($order) && $type->id == $order->type_order) selected="selected" @endif>{{ $type->type_order }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -20,258 +19,256 @@
 
 
 
-            <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_fio') ? ' has-error' : '' }}">
                 <label  class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
 
                 <div class="col-md-8 form-inline">
-                    <input type="radio" class="form-control type_user" name="type_client" value="0" @if(isset($order) && $order->type_client == 0) checked @endif> частное лицо
-                    <input type="radio" class="form-control type_company" name="type_client" value="1" @if(isset($order) && $order->type_client == 1) checked @endif> организация
+                    <input type="radio" class="form-control type_user" name="order_type_client" value="0" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0) checked @endif> частное лицо
+                    <input type="radio" class="form-control type_company" name="order_type_client" value="1" @if(old() && old('order_type_client') == 1 || isset($order) && $order->order_type_client == 1) checked @endif> организация
 
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label class="col-md-3 control-label name_account">@if(isset($order) && $order->type_client == 1) Компания @else ФИО @endif<span class="red">*</span></label>
+            <div class="form-group{{ $errors->has('order_name') ? ' has-error' : '' }}">
+                <label class="col-md-3 control-label name_account">@if(old() && old('order_type_client') == 1 || isset($order) && $order->order_type_client == 1) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="name" value="{{ $user->name or '' }}" autofocus>
+                    <input  type="text" class="form-control" name="order_name" value="{{ $user->name }}" autofocus>
                     <p class="info_account">Фамилия Имя Отчество</p>
 
-                    @if ($errors->has('name'))
+                    @if ($errors->has('order_name'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('order_name') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
-            <div class="form-group client_company_order{{ $errors->has('user_company') ? ' has-error' : '' }}" @if(isset($order) && $order->type_client == 0 ) style="display: none" @endif>
+            <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0 ) style="display: none" @endif>
                 <label  class="col-md-3 control-label">Имя</label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="user_company" value="{{ $order->user_company or '' }}" >
+                    <input id="user_company" type="text" class="form-control" name="order_user_company" value="@if(old()){{ old('order_user_company') }}@else{{ $order->order_user_company or '' }}@endif" >
                     <p>Фамилия Имя Отчество контактного лица компании.</p>
 
-                    @if ($errors->has('user_company'))
+                    @if ($errors->has('order_user_company'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('user_company') }}</strong>
+                                        <strong>{{ $errors->first('order_user_company') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_email') ? ' has-error' : '' }}">
                 <label  class="col-md-3 control-label">E-mail <span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input id="skype" type="text" class="form-control" name="email" value="{{ $user->email or '' }}" disabled>
+                    <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" disabled>
 
-                    @if ($errors->has('email'))
+                    @if ($errors->has('order_email'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('order_email') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_phone') ? ' has-error' : '' }}">
                 <label  class="col-md-3 control-label">телефон <span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="phone" value="{{ $order->phone or '' }}" >
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" >
 
-                    @if ($errors->has('phone'))
+                    @if ($errors->has('order_phone'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('phone') }}</strong>
+                                        <strong>{{ $errors->first('order_phone') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
                 <label  class="col-md-3 control-label">Адрес доставки</label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="address" value="{{ $order->address or '' }}" >
+                    <input type="text" class="form-control" name="order_address" value="@if(old()){{ old('order_address') }}@else{{ $order->order_address or '' }}@endif" >
 
-                    @if ($errors->has('address'))
+                    @if ($errors->has('order_address'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
+                                        <strong>{{ $errors->first('order_address') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
-            <div class="client_company_order" @if(isset($order) && $order->type_client == 0)  style="display: none" @endif>
-                <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
+            <div class="client_company_order" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0)  style="display: none" @endif>
+                <div class="form-group{{ $errors->has('order_fio') ? ' has-error' : '' }}">
                     <label  class="col-md-3 control-label">Форма оплаты <span class="red">*</span></label>
 
                     <div class="col-md-9 form-inline">
-                        <input type="radio" id="payment_nal" class="form-control" name="type_payment" value="0" @if(isset($order) && $order->type_payment == 0) checked @endif> наличный расчет
-                        <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="1" @if(isset($order) && $order->type_payment == 1) checked @endif> безналичны расчет
-                        <input type="radio" id="payment_nds" class="form-control" name="type_payment" value="2" @if(isset($order) && $order->type_payment == 2) checked @endif> безналичный с НДС
+                        <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="0" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) checked @endif> наличный расчет
+                        <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="1" @if(old() && old('order_type_payment') == 1 || isset($order) && $order->order_type_payment == 1) checked @endif> безналичны расчет
+                        <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="2" @if(old() && old('order_type_payment') == 2 || isset($order) && $order->order_type_payment == 2) checked @endif> безналичный с НДС
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('company_full') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="company_full" value="{{ $user->profile->company_full or '' }}" >
+                        <input  type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" >
                         <p>Полное наименование организации (согласно выписке из госреестра) </p>
 
-                        @if ($errors->has('company_full'))
+                        @if ($errors->has('order_company_full'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('company_full') }}</strong>
+                                        <strong>{{ $errors->first('order_company_full') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('edrpou') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_edrpou') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label class="col-md-3 control-label">Код ЕДРПОУ <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="edrpou" value="{{ $user->profile->edrpou or '' }}" >
+                        <input  type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" >
                         <p>Должен содержать 8 - 10 знаков</p>
 
-                        @if ($errors->has('edrpou'))
+                        @if ($errors->has('order_edrpou'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('edrpou') }}</strong>
+                                        <strong>{{ $errors->first('order_edrpou') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_nds{{ $errors->has('inn') ? ' has-error' : '' }}" @if(isset($order) && ($order->type_payment == 0 || $order->type_payment == 1)) style="display: none" @endif>
+                <div class="form-group payment_nds{{ $errors->has('order_inn') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 0 || old('order_type_payment') == 1) || isset($order) && ($order->order_type_payment == 0 || $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="inn" value="{{ $user->profile->inn or '' }}" >
+                        <input  type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" >
                         <p>Индивидуальный налоговый номер, должен содержать 10 знаков</p>
 
-                        @if ($errors->has('inn'))
+                        @if ($errors->has('order_inn'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('inn') }}</strong>
+                                        <strong>{{ $errors->first('order_inn') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('code_index') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_code_index') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Индекс <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="code_index" value="{{ $user->profile->code_index or '' }}" >
+                        <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" >
                         <p>Почтовый индекс, должен содержать 5 знаков</p>
 
-                        @if ($errors->has('code_index'))
+                        @if ($errors->has('order_code_index'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('code_index') }}</strong>
+                                        <strong>{{ $errors->first('order_code_index') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('region') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_region') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Регион</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="region" value="{{ $user->profile->region or '' }}" >
+                        <input  type="text" class="form-control" name="order_region" value="@if(old()){{ old('order_region') }}@else{{ $user->profile->region or '' }}@endif" >
 
-                        @if ($errors->has('region'))
+                        @if ($errors->has('order_region'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('region') }}</strong>
+                                        <strong>{{ $errors->first('order_region') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('area') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_area') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Район</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="area" value="{{ $user->profile->area or '' }}" >
+                        <input  type="text" class="form-control" name="order_area" value="@if(old()){{ old('order_area') }}@else{{ $user->profile->area or '' }}@endif" >
 
-                        @if ($errors->has('area'))
+                        @if ($errors->has('order_area'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('area') }}</strong>
+                                        <strong>{{ $errors->first('order_area') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('city') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_city') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Город <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="city" value="{{ $user->profile->city or '' }}" >
+                        <input  type="text" class="form-control" name="order_city" value="@if(old()){{ old('order_city') }}@else{{ $user->profile->city or '' }}@endif" >
 
-                        @if ($errors->has('city'))
+                        @if ($errors->has('order_city'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('city') }}</strong>
+                                        <strong>{{ $errors->first('order_city') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('street') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_street') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Улица <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="street" value="{{ $user->profile->street or '' }}" >
+                        <input  type="text" class="form-control" name="order_street" value="@if(old()){{ old('order_street') }}@else{{ $user->profile->street or '' }}@endif" >
 
-                        @if ($errors->has('street'))
+                        @if ($errors->has('order_street'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('street') }}</strong>
+                                        <strong>{{ $errors->first('order_street') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('house') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_house') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Дом <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="house" value="{{ $user->profile->house or '' }}" >
+                        <input  type="text" class="form-control" name="order_house" value="@if(old()){{ old('order_house') }}@else{{ $user->profile->house or '' }}@endif" >
 
-                        @if ($errors->has('house'))
+                        @if ($errors->has('order_house'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('house') }}</strong>
+                                        <strong>{{ $errors->first('order_house') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('house_block') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_house_block') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Корпус</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="house_block" value="{{ $user->profile->house_block or '' }}" >
+                        <input  type="text" class="form-control" name="order_house_block" value="@if(old()){{ old('order_house_block') }}@else{{ $user->profile->house_block or '' }}@endif" >
 
-                        @if ($errors->has('house_block'))
+                        @if ($errors->has('order_house_block'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('house_block') }}</strong>
+                                        <strong>{{ $errors->first('order_house_block') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('office') ? ' has-error' : '' }}" @if(isset($order) && $order->type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_office') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Квартира/офис</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="office" value="{{ $user->profile->office or '' }}" >
+                        <input  type="text" class="form-control" name="order_office" value="@if(old()){{ old('order_office') }}@else{{ $user->profile->office or '' }}@endif" >
 
-                        @if ($errors->has('office'))
+                        @if ($errors->has('order_office'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('office') }}</strong>
+                                        <strong>{{ $errors->first('order_office') }}</strong>
                                     </span>
                         @endif
                     </div>
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
                 <label  class="col-md-3 control-label">Комментарий</label>
 
                 <div class="col-md-9">
-                    <textarea class="form-control" name="comment"></textarea>
+                    <textarea class="form-control" name="order_comment">@if(old()){{ old('order_comment') }}@else{{ $order->order_comment or ''}}@endif</textarea>
 
-                    @if ($errors->has('comment'))
+                    @if ($errors->has('order_comment'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('comment') }}</strong>
+                                        <strong>{{ $errors->first('order_comment') }}</strong>
                                     </span>
                     @endif
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Сохранить
-                    </button>
+                    <input type="submit" class="btn btn-primary" name="add_all_order" value="Сохранить">
                 </div>
             </div>
         </form>

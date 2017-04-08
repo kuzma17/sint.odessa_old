@@ -16,8 +16,8 @@ $type_order = \App\Type_order::all();
             <div class="modal-header"><button class="close" type="button" data-dismiss="modal">×</button>
                 <h4 class="modal-title">Оформить заказ</h4>
             </div>
-s
-            <form name="order" method="post" class="form-horizontal" action="{{ url('/order-modal') }}">
+
+            <form name="order" method="post" class="form-horizontal" action="{{ url('/order') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
@@ -100,7 +100,7 @@ s
                     <label  class="col-md-3 control-label">Адрес доставки</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_address" value="{{ $user->profile->address or '' }}" >
+                        <input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" >
 
                         @if ($errors->has('order_address'))
                             <span class="help-block">
@@ -123,15 +123,15 @@ s
                         Также Вы можете сами внести все недостающие данные, воспользовавшись <a href="{{ url('order') }}" >расшыренным заказом</a>.</p>
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
                     <label class="col-md-3 control-label">Комментарий</label>
 
                     <div class="col-md-9">
-                        <textarea class="form-control" name="comment"></textarea>
+                        <textarea class="form-control" name="order_comment"></textarea>
 
-                        @if ($errors->has('comment'))
+                        @if ($errors->has('order_comment'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('comment') }}</strong>
+                                        <strong>{{ $errors->first('order_comment') }}</strong>
                                     </span>
                         @endif
                     </div>

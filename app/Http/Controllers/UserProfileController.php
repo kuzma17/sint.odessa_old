@@ -64,20 +64,19 @@ class UserProfileController extends Controller
                     ];
                 }
             }
-            $profile->type_payment = $request->input('type_payment');
-            $profile->type_client = $request->input('type_client');
-            $profile->save();
 
             $this->validate($request, $list_validate );
 
                 //$profile->id = $user->id;
             $user->name = $request->input('name');
             //$user->email = $request->input('email');
+            $profile->type_client = $request->input('type_client');
             $profile->phone = $request->input('phone');
             $profile->address = $request->input('address');
 
             if($request->input('type_client') == 1) {
                 $profile->user_company = $request->input('user_company');
+                $profile->type_payment = $request->input('type_payment');
 
                 if($request->input('type_payment') == 1 || $request->input('type_payment') == 2) {
                     $profile->company_full = $request->input('company_full');
