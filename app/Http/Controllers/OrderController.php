@@ -11,14 +11,20 @@ use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
 {
-    public function order(){
+    public function order_list(){
         $user = Auth::user();
-        if($orders = Order::all()->where('user_id', $user->id)){
-            return view('order.order', ['orders'=>$orders]);
+        if($orders = Order::where('user_id', $user->id)->orderby('created_at', 'desc')->get()){
+            return view('user.order_list', ['orders'=>$orders]);
         }else{
-            Session::flash('ok_message', $user->id);
+            Session::flash('ok_message', 'У Вас пока нет сохраненных заказов.');
             return redirect('/user');
         }
+    }
+
+    public function order($id){
+        $user = Auth::user();
+        $order = Order::where('id', $id)->first();
+        return view('user.order', ['user'=>$user, 'order'=>$order]);
     }
 
     public function add_order(Request $request){
@@ -37,7 +43,7 @@ class OrderController extends Controller
             ];
 
             if($request->input('add_all_order')){
-                if($request->input('order_type_payment') == 1 || $request->input('order_type_payment') == 2) {
+                if($request->input('order_type_payment') == 2 || $request->input('order_type_payment') == 3) {
                     $list_validate += [
                         'order_company_full' => 'required',
                         'order_edrpou' => 'required|min:8|max:10',
@@ -47,7 +53,7 @@ class OrderController extends Controller
                         'order_house' => 'required',
                     ];
                 }
-                if( $request->input('order_type_payment') == 2){
+                if( $request->input('order_type_payment') == 3){
                     $list_validate += [
                         'order_inn' => 'required|size:10',
                     ];
@@ -59,15 +65,15 @@ class OrderController extends Controller
             $order = new Order();
             $order->user_id = Auth::user()->id;
             $order->type_order_id = $request->input('type_order');
-            $order->type_client = $request->input('order_type_client');
+            $order->type_client_id = $request->input('order_type_client');
             $order->phone = $request->input('order_phone');
             $order->address = $request->input('order_address');
             //$order->name = $request->input('order_name');
-            if($order->type_client == 1) {
+            if($order->type_client_id == 2) {
                 $order->user_company = $request->input('order_user_company');
-                $order->type_payment = $request->input('order_type_payment');
+                $order->type_payment_id = $request->input('order_type_payment');
 
-                if($order->type_payment == 1 || $order->type_payment == 2){
+                if($order->type_payment_id == 2 || $order->type_payment_id == 3){
                     $order->company_full = $request->input('order_company_full');
                     $order->edrpou = $request->input('order_edrpou');
                     $order->code_index = $request->input('order_code_index');
@@ -78,7 +84,7 @@ class OrderController extends Controller
                     $order->house_block = $request->input('order_house_block');
                     $order->office = $request->input('order_office');
                 }
-                if($order->type_payment == 2){
+                if($order->type_payment_id == 3){
                     $order->inn = $request->input('order_inn');
                 }
             }

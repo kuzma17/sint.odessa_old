@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.container3')
 
 @section('content')
     <h3>{{ $page->title }}</h3>

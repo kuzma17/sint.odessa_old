@@ -63,7 +63,7 @@
         @if (Auth::guest())
             <a href="{{ url('login') }}" class="btn btn-success btn-top" ><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         @else
-            <a href="#" class="btn btn-success btn-top" data-toggle="modal" data-target="#orderModal"><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+            <a href="#" class="btn btn-success btn-top" @if(URL::current() != url('/order')) data-toggle="modal" data-target="#orderModal" @endif><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         @endif
         <a href="http://sint-market.com" class="btn btn-info btn-top" target="_blank"><i class="glyphicon glyphicon-shopping-cart"></i> Интернет магазин</a>
     </div>
@@ -74,28 +74,7 @@
 <div class="clear"></div>
 <div class="container page">
     <div class="row">
-        <div class="col-sm-12 col-md-2 col-lg-2 left_panel">
-            <div class="row">
-                @if($banner_left = \App\Banner::find(2)->banner)
-                    <div class="banner">{!! $banner_left !!}</div>
-                @endif
-            </div>
-    </div>
-    <div class="col-sm-12 col-md-8 col-lg-8">
-        @include('layouts.slider')
-        @include('layouts.bannerTop')
-        <br>
-        @yield('content')
-    </div>
-    <div class="col-sm-12 col-md-2 col-lg-2 right_panel">
-        <div class="row">
-            @include('layouts.map')
-            @if($banner_right = \App\Banner::find(3)->banner)
-                <div class="banner">{!! $banner_right !!}</div>
-            @endif
-        </div>
-    </div>
-    <div class="clear"></div>
+        @yield('container')
 
     </div>
 </div>
@@ -266,69 +245,14 @@
 </div>
 <div class="copyright-wrapper">
     <div class="container">
-        <div style="float: right">Copyright 2016 @ design by kuzma</div>
+        <div class="copyright">Copyright 2016 @ Designed by <a href="mailto:v.kuzma@mail.ru">Kuzma</a></div>
     </div>
 </div>
 
 @include('order.orderModal')
 
-    <script src="/js/app.js"></script>
-@if(Request::path() == '/')
-<script type="text/javascript">
-    $('.carousel-slogan').html($('.carousel-inner .active img').attr('alt'));
-    $('.carousel').on('slide.bs.carousel', function (e) {
-        $('.carousel-slogan').html(e.relatedTarget.children[0].alt);
-    });
-</script>
-@endif
-<script type="text/javascript">
-
-    $('.edit_panel').hide();
-    $('.avatar').hover(function() {
-                 $('.edit_panel').toggle();
-            });
-
-    $('#avatar').on('change', function(){
-        $('.avatar-upload').attr('data-text', $(this).val());
-    });
-</script>
-<script type="text/javascript">
-    $('#client_company').click(function () {
-        $('#name_account').html('Компания <span class="red">*</span>');
-        $('#info_account').html('Наименование компании.');
-        $('.client_company').animate({height: "show"}, 500);
-    });
-    $('#client_user').click(function () {
-        $('#name_account').html('ФИО <span class="red">*</span>');
-        $('#info_account').html('Фамилия Имя Отчество.');
-        $('.client_company').animate({height: "hide"}, 500);
-    });
-
-    $('#payment_b_nal').click(function () {
-        $('.payment_b_nal').animate({height: "show"}, 500);
-        $('.payment_nds').animate({height: "hide"}, 500);
-    });
-    $('#payment_nds').click(function () {
-        $('.payment_b_nal').animate({height: "show"}, 500);
-        $('.payment_nds').animate({height: "show"}, 500);
-    });
-    $('#payment_nal').click(function () {
-        $('.payment_b_nal').animate({height: "hide"}, 500);
-        $('.payment_nds').animate({height: "hide"}, 500);
-    });
-
-
-    $('.type_company').click(function () {
-        $('.name_account').html('Компания <span class="red">*</span>');
-        $('.info_account').html('Наименование компании.');
-        $('.client_company_order').animate({height: "show"}, 500);
-    });
-    $('.type_user').click(function () {
-        $('.name_account').html('ФИО <span class="red">*</span>');
-        $('.info_account').html('Фамилия Имя Отчество.');
-        $('.client_company_order').animate({height: "hide"}, 500);
-    });
-</script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 
 @if( Auth::check() && (URL::previous() == url('login') || strstr(URL::previous(), 'social/callback')))
 <script type="text/javascript">

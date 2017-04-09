@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.container3')
 
 @section('content')
 	 @if(isset($status) && $status == 1)

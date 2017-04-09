@@ -13,7 +13,7 @@ $menu = \App\Menu::where('active', 1)->orderBy('weight', 'asc')->get();
     <div class="collapse navbar-collapse" id="collapse">
         <ul class="nav navbar-nav">
             @foreach($menu as $link)
-            <li @if(Request::path() == $link->url) class="active" @endif><a href="{{ url($link->url) }}">{{ $link->title }}</a></li>
+            <li class="menu_site @if(Request::path() == $link->url) active_menu @endif"><a href="{{ url($link->url) }}">{{ $link->title }}</a></li>
             @endforeach
         </ul>
     </div>

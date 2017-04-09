@@ -203,10 +203,16 @@ ul.top-menu a:hover{
 .copyright-wrapper{
     background: #2d3035;
     border: 1px #484a4f solid;
-    color:#999999;
     padding: 10px;
+}
+.copyright{
+    float: right;
     font-family: Tahoma, Verdana, Arial, Helvetica;
     font-size: 11px;
+    color:#999999;
+}
+.copyright a{
+    color:#999999;
 }
 
 
@@ -233,12 +239,6 @@ ul.top-menu a:hover{
     color: #ffffff;
     font-weight: bold;
 }
-
-
-
-
-
-
 
 /* Login block */
 #login-dp{
@@ -534,6 +534,29 @@ h5{
 }
 
 .modal-order{
+    width: 700px;
     padding-left: 20px;
     padding-right: 20px;
+}
+.modal-header{
+    border: none;
+}
+
+.user_menu{
+    list-style: none;
+    margin-top: 20px;
+    padding: 0;
+}
+
+.user_menu li{
+    padding: 0;
+}
+
+.link_order{
+    cursor: pointer;
+}
+
+.menu_site{
+    font-family: Tahoma, Helvetica, Arial;
+    font-size: 15px;
 }

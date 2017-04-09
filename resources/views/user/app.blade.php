@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.container2')
 @section('content')
     <?php if(isset(Auth::user()->profile->avatar)){$avatar = '/'.Auth::user()->profile->avatar;} ?>
     <h3>Личный кабинет пользователя</h3>
@@ -23,7 +23,7 @@
             </div>
     @endif
 
-    <div class="rcol-sm-6 col-md-4 col-lg-3">
+    <div class="rcol-sm-6 col-md-3 col-lg-3">
         <div class="avatar" style="width:162px; border: 1px #cccccc solid;">
             <img src="{{ $avatar or '/images/no_image.png' }}" style="width: 160px; height: 160px">
             <div class="edit_panel" style="position: absolute; margin-top:-30px;z-index: 100; border: 1px #cccccc solid;width:162px; height: 30px; text-align: center; background-color: black; opacity: 0.7; ">
@@ -34,10 +34,13 @@
                 @endif
             </div>
         </div>
-
-        <a href="{{ url('/user/edit') }}" >редактировать личные параметры</a><br>
-        <a href="{{ url('/user/password') }}" >изменить пароль</a><br>
-        <a href="#" data-toggle="modal" data-target="#orderModal" >Сделать заказ</a><br>
+        <ul class="user_menu">
+            <li><a href="{{ url('/user') }}" >Параметры профиля</a></li>
+            <li><a href="{{ url('/user/edit') }}" >Редактировать профиль</a></li>
+            <li><a href="{{ url('/user/password') }}" >Изменить пароль</a></li>
+            <li><a href="#" @if(URL::current() != url('/order')) data-toggle="modal" data-target="#orderModal" @endif>Сделать заказ</a></li>
+            <li><a href="{{ url('/user/orders') }}" >Мои заказы</a></li>
+        </ul>
     </div>
        @yield('profile')
 @endsection

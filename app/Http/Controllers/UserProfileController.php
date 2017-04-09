@@ -42,12 +42,12 @@ class UserProfileController extends Controller
                 'phone' => 'required|max:20',
             ];
 
-            if($request->input('type_client') == 1){
+            if($request->input('type_client') == 2){
                 //$list_validate += [
                     //'company' => 'required',
                 //];
 
-                if($request->input('type_payment') == 1 || $request->input('type_payment') == 2){
+                if($request->input('type_payment') == 2 || $request->input('type_payment') == 3){
                     $list_validate += [
                         'company_full' => 'required',
                         'edrpou' => 'required|min:8|max:10',
@@ -58,7 +58,7 @@ class UserProfileController extends Controller
                     ];
                 }
 
-                if( $request->input('type_payment') == 2){
+                if( $request->input('type_payment') == 3){
                     $list_validate += [
                         'inn' => 'required|size:10',
                     ];
@@ -70,15 +70,15 @@ class UserProfileController extends Controller
                 //$profile->id = $user->id;
             $user->name = $request->input('name');
             //$user->email = $request->input('email');
-            $profile->type_client = $request->input('type_client');
+            $profile->type_client_id = $request->input('type_client');
             $profile->phone = $request->input('phone');
             $profile->address = $request->input('address');
 
-            if($request->input('type_client') == 1) {
+            if($profile->type_client_id == 2) {
                 $profile->user_company = $request->input('user_company');
-                $profile->type_payment = $request->input('type_payment');
+                $profile->type_payment_id = $request->input('type_payment');
 
-                if($request->input('type_payment') == 1 || $request->input('type_payment') == 2) {
+                if($profile->type_payment_id == 2 || $profile->type_payment_id == 3) {
                     $profile->company_full = $request->input('company_full');
                     $profile->edrpou = $request->input('edrpou');
                     $profile->code_index = $request->input('code_index');
@@ -91,7 +91,7 @@ class UserProfileController extends Controller
                     $profile->office = $request->input('office');
                 }
 
-                if($request->input('type_payment') == 2) {
+                if($profile->type_payment_id == 3) {
                     $profile->inn = $request->input('inn');
                 }
             }

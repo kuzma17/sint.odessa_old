@@ -1,6 +1,6 @@
 @extends('user.app')
 @section('profile')
-    <div class="rcol-sm-6 col-md-8 col-lg-9">
+    <div class="rcol-sm-6 col-md-9 col-lg-9">
         <h4>Изменение пароля</h4>
 
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/user/password') }}">

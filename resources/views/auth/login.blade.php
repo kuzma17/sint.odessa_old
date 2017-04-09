@@ -2,7 +2,7 @@
 if(Request::path() == 'login_admin'){
     $app = 'admin.app';
 }else{
-    $app = 'layouts.app';
+    $app = 'layouts.container3';
 }
 ?>
 @extends($app)

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.container3')
 
 @section('content')
     <div class="content-page">
@@ -11,7 +11,7 @@
                 <div class="col-md-9">
                     <select name="type_order" class="form-control">
                         @foreach($type_order as $type)
-                            <option value="{{ $type->id }}" @if(old() && $type->id == old('type_order') || isset($order) && $type->id == $order->type_order) selected="selected" @endif>{{ $type->type_order }}</option>
+                            <option value="{{ $type->id }}" @if((old() && $type->id == old('type_order')) || (!old() && isset($order) && $type->id == $order->type_order)) selected="selected" @endif>{{ $type->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -23,13 +23,13 @@
                 <label  class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
 
                 <div class="col-md-8 form-inline">
-                    <input type="radio" class="form-control type_user" name="order_type_client" value="0" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0) checked @endif> частное лицо
-                    <input type="radio" class="form-control type_company" name="order_type_client" value="1" @if(old() && old('order_type_client') == 1 || isset($order) && $order->order_type_client == 1) checked @endif> организация
+                    <input type="radio" class="form-control type_user" name="order_type_client" value="1" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1)) checked @endif> частное лицо
+                    <input type="radio" class="form-control type_company" name="order_type_client" value="2" @if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) checked @endif> организация
 
                 </div>
             </div>
             <div class="form-group{{ $errors->has('order_name') ? ' has-error' : '' }}">
-                <label class="col-md-3 control-label name_account">@if(old() && old('order_type_client') == 1 || isset($order) && $order->order_type_client == 1) Компания @else ФИО @endif<span class="red">*</span></label>
+                <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <input  type="text" class="form-control" name="order_name" value="{{ $user->name }}" autofocus>
@@ -42,7 +42,7 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0 ) style="display: none" @endif>
+            <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1 )) style="display: none" @endif>
                 <label  class="col-md-3 control-label">Имя</label>
 
                 <div class="col-md-9">
@@ -95,17 +95,17 @@
                     @endif
                 </div>
             </div>
-            <div class="client_company_order" @if(old() && old('order_type_client') == 0 || isset($order) && $order->order_type_client == 0)  style="display: none" @endif>
+            <div class="client_company_order" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1))  style="display: none" @endif>
                 <div class="form-group{{ $errors->has('order_fio') ? ' has-error' : '' }}">
                     <label  class="col-md-3 control-label">Форма оплаты <span class="red">*</span></label>
 
                     <div class="col-md-9 form-inline">
-                        <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="0" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) checked @endif> наличный расчет
-                        <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="1" @if(old() && old('order_type_payment') == 1 || isset($order) && $order->order_type_payment == 1) checked @endif> безналичны расчет
-                        <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="2" @if(old() && old('order_type_payment') == 2 || isset($order) && $order->order_type_payment == 2) checked @endif> безналичный с НДС
+                        <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) checked @endif> наличный расчет
+                        <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if((old() && old('order_type_payment') == 2) || (!old() && isset($order) && $order->order_type_payment == 2)) checked @endif> безналичны расчет
+                        <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if((old() && old('order_type_payment') == 3) || (!old() && isset($order) && $order->order_type_payment == 3)) checked @endif> безналичный с НДС
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -119,7 +119,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_edrpou') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_edrpou') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label class="col-md-3 control-label">Код ЕДРПОУ <span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -133,7 +133,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_nds{{ $errors->has('order_inn') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 0 || old('order_type_payment') == 1) || isset($order) && ($order->order_type_payment == 0 || $order->order_type_payment == 1)) style="display: none" @endif>
+                <div class="form-group payment_nds{{ $errors->has('order_inn') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') != 3) || (!old() && isset($order) && $order->order_type_payment !=3)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -147,7 +147,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_code_index') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_code_index') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Индекс <span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -161,7 +161,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_region') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_region') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Регион</label>
 
                     <div class="col-md-9">
@@ -174,7 +174,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_area') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_area') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Район</label>
 
                     <div class="col-md-9">
@@ -187,7 +187,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_city') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_city') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Город <span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -200,7 +200,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_street') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_street') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Улица <span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -213,7 +213,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_house') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_house') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Дом <span class="red">*</span></label>
 
                     <div class="col-md-9">
@@ -226,7 +226,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_house_block') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_house_block') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Корпус</label>
 
                     <div class="col-md-9">
@@ -239,7 +239,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group payment_b_nal{{ $errors->has('order_office') ? ' has-error' : '' }}" @if(old() && old('order_type_payment') == 0 || isset($order) && $order->order_type_payment == 0) style="display: none" @endif>
+                <div class="form-group payment_b_nal{{ $errors->has('order_office') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Квартира/офис</label>
 
                     <div class="col-md-9">
