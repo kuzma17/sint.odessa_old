@@ -6,5 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserAvatar extends Model
 {
-    //
+    protected $fillable = [
+        'user_id', 'avatar',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

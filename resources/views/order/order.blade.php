@@ -28,16 +28,16 @@
 
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('order_name') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_client_name') ? ' has-error' : '' }}">
                 <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_name" value="{{ $user->name }}" autofocus>
+                    <input  type="text" class="form-control" name="order_client_name" value="@if(isset($user->profile)){{ $user->profile->client_name }}@endif" @if(isset($user->profile)) readonly="readonly" @endif autofocus>
                     <p class="info_account">Фамилия Имя Отчество</p>
 
-                    @if ($errors->has('order_name'))
+                    @if ($errors->has('order_client_name'))
                         <span class="help-block">
-                                        <strong>{{ $errors->first('order_name') }}</strong>
+                                        <strong>{{ $errors->first('order_client_name') }}</strong>
                                     </span>
                     @endif
                 </div>
@@ -60,7 +60,7 @@
                 <label  class="col-md-3 control-label">E-mail <span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" disabled>
+                    <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" readonly="readonly">
 
                     @if ($errors->has('order_email'))
                         <span class="help-block">

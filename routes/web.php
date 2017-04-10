@@ -24,20 +24,24 @@ Auth::routes();
 Route::get('/social/{provider}', 'SocialController@login');
 Route::get('/social/callback/{provider}', 'SocialController@callback');
 
-Route::get('/user', ['as'=>'user.profile', 'uses'=>'UserProfileController@profile']);
-Route::get('/user/edit', ['as'=>'user.profile.edit', 'uses'=>'UserProfileController@edit']);
-Route::post('/user/edit', ['as'=>'user.profile.save', 'uses'=>'UserProfileController@edit']);
-Route::get('/user/avatar', ['as'=>'user.avatar.edit', 'uses'=>'UserProfileController@avatar']);
-Route::post('/user/avatar', ['as'=>'user.avatar.save', 'uses'=>'UserProfileController@avatar']);
-Route::get('/user/avatar/delete', ['as'=>'user.avatar.delete', 'uses'=>'UserProfileController@dell_avatar']);
-Route::get('/user/password', ['as'=>'user.password.edit', 'uses'=>'UserProfileController@edit_password']);
-Route::post('/user/password', ['as'=>'user.password.save', 'uses'=>'UserProfileController@edit_password']);
+//Route::get('/user', ['as'=>'user.profile', 'uses'=>'UserProfileController@profile']);
 
-Route::get('/user/orders', ['as'=>'user.orders', 'uses'=>'OrderController@order_list']);
-Route::get('/user/order/{id}', ['as'=>'user.order', 'uses'=>'OrderController@order']);
+Route::get('/user', ['as'=>'user.profile', 'middleware'=>'client', 'uses'=>'UserProfileController@profile']);
 
-Route::get('/order', ['as'=>'order.modal.add', 'uses'=>'OrderController@add_order']);
-Route::post('/order', ['as'=>'user.modal.save', 'uses'=>'OrderController@add_order']);
+Route::get('/user/edit', ['as'=>'user.profile.edit', 'middleware'=>'client', 'uses'=>'UserProfileController@edit']);
+Route::post('/user/edit', ['as'=>'user.profile.save', 'middleware'=>'client', 'uses'=>'UserProfileController@edit']);
+Route::get('/user/avatar', ['as'=>'user.avatar.edit', 'middleware'=>'client', 'uses'=>'UserProfileController@avatar']);
+Route::post('/user/avatar', ['as'=>'user.avatar.save', 'middleware'=>'client', 'uses'=>'UserProfileController@avatar']);
+Route::get('/user/avatar/delete', ['as'=>'user.avatar.delete', 'middleware'=>'client', 'uses'=>'UserProfileController@dell_avatar']);
+Route::get('/user/password', ['as'=>'user.password.edit', 'middleware'=>'client', 'uses'=>'UserProfileController@edit_password']);
+Route::post('/user/password', ['as'=>'user.password.save', 'middleware'=>'client', 'uses'=>'UserProfileController@edit_password']);
+
+Route::get('/user/orders', ['as'=>'user.orders', 'middleware'=>'client', 'uses'=>'OrderController@order_list']);
+Route::get('/user/order/{id}', ['as'=>'user.order', 'middleware'=>'client', 'uses'=>'OrderController@order']);
+
+Route::get('/order', ['as'=>'order.add', 'middleware'=>'client', 'uses'=>'OrderController@add_order']);
+Route::post('/order', ['as'=>'order.save', 'middleware'=>'client', 'uses'=>'OrderController@add_order']);
+Route::get('/user/order-modal', ['as'=>'user.order.modal', 'middleware'=>'client', 'uses'=>'UserProfileController@profile']);
 
 Route::get('/home', ['as'=>'home', 'uses'=>'PageController@home']);
 Route::get('/contacts', ['as'=>'contacts', 'uses'=>'PageController@contacts']);

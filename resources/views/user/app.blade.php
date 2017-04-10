@@ -1,6 +1,6 @@
 @extends('layouts.container2')
 @section('content')
-    <?php if(isset(Auth::user()->profile->avatar)){$avatar = '/'.Auth::user()->profile->avatar;} ?>
+    <?php if(isset(Auth::user()->avatar)){$avatar = Auth::user()->avatar->avatar;} ?>
     <h3>Личный кабинет пользователя</h3>
     @if($message = Session::pull('ok_message'))
         <div class="alert alert-success alert-message">

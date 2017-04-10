@@ -52,10 +52,14 @@ class User extends Authenticatable
     }
 
     //public static function avatar(){
-      //  if($res = UserAvatar::find(Auth::user()->id)) {
-        //    return $res->avatar;
+       // if($res = UserAvatar::find(Auth::user()->id)) {
+       //     return $res->avatar;
        // }
-    //}
+   // }
+
+    public function avatar(){
+        return $this->hasOne(UserAvatar::class);
+    }
 
     public function profile(){
         return $this->hasOne(UserProfile::class);

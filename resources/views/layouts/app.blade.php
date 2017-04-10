@@ -61,7 +61,7 @@
     </div>
     <div class="col-sm-12 col-md-6 col-lg-4" style="padding-top: 15px">
         @if (Auth::guest())
-            <a href="{{ url('login') }}" class="btn btn-success btn-top" ><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
+            <a href="{{ url('/user/order-modal') }}" class="btn btn-success btn-top" ><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         @else
             <a href="#" class="btn btn-success btn-top" @if(URL::current() != url('/order')) data-toggle="modal" data-target="#orderModal" @endif><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         @endif
@@ -254,7 +254,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 
-@if( Auth::check() && (URL::previous() == url('login') || strstr(URL::previous(), 'social/callback')))
+@if(URL::current() == url('/user/order-modal'))
 <script type="text/javascript">
     $('#orderModal').modal('show');
 </script>

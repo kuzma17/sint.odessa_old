@@ -14,16 +14,16 @@
 
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('client_name') ? ' has-error' : '' }}">
                     <label id="name_account" for="phone" class="col-md-3 control-label">@if((old() && old('type_client') == 2) || (isset($user->profile) && !old() && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="name" value="{{ $user->name or '' }}" autofocus>
+                        <input id="phone" type="text" class="form-control" name="client_name" value="{{ $user->profile->client_name or '' }}" autofocus>
                         <p id="info_account">Фамилия Имя Отчество</p>
 
-                        @if ($errors->has('name'))
+                        @if ($errors->has('client_name'))
                             <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong>{{ $errors->first('client_name') }}</strong>
                                     </span>
                         @endif
                     </div>

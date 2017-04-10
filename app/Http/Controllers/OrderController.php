@@ -37,7 +37,7 @@ class OrderController extends Controller
             }
 
             $list_validate = [
-                'order_name' => 'required',
+                'order_client_name' => 'required',
                 //'order_email' => 'required',
                 'order_phone' => 'required'
             ];
@@ -66,9 +66,10 @@ class OrderController extends Controller
             $order->user_id = Auth::user()->id;
             $order->type_order_id = $request->input('type_order');
             $order->type_client_id = $request->input('order_type_client');
+            $order->client_name = $request->input('order_client_name');
             $order->phone = $request->input('order_phone');
             $order->address = $request->input('order_address');
-            //$order->name = $request->input('order_name');
+
             if($order->type_client_id == 2) {
                 $order->user_company = $request->input('order_user_company');
                 $order->type_payment_id = $request->input('order_type_payment');

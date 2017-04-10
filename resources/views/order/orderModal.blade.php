@@ -46,7 +46,7 @@ $type_order = \App\Type_order::all();
                     <label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_name" value="{{ $user->name or '' }}" required autofocus>
+                        <input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly="readonly" @endif required autofocus>
                         <p class="info_account">Фамилия Имя Отчество</p>
 
                         @if ($errors->has('order_name'))
@@ -74,7 +74,7 @@ $type_order = \App\Type_order::all();
                     <label class="col-md-3 control-label">E-mail <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" disabled>
+                        <input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" readonly="readonly">
 
                         @if ($errors->has('order_email'))
                             <span class="help-block">

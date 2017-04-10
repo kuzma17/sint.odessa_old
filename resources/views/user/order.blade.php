@@ -5,9 +5,10 @@
 
         <table class="table table-striped">
             <tbody>
+            <tr><td >Статус:</td><td>{{ $order->status->name }}</td></tr>
             <tr><td width="200">Тип услуги:</td><td>{{ $order->type_order->name }}</td></tr>
             <tr><td>Тип пользователя:</td><td>{{ $order->type_client->name }}</td></tr>
-            <tr><td>ФИО(Имя):</td><td>{{ $user->name }}</td></tr>
+            <tr><td>ФИО(Имя):</td><td>{{ $order->client_name }}</td></tr>
             @if( $order->type_client_id == 2 )
                 <tr><td>ФИО представителя компании:</td><td>{{ $order->	user_company }}</td></tr>
             @endif

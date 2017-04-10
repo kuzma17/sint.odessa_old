@@ -1,14 +1,14 @@
 <?php
 namespace App\Services;
 
+use App\UserAvatar;
 use App\UserProfile;
 use App\UserSocialAccount;
 use App\User;
 
 class SocialAccountService
 {
-    public function createOrGetUser($providerObj, $providerName)
-    {
+    public function createOrGetUser($providerObj, $providerName){
 
         $providerUser = $providerObj->user();
 
@@ -23,11 +23,8 @@ class SocialAccountService
                 'provider_user_id' => $providerUser->getId(),
                 'provider' => $providerName]);
 
-            $profile = new UserProfile([
+            $profile = new UserAvatar([
                 'avatar' => $providerUser->getAvatar()]); // User Profile
-
-            //$user = User::whereEmail($providerUser->getEmail())->first();
-            //$user = User::find($account->user_id);
 
            // if (!$user) {
                 $user = User::createBySocialProvider($providerUser);
@@ -39,7 +36,6 @@ class SocialAccountService
             $profile->save();
 
             return $user;
-
         }
 
     }

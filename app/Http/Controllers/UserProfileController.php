@@ -29,23 +29,16 @@ class UserProfileController extends Controller
         //$profile = $user->profile;
         if($request->isMethod('post')) {
 
-                if($user->profile){
-                    $profile = $user->profile;;
-                }else{
-                    $profile = new UserProfile();
-                    $profile->user_id = $user->id;
-                }
-
             $list_validate = [
-                'name' => 'required|max:200',
+                'client_name' => 'required|max:200',
                 //'email' => 'required|email',
                 'phone' => 'required|max:20',
             ];
 
             if($request->input('type_client') == 2){
-                //$list_validate += [
+                $list_validate += [
                     //'company' => 'required',
-                //];
+                ];
 
                 if($request->input('type_payment') == 2 || $request->input('type_payment') == 3){
                     $list_validate += [
@@ -67,8 +60,14 @@ class UserProfileController extends Controller
 
             $this->validate($request, $list_validate );
 
-                //$profile->id = $user->id;
-            $user->name = $request->input('name');
+            if($user->profile){
+                $profile = $user->profile;;
+            }else{
+                $profile = new UserProfile();
+            }
+
+            $profile->user_id = $user->id;
+            $profile->client_name = $request->input('client_name');
             //$user->email = $request->input('email');
             $profile->type_client_id = $request->input('type_client');
             $profile->phone = $request->input('phone');
@@ -96,7 +95,7 @@ class UserProfileController extends Controller
                 }
             }
 
-            $user->save();
+            //$user->save();
             $profile->save();
             Session::flash('ok_message', 'Данные Вашего профиля успешно сохранены.');
                 return $this->profile();
@@ -105,7 +104,7 @@ class UserProfileController extends Controller
         }
     }
 
-    public function avatar_(Request $request){
+    public function avatar(Request $request){
         $user = Auth::user();
         if($request->isMethod('post')) {
             //if($request->file('avatar')->isValid()) {
@@ -117,14 +116,14 @@ class UserProfileController extends Controller
                 Image::make($image->getRealPath())->resize(160, 160)->save();
                 $saveImageName = str_random(10) . '.' . $image->getClientOriginalExtension();
 
-            if(UserAvatar::find($user->id)) {
-                $avatar = UserAvatar::find($user->id);
+            if(UserAvatar::where('user_id', $user->id)->first()) {
+                $avatar = UserAvatar::where('user_id', $user->id)->first();
             }else{
                $avatar = new UserAvatar();
             }
-            $avatar->id = $user->id;
-                $avatar->avatar = $image->move('images/avatars', $saveImageName);
-                $avatar->save();
+            $avatar->user_id = $user->id;
+            $avatar->avatar = $image->move('images/avatars', $saveImageName);
+            $avatar->save();
             Session::flash('ok_message', 'Ваше фото успешно соxранено.');
             return $this->profile();
         }else{
@@ -132,7 +131,7 @@ class UserProfileController extends Controller
         }
     }
 
-    public function avatar(Request $request){
+    public function avatar_(Request $request){
         $user = Auth::user();
         if($request->isMethod('post')) {
 
