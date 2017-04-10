@@ -121,10 +121,13 @@ class UserProfileController extends Controller
             }else{
                $avatar = new UserAvatar();
             }
+
+            $image->move('images/avatars', $saveImageName);
+
             $avatar->user_id = $user->id;
-            $avatar->avatar = $image->move('images/avatars', $saveImageName);
+            $avatar->avatar = '/images/avatars/'.$saveImageName;
             $avatar->save();
-            Session::flash('ok_message', 'Ваше фото успешно соxранено.');
+            Session::flash('ok_message', 'Ваш аватар успешно соxранен.');
             return $this->profile();
         }else{
             return view('user.edit_avatar');

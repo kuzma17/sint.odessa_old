@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function order_list(){
         $user = Auth::user();
-        if($orders = Order::where('user_id', $user->id)->orderby('created_at', 'desc')->get()){
+        if($orders = Order::where('user_id', $user->id)->orderby('created_at', 'desc')->paginate(15)){
             return view('user.order_list', ['orders'=>$orders]);
         }else{
             Session::flash('ok_message', 'У Вас пока нет сохраненных заказов.');
@@ -94,7 +94,7 @@ class OrderController extends Controller
             $order->save();
 
             Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрн в ближайшее время.');
-            return redirect('/user');
+            return redirect('/user/order/'.$order->id);
         }else {
             $user = Auth::user();
             $type_order = Type_order::all();

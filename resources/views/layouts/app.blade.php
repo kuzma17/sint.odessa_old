@@ -50,7 +50,7 @@
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone" style="color: orangered"></i> +38(0482)333-767</div>
         <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i> Соборная пл. 12</div>
-                <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone" style="color: orangered"></i> +38(0482)777-16-85</div>
+                <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone" style="color: orangered"></i> +38(048)777-16-85</div>
         <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i> Днепропетровская дор. 94</div>
                 <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone" style="color: orangered"></i> +38(0482)379-141</div>
@@ -99,7 +99,7 @@
                 <li><i class="glyphicon glyphicon-map-marker"></i> Гл. офис: Адмиральский пр-т. 33А
                     <i class="glyphicon glyphicon-earphone"></i> +38(0482)333-767</li>
                 <li><i class="glyphicon glyphicon-map-marker"></i> Соборная пл. 12
-                    <i class="glyphicon glyphicon-earphone"></i> +38(0482)777-16-85</li>
+                    <i class="glyphicon glyphicon-earphone"></i> +38(048)777-16-85</li>
                 <li><i class="glyphicon glyphicon-map-marker"></i> Днепропетровская дор. 94
                     <i class="glyphicon glyphicon-earphone"></i> +38(0482)379-141</li>
                 <li><i class="glyphicon glyphicon-map-marker"></i> Ак. Королева 33

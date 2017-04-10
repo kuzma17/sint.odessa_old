@@ -24,5 +24,6 @@
              @endforeach
             </tbody>
         </table>
+        {{ $orders->render() }}
     </div>
 @endsection

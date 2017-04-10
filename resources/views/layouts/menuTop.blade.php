@@ -5,8 +5,8 @@
             <li><a title="{{ config('app.name', 'Laravel') }}" href="http://sint.odessa.ua"
                    onclick="window.external.AddFavorite('http://sint.odessa.ua',
                            '{{ config('app.name', 'Laravel') }}'); return false;" rel="sidebar"><i class="glyphicon glyphicon-heart"></i> В избранное</a></li>
-            <li><a href="{{ url('/mail') }}"><i class="glyphicon glyphicon-envelope"></i> mail</a></li>
-            <li><a href="{{ url('/delivery') }}"><i class="fa fa-truck" aria-hidden="true"></i> доставка</a></li>
+            <li><a href="{{ url('/mail') }}"><i class="glyphicon glyphicon-envelope"></i> Написать нам</a></li>
+            <li><a href="{{ url('/delivery') }}"><i class="fa fa-truck" aria-hidden="true"></i> Доставка</a></li>
             @if (Auth::guest())
                 <li class="dropdown">
                     <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
