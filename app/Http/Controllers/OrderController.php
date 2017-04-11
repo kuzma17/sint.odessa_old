@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\Type_order;
+use App\TypeOrder;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,14 +32,15 @@ class OrderController extends Controller
 
             if($request->input('all_order')){
                 $user = Auth::user();
-                $type_order = Type_order::all();
+                $type_order = TypeOrder::all();
                 return view('order.order', ['order'=>$request, 'user' => $user, 'type_order' => $type_order]);
             }
 
             $list_validate = [
                 'order_client_name' => 'required',
                 //'order_email' => 'required',
-                'order_phone' => 'required'
+                'order_phone' => 'required',
+                'order_address' => 'required'
             ];
 
             if($request->input('add_all_order')){
@@ -97,7 +98,7 @@ class OrderController extends Controller
             return redirect('/user/order/'.$order->id);
         }else {
             $user = Auth::user();
-            $type_order = Type_order::all();
+            $type_order = TypeOrder::all();
             return view('order.order', ['user' => $user, 'type_order' => $type_order]);
         }
     }

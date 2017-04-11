@@ -19,15 +19,15 @@ class UserProfile extends Model
     }
 
     public function type_order(){
-        return $this->belongsTo('App\Type_order');
+        return $this->belongsTo('App\TypeOrder');
     }
 
     public function type_client(){
-        return $this->belongsTo('App\Type_client');
+        return $this->belongsTo('App\TypeClient');
     }
 
     public function type_payment(){
-        return $this->belongsTo('App\Type_payment');
+        return $this->belongsTo('App\TypePayment');
     }
 
     public function status(){

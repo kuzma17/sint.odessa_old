@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
-                <label  class="col-md-3 control-label">Адрес доставки</label>
+                <label  class="col-md-3 control-label">Адрес доставки <span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <input type="text" class="form-control" name="order_address" value="@if(old()){{ old('order_address') }}@else{{ $order->order_address or '' }}@endif" >

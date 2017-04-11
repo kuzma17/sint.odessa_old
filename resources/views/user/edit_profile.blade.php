@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                    <label for="address" class="col-md-3 control-label">Адрес доставки</label>
+                    <label for="address" class="col-md-3 control-label">Адрес доставки <span class="red">*</span></label>
 
                     <div class="col-md-9">
                         <input id="address" type="text" class="form-control" name="address" value="@if(old()){{ old('address') }}@else{{ $user->profile->address or '' }}@endif" >

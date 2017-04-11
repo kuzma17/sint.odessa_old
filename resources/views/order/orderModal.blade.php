@@ -7,7 +7,7 @@
  */
 
 $user = Auth::user();
-$type_order = \App\Type_order::all();
+$type_order = \App\TypeOrder::all();
 ?>
 
 <div id="orderModal" class="modal fade">
@@ -97,10 +97,10 @@ $type_order = \App\Type_order::all();
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
-                    <label  class="col-md-3 control-label">Адрес доставки</label>
+                    <label  class="col-md-3 control-label">Адрес доставки <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" >
+                        <input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" required>
 
                         @if ($errors->has('order_address'))
                             <span class="help-block">
