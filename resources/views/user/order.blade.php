@@ -49,6 +49,9 @@
                 @if($order->type_order_id == 3 && $order->type_status_id != 1)
             </div>
             <div class="tab-pane fade" id="tab-2">
+                <form name="repair" method="post" action="/user/order/repair_save">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="order_id" value="{{ $order->id }}">
                 <table class="table table-striped">
                     <tbody>
                     <tr><td >Оборудование:</td><td>{{ $order->act_repair->device }}</td></tr>
@@ -56,15 +59,17 @@
                     <tr><td>Описание неисправности<br>(со слов заказчика):</td><td>{{ $order->act_repair->text_defect}}</td></tr>
                     <tr><td>Диагностика:</td><td>{{ $order->act_repair->diagnostic }}</td></tr>
                     <tr><td>Стоимость работы:</td><td>{{ $order->act_repair->cost }}</td></tr>
-                    <tr><td>Подтверждение:</td><td><select name="user_consent" class="form-control">
+                    <tr><td>Подтверждение:</td><td>
+                            <select name="user_consent" class="form-control">
                                 @foreach(\App\UserConsent::all() as $consent)
-                                <option value="{{ $consent->id }}">{{ $consent->name }}</option>
+                                <option value="{{ $consent->id }}" @if($consent->id == $order->act_repair->user_consent_id) selected="selected" @endif>{{ $consent->name }}</option>
                                 @endforeach
                             </select> </td></tr>
-                    <tr><td >Комментарий:</td><td><textarea class="form-control" name="comment"></textarea></td></tr>
+                    <tr><td >Комментарий:</td><td><textarea class="form-control" name="comment">{{ $order->act_repair->comment }}</textarea></td></tr>
                     <tr><td>Подтверждение:</td><td><input type="submit" class="btn btn-primary" value="Отправить"></td></tr>
                     </tbody>
                 </table>
+                </form>
 
             </div>
         </div>

@@ -43,6 +43,8 @@ Route::get('/order', ['as'=>'order.add', 'middleware'=>'client', 'uses'=>'OrderC
 Route::post('/order', ['as'=>'order.save', 'middleware'=>'client', 'uses'=>'OrderController@add_order']);
 Route::get('/user/order-modal', ['as'=>'user.order.modal', 'middleware'=>'client', 'uses'=>'UserProfileController@profile']);
 
+Route::post('/user/order/repair_save', ['as'=>'order.repair.save', 'middleware'=>'client', 'uses'=>'OrderController@user_consent']);
+
 Route::get('/home', ['as'=>'home', 'uses'=>'PageController@home']);
 Route::get('/contacts', ['as'=>'contacts', 'uses'=>'PageController@contacts']);
 Route::get('/mail', ['as'=>'mail', 'uses'=>'PageController@mail']);

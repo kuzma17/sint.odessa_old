@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ActRepair;
 use App\Order;
 use App\TypeOrder;
 use App\User;
@@ -94,12 +95,22 @@ class OrderController extends Controller
 
             $order->save();
 
-            Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрн в ближайшее время.');
+            Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрен в ближайшее время.');
             return redirect('/user/order/'.$order->id);
         }else {
             $user = Auth::user();
             $type_order = TypeOrder::all();
             return view('order.order', ['user' => $user, 'type_order' => $type_order]);
         }
+    }
+
+    public function user_consent(Request $request){
+        $order_id = $request->input('order_id');
+        $repair = ActRepair::where('order_id', $order_id)->first();
+        $repair->user_consent_id = $request->input('user_consent');
+        $repair->comment = $request->input('comment');
+        $repair->save();
+        Session::flash('ok_message', 'Ваш заказ успешно подтвержден и будет рассмотрен в ближайшее время.');
+        return redirect('/user/order/'.$order_id);
     }
 }
