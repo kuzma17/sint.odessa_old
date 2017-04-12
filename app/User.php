@@ -65,4 +65,141 @@ class User extends Authenticatable
         return $this->hasOne(UserProfile::class);
     }
 
+    public function is_person($old = 0){
+        if(!$this->profile && $old == 0){
+            return true;
+        }
+        if($old == 1){
+            return true;
+        }
+        if($this->profile && $old == 0 && $this->profile->type_client_id == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_company($old = 0){
+        if(!$this->profile && $old == 0){
+            return false;
+        }
+        if($old == 2){
+            return true;
+        }
+        if($this->profile && $old == 0 && $this->profile->type_client_id == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_nal($old = 0){
+        if(!$this->profile && $old == 0){
+            return true;
+        }
+        if($old == 1){
+            return true;
+        }
+        if($this->profile && $old == 0 && $this->profile->type_payment_id == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_b_nal($old = 0){
+        if(!$this->profile && $old == 0){
+            return false;
+        }
+        if($old == 2){
+            return true;
+        }
+        if($this->profile && $old == 0 && $this->profile->type_payment_id == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_nds($old = 0){
+        if(!$this->profile && $old == 0){
+            return false;
+        }
+        if($old == 3){
+            return true;
+        }
+        if($this->profile && $old == 0 && $this->profile->type_payment_id == 3){
+            return true;
+        }
+        return false;
+    }
+
+
+
+
+    ///
+
+    public function is_person_order($old = 0, $order = 0){
+        if($order == 0 && $old == 0){
+            return true;
+        }
+        if($old == 1){
+            return true;
+        }
+        if($old == 0 && $order == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_company_order($old = 0,  $order = 0){
+        if($order == 0 && $old == 0){
+            return false;
+        }
+        if($old == 2){
+            return true;
+        }
+        if($old == 0 && $order == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_nal_order($old = 0,  $order = 0){
+        if($order == 0 && $old == 0){
+            return true;
+        }
+        if($old == 1){
+            return true;
+        }
+        if($old == 0 && $order == 1){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_b_nal_order($old = 0,  $order = 0){
+        if($order == 0 && $old == 0){
+            return false;
+        }
+        if($old == 2){
+            return true;
+        }
+        if($old == 0 && $order == 2){
+            return true;
+        }
+        return false;
+    }
+
+    public function is_payment_nds_order($old = 0,  $order = 0){
+        if($order == 0 && $old == 0){
+            return false;
+        }
+        if($old == 3){
+            return true;
+        }
+        if($old == 0 && $order == 3){
+            return true;
+        }
+        return false;
+    }
+
+    ////
+
 }

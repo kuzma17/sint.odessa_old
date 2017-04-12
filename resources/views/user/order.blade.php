@@ -54,19 +54,22 @@
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                 <table class="table table-striped">
                     <tbody>
+                    <tr><td>Статис ремонта:</td><td>{{ $order->act_repair->status_repair->name }}</td></tr>
                     <tr><td >Оборудование:</td><td>{{ $order->act_repair->device }}</td></tr>
                     <tr><td width="200">Комплектация:</td><td>{{ $order->act_repair->set_device}}</td></tr>
                     <tr><td>Описание неисправности<br>(со слов заказчика):</td><td>{{ $order->act_repair->text_defect}}</td></tr>
                     <tr><td>Диагностика:</td><td>{{ $order->act_repair->diagnostic }}</td></tr>
                     <tr><td>Стоимость работы:</td><td>{{ $order->act_repair->cost }}</td></tr>
                     <tr><td>Подтверждение:</td><td>
-                            <select name="user_consent" class="form-control">
+                            <select name="user_consent" class="form-control" @if(!$order->act_repair->is_open()) disabled @endif>
                                 @foreach(\App\UserConsent::all() as $consent)
                                 <option value="{{ $consent->id }}" @if($consent->id == $order->act_repair->user_consent_id) selected="selected" @endif>{{ $consent->name }}</option>
                                 @endforeach
                             </select> </td></tr>
-                    <tr><td >Комментарий:</td><td><textarea class="form-control" name="comment">{{ $order->act_repair->comment }}</textarea></td></tr>
+                    <tr><td >Комментарий:</td><td><textarea class="form-control" name="comment" @if(!$order->act_repair->is_open()) readonly @endif>{{ $order->act_repair->comment }}</textarea></td></tr>
+                    @if($order->act_repair->is_open())
                     <tr><td>Подтверждение:</td><td><input type="submit" class="btn btn-primary" value="Отправить"></td></tr>
+                    @endif
                     </tbody>
                 </table>
                 </form>

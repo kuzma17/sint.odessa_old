@@ -15,4 +15,11 @@ class ActRepair extends Model
     public function user_consent(){
         return $this->belongsTo('App\UserConsent');
     }
+
+    public function is_open(){
+        if($this->status_repair_id == 3 || $this->status_repair_id == 13){
+            return true;
+        }
+        return false;
+    }
 }

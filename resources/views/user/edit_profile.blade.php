@@ -9,13 +9,13 @@
                     <label for="phone" class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
 
                     <div class="col-md-8 form-inline">
-                        <input type="radio" id="client_user" class="form-control" name="type_client" value="1" @if((old() && old('type_client') == 1) || (isset($user->profile) && !old() && $user->profile->type_client_id == 1) || !isset($user->profile)) checked @endif> частное лицо
-                        <input type="radio" id="client_company" class="form-control" name="type_client" value="2" @if((old() && old('type_client') == 2) || (isset($user->profile) && !old() && $user->profile->type_client_id == 2)) checked @endif> организация
+                        <input type="radio" id="client_user" class="form-control" name="type_client" value="1" @if($user->is_person(old('type_client'))) checked @endif> частное лицо
+                        <input type="radio" id="client_company" class="form-control" name="type_client" value="2" @if($user->is_company(old('type_client'))) checked @endif> организация
 
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('client_name') ? ' has-error' : '' }}">
-                    <label id="name_account" for="phone" class="col-md-3 control-label">@if((old() && old('type_client') == 2) || (isset($user->profile) && !old() && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
+                    <label id="name_account" for="phone" class="col-md-3 control-label">@if($user->is_company(old('type_client'))) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
                         <input id="phone" type="text" class="form-control" name="client_name" value="{{ $user->profile->client_name or '' }}" autofocus>
@@ -28,7 +28,7 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group client_company{{ $errors->has('user_company') ? ' has-error' : '' }}" @if(old() && old('type_client') == 1 || (!old() && isset($user->profile) && $user->profile->type_client_id == 1 ) || !isset($user->profile)) style="display: none" @endif>
+                <div class="form-group client_company{{ $errors->has('user_company') ? ' has-error' : '' }}" @if($user->is_person(old('type_client'))) style="display: none" @endif>
                     <label for="phone" class="col-md-3 control-label">Имя</label>
 
                     <div class="col-md-9">
@@ -81,17 +81,17 @@
                         @endif
                     </div>
                 </div>
-                <div class="client_company" @if((old() && old('type_client') == 1) || (!old() && isset($user->profile) && $user->profile->type_client_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                <div class="client_company" @if($user->is_person(old('type_client'))) style="display: none" @endif>
                     <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
                         <label for="phone" class="col-md-3 control-label">Форма оплаты <span class="red">*</span></label>
 
                         <div class="col-md-9 form-inline">
-                            <input type="radio" id="payment_nal" class="form-control" name="type_payment" value="1" @if((old() && old('type_payment') == 1) || (isset($user->profile) && !old() && $user->profile->type_payment_id == 1) || !isset($user->profile)) checked @endif> наличный расчет
-                            <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="2" @if((old() && old('type_payment') == 2) || (isset($user->profile) && !old() && $user->profile->type_payment_id == 2)) checked @endif> безналичны расчет
-                            <input type="radio" id="payment_nds" class="form-control" name="type_payment" value="3" @if((old() && old('type_payment') == 3) || (isset($user->profile) && !old() && $user->profile->type_payment_id == 3)) checked @endif> безналичный с НДС
+                            <input type="radio" id="payment_nal" class="form-control" name="type_payment" value="1" @if($user->is_payment_nal(old('type_payment'))) checked @endif> наличный расчет
+                            <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="2" @if($user->is_payment_b_nal(old('type_payment'))) checked @endif> безналичны расчет
+                            <input type="radio" id="payment_nds" class="form-control" name="type_payment" value="3" @if($user->is_payment_nds(old('type_payment'))) checked @endif> безналичный с НДС
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('company_full') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('company_full') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="phone" class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -105,7 +105,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('edrpou') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('edrpou') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="icq" class="col-md-3 control-label">Код ЕДРПОУ <span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -119,7 +119,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_nds{{ $errors->has('inn') ? ' has-error' : '' }}" @if((old() && old('type_payment') != 3) || (!old() && isset($user->profile) && $user->profile->type_payment_id != 3) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_nds{{ $errors->has('inn') ? ' has-error' : '' }}" @if(!$user->is_payment_nds(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -133,7 +133,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('code_index') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('code_index') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Индекс <span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -147,7 +147,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('region') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('region') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Регион</label>
 
                         <div class="col-md-9">
@@ -160,7 +160,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('area') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('area') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Район</label>
 
                         <div class="col-md-9">
@@ -173,7 +173,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('city') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('city') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Город <span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -186,7 +186,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('street') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('street') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Улица <span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -199,7 +199,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('house') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('house') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Дом <span class="red">*</span></label>
 
                         <div class="col-md-9">
@@ -212,7 +212,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('house_block') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('house_block') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Корпус</label>
 
                         <div class="col-md-9">
@@ -225,7 +225,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="form-group payment_b_nal{{ $errors->has('office') ? ' has-error' : '' }}" @if((old() && old('type_payment') == 1) || (!old() && isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) style="display: none" @endif>
+                    <div class="form-group payment_b_nal{{ $errors->has('office') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="address" class="col-md-3 control-label">Квартира/офис</label>
 
                         <div class="col-md-9">
