@@ -548,6 +548,7 @@ h5{
     padding: 0;
 }
 
+
 .user_menu li{
     padding: 0;
 }
@@ -567,4 +568,10 @@ h5{
     color: red;
     font-size: 13px;
     margin-top: -20px;
+}
+
+.order_info{
+    font-family: Arial;
+    size: 10px;
+    font-style: italic
 }

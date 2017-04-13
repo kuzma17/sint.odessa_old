@@ -32,8 +32,8 @@
                 <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_client_name" value="@if(isset($user->profile)){{ $user->profile->client_name }}@endif" @if(isset($user->profile)) readonly="readonly" @endif autofocus>
-                    <p class="info_account">Фамилия Имя Отчество</p>
+                    <input  type="text" class="form-control" name="order_client_name" value="{{ $order->order_client_name }}" @if(isset($user->profile)) readonly="readonly" @endif autofocus>
+                    <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
 
                     @if ($errors->has('order_client_name'))
                         <span class="help-block">
@@ -43,11 +43,11 @@
                 </div>
             </div>
             <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1 )) style="display: none" @endif>
-                <label  class="col-md-3 control-label">Имя</label>
+                <label  class="col-md-3 control-label">Контактное лицо</label>
 
                 <div class="col-md-9">
                     <input id="user_company" type="text" class="form-control" name="order_user_company" value="@if(old()){{ old('order_user_company') }}@else{{ $order->order_user_company or '' }}@endif" >
-                    <p>Фамилия Имя Отчество контактного лица компании.</p>
+                    <p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
 
                     @if ($errors->has('order_user_company'))
                         <span class="help-block">
@@ -101,8 +101,9 @@
 
                     <div class="col-md-9 form-inline">
                         <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) checked @endif> наличный расчет
-                        <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if((old() && old('order_type_payment') == 2) || (!old() && isset($order) && $order->order_type_payment == 2)) checked @endif> безналичны расчет
+                        <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if((old() && old('order_type_payment') == 2) || (!old() && isset($order) && $order->order_type_payment == 2)) checked @endif> безналичный расчет
                         <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if((old() && old('order_type_payment') == 3) || (!old() && isset($order) && $order->order_type_payment == 3)) checked @endif> безналичный с НДС
+                        <p class="order_info">Для безналичного расчета укажите пожалуйста реквизиты компании.</p>
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
@@ -110,7 +111,7 @@
 
                     <div class="col-md-9">
                         <input  type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" >
-                        <p>Полное наименование организации (согласно выписке из госреестра) </p>
+                        <p class="order_info">Полное наименование организации (согласно выписке из госреестра) </p>
 
                         @if ($errors->has('order_company_full'))
                             <span class="help-block">
@@ -124,7 +125,7 @@
 
                     <div class="col-md-9">
                         <input  type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" >
-                        <p>Должен содержать 8 - 10 знаков</p>
+                        <p class="order_info">Должен содержать 8 - 10 знаков</p>
 
                         @if ($errors->has('order_edrpou'))
                             <span class="help-block">
@@ -138,7 +139,7 @@
 
                     <div class="col-md-9">
                         <input  type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" >
-                        <p>Индивидуальный налоговый номер, должен содержать 10 знаков</p>
+                        <p class="order_info">Индивидуальный налоговый номер, должен содержать 10 знаков</p>
 
                         @if ($errors->has('order_inn'))
                             <span class="help-block">
@@ -152,7 +153,7 @@
 
                     <div class="col-md-9">
                         <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" >
-                        <p>Почтовый индекс, должен содержать 5 знаков</p>
+                        <p class="order_info">Почтовый индекс, должен содержать 5 знаков</p>
 
                         @if ($errors->has('order_code_index'))
                             <span class="help-block">

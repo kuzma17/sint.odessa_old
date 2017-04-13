@@ -21,7 +21,6 @@ $type_order = \App\TypeOrder::all();
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
-
                     <div class="col-md-9">
                         <select name="type_order" class="form-control" autofocus>
                             @foreach($type_order as $type)
@@ -30,9 +29,6 @@ $type_order = \App\TypeOrder::all();
                         </select>
                     </div>
                 </div>
-
-
-
                 <div class="form-group">
                     <label class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
 
@@ -47,7 +43,7 @@ $type_order = \App\TypeOrder::all();
 
                     <div class="col-md-9">
                         <input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly="readonly" @endif required autofocus>
-                        <p class="info_account">Фамилия Имя Отчество</p>
+                        <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
 
                         @if ($errors->has('order_name'))
                             <span class="help-block">
@@ -61,7 +57,7 @@ $type_order = \App\TypeOrder::all();
 
                     <div class="col-md-9">
                         <input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" >
-                        <p>Фамилия Имя Отчество контактного лица компании.</p>
+                        <p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
 
                         @if ($errors->has('order_user_company'))
                             <span class="help-block">
@@ -115,12 +111,12 @@ $type_order = \App\TypeOrder::all();
 
                         <div class="col-md-9 form-inline">
                             <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) checked @endif> наличный расчет
-                            <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичны расчет
+                            <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичный расчет
                             <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if(isset($user->profile) && $user->profile->type_payment_id == 3) checked @endif> безналичный с НДС
                         </div>
-                        <p style="font-family: Arial; size: 10px; font-style: italic">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
+                        <p class="order_info">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
                         Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
-                        Также Вы можете сами внести все недостающие данные, воспользовавшись расшыренным заказом</a>.</p>
+                        Также Вы можете сами внести все недостающие данные, воспользовавшись расширенным заказом</a>.</p>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
@@ -138,8 +134,8 @@ $type_order = \App\TypeOrder::all();
                 </div>
                 <div class="form-group">
                     <div class="col-md-8 col-md-offset-4">
-                        <input type="submit" name="all_order" class="btn btn-default" value="Расшыренный заказ">
                         <input type="submit" name="add_order" class="btn btn-primary" value="Сохранить">
+                        <input id="all_order" type="submit" name="all_order" class="btn btn-default" value="Расширенный заказ"  @if(isset($user->profile) && $user->profile->type_client_id== 1 || !isset($user->profile)) style="display: none" @endif>
                     </div>
                 </div>
             </form>

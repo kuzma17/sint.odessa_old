@@ -7,7 +7,7 @@
         <table class="table table-striped">
             <tbody>
             <tr><td>Тип пользователя:</td><td>{{ $user->profile->type_client->name or ''}}</td></tr>
-            <tr><td>ФИО(Имя):</td><td>{{ $user->profile->client_name or ''}}</td></tr>
+            <tr><td>@if( isset($user->profile) && $user->profile->type_client_id == 2 ) Компания: @else ФИО: @endif</td><td>{{ $user->profile->client_name or ''}}</td></tr>
             @if( isset($user->profile) && $user->profile->type_client_id == 2 )
                 <tr><td>ФИО представителя компании:</td><td>{{ $user->profile->user_company or '' }}</td></tr>
             @endif
