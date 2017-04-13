@@ -32,7 +32,7 @@
                 <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_client_name" value="{{ $order->order_client_name }}" @if(isset($user->profile)) readonly="readonly" @endif autofocus>
+                    <input  type="text" class="form-control" name="order_client_name" value="@if(old()){{ old('order_client_name') }}@else{{ $order->order_client_name or ''}}@endif" @if(isset($user->profile->client_name)) readonly @endif autofocus>
                     <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
 
                     @if ($errors->has('order_client_name'))
@@ -60,7 +60,7 @@
                 <label  class="col-md-3 control-label">E-mail <span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" readonly="readonly">
+                    <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" @if(isset($user->email)) readonly @endif >
 
                     @if ($errors->has('order_email'))
                         <span class="help-block">
@@ -73,7 +73,7 @@
                 <label  class="col-md-3 control-label">телефон <span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" >
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if(isset($user->profile->phone)) readonly @endif >
 
                     @if ($errors->has('order_phone'))
                         <span class="help-block">

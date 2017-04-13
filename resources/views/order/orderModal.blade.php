@@ -42,7 +42,7 @@ $type_order = \App\TypeOrder::all();
                     <label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly="readonly" @endif required autofocus>
+                        <input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif required autofocus>
                         <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
 
                         @if ($errors->has('order_name'))
@@ -70,7 +70,7 @@ $type_order = \App\TypeOrder::all();
                     <label class="col-md-3 control-label">E-mail <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" readonly="readonly">
+                        <input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" @if(isset($user->email)) readonly @endif required>
 
                         @if ($errors->has('order_email'))
                             <span class="help-block">
@@ -83,7 +83,7 @@ $type_order = \App\TypeOrder::all();
                     <label class="col-md-3 control-label">телефон <span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" required>
+                        <input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if(isset($user->profile->phone)) readonly @endif required>
 
                         @if ($errors->has('order_phone'))
                             <span class="help-block">
