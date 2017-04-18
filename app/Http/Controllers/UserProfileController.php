@@ -31,9 +31,9 @@ class UserProfileController extends Controller
 
             $list_validate = [
                 'client_name' => 'required|max:200',
-                //'email' => 'required|email',
-                'phone' => 'required|max:20',
-                'address' => 'required'
+                'email' => 'required|email',
+                'phone' => 'required|max:20'
+                //'address' => 'required'
             ];
 
             if($request->input('type_client') == 2){

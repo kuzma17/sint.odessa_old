@@ -1657,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelRUS/SleepingOwlAdmin.git",
-                "reference": "1b6a948f7c5c76c5d3d5820fcd86037a01398ea2"
+                "reference": "cdd72ef22dc64adfbf9f6cd087882073530cd1dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/1b6a948f7c5c76c5d3d5820fcd86037a01398ea2",
-                "reference": "1b6a948f7c5c76c5d3d5820fcd86037a01398ea2",
+                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/cdd72ef22dc64adfbf9f6cd087882073530cd1dd",
+                "reference": "cdd72ef22dc64adfbf9f6cd087882073530cd1dd",
                 "shasum": ""
             },
             "require": {
@@ -1715,7 +1715,7 @@
                 "crud",
                 "laravel"
             ],
-            "time": "2017-04-05T19:03:23+00:00"
+            "time": "2017-04-18T09:44:43+00:00"
         },
         {
             "name": "league/flysystem",
@@ -3685,16 +3685,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe"
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/5a5a9fc8025a08d8919be87d6884d5a92520cefe",
-                "reference": "5a5a9fc8025a08d8919be87d6884d5a92520cefe",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/8e6e04167378abf1ddb4d3522d8755c5fd90d102",
+                "reference": "8e6e04167378abf1ddb4d3522d8755c5fd90d102",
                 "shasum": ""
             },
             "require": {
@@ -3723,7 +3723,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2017-01-26T22:05:40+00:00"
+            "time": "2017-04-12T18:52:22+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",

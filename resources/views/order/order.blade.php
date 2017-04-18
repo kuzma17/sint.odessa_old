@@ -6,7 +6,7 @@
         <form name="order_order" method="post" class="form-horizontal" action="{{ url('/order') }}">
             {{ csrf_field() }}
             <div class="form-group">
-                <label  class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
+                <label  class="col-md-3 control-label">Тип услуги<span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <select name="type_order" class="form-control">
@@ -20,11 +20,21 @@
 
 
             <div class="form-group{{ $errors->has('order_fio') ? ' has-error' : '' }}">
-                <label  class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
+                <label  class="col-md-4 control-label">Тип пользователя<span class="red">*</span></label>
 
                 <div class="col-md-8 form-inline">
-                    <input type="radio" class="form-control type_user" name="order_type_client" value="1" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1)) checked @endif> частное лицо
-                    <input type="radio" class="form-control type_company" name="order_type_client" value="2" @if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) checked @endif> организация
+
+                    @if($user->profile && $user->profile->type_client_id)
+                        <input type="radio" class="form-control type_user"  @if($user->profile->type_client_id == 1) checked @endif disabled> частное лицо
+                        <input type="radio" class="form-control type_company"  @if($user->profile->type_client_id == 2) checked @endif disabled> организация
+                        <input type="hidden" name="order_type_client" value="{{ $user->profile->type_client_id }}">
+                    @elseif(!isset($user->profile->order_type_client) && isset($order))
+                        <input type="radio" class="form-control type_user" name="order_type_client" value="1"  @if($order->order_type_client == 1) checked @endif> частное лицо
+                        <input type="radio" class="form-control type_company" name="order_type_client" value="2" @if($order->order_type_client == 2) checked @endif> организация
+                    @else
+                        <input type="radio" class="form-control type_user" name="order_type_client" value="1"  @if((old() && old('order_type_client') == 1) || !old()) checked @endif> частное лицо
+                        <input type="radio" class="form-control type_company" name="order_type_client" value="2" @if(old() && old('order_type_client') == 2) checked @endif> организация
+                    @endif
 
                 </div>
             </div>
@@ -57,7 +67,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('order_email') ? ' has-error' : '' }}">
-                <label  class="col-md-3 control-label">E-mail <span class="red">*</span></label>
+                <label  class="col-md-3 control-label">E-mail<span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <input id="skype" type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" @if(isset($user->email)) readonly @endif >
@@ -70,10 +80,10 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('order_phone') ? ' has-error' : '' }}">
-                <label  class="col-md-3 control-label">телефон <span class="red">*</span></label>
+                <label  class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if(isset($user->profile->phone)) readonly @endif >
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif >
 
                     @if ($errors->has('order_phone'))
                         <span class="help-block">
@@ -83,7 +93,7 @@
                 </div>
             </div>
             <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
-                <label  class="col-md-3 control-label">Адрес доставки <span class="red">*</span></label>
+                <label  class="col-md-3 control-label">Адрес доставки<span class="red">*</span></label>
 
                 <div class="col-md-9">
                     <input type="text" class="form-control" name="order_address" value="@if(old()){{ old('order_address') }}@else{{ $order->order_address or '' }}@endif" >
@@ -97,7 +107,7 @@
             </div>
             <div class="client_company_order" @if((old() && old('order_type_client') == 1) || (!old() && isset($order) && $order->order_type_client == 1))  style="display: none" @endif>
                 <div class="form-group{{ $errors->has('order_fio') ? ' has-error' : '' }}">
-                    <label  class="col-md-3 control-label">Форма оплаты <span class="red">*</span></label>
+                    <label  class="col-md-3 control-label">Форма оплаты<span class="red">*</span></label>
 
                     <div class="col-md-9 form-inline">
                         <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) checked @endif> наличный расчет
@@ -110,7 +120,7 @@
                     <label  class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
                         <p class="order_info">Полное наименование организации (согласно выписке из госреестра) </p>
 
                         @if ($errors->has('order_company_full'))
@@ -121,10 +131,10 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_edrpou') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label class="col-md-3 control-label">Код ЕДРПОУ <span class="red">*</span></label>
+                    <label class="col-md-3 control-label">Код ЕДРПОУ<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif>
                         <p class="order_info">Должен содержать 8 - 10 знаков</p>
 
                         @if ($errors->has('order_edrpou'))
@@ -138,7 +148,7 @@
                     <label  class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" @if(isset($user->profile->inn)) readonly @endif>
                         <p class="order_info">Индивидуальный налоговый номер, должен содержать 10 знаков</p>
 
                         @if ($errors->has('order_inn'))
@@ -149,10 +159,10 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_code_index') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label  class="col-md-3 control-label">Индекс <span class="red">*</span></label>
+                    <label  class="col-md-3 control-label">Индекс<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" @if(isset($user->profile->code_index)) readonly @endif>
                         <p class="order_info">Почтовый индекс, должен содержать 5 знаков</p>
 
                         @if ($errors->has('order_code_index'))
@@ -166,7 +176,7 @@
                     <label  class="col-md-3 control-label">Регион</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_region" value="@if(old()){{ old('order_region') }}@else{{ $user->profile->region or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_region" value="@if(old()){{ old('order_region') }}@else{{ $user->profile->region or '' }}@endif" @if(isset($user->profile->region)) readonly @endif>
 
                         @if ($errors->has('order_region'))
                             <span class="help-block">
@@ -179,7 +189,7 @@
                     <label  class="col-md-3 control-label">Район</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_area" value="@if(old()){{ old('order_area') }}@else{{ $user->profile->area or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_area" value="@if(old()){{ old('order_area') }}@else{{ $user->profile->area or '' }}@endif" @if(isset($user->profile->area)) readonly @endif>
 
                         @if ($errors->has('order_area'))
                             <span class="help-block">
@@ -189,10 +199,10 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_city') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label  class="col-md-3 control-label">Город <span class="red">*</span></label>
+                    <label  class="col-md-3 control-label">Город<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_city" value="@if(old()){{ old('order_city') }}@else{{ $user->profile->city or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_city" value="@if(old()){{ old('order_city') }}@else{{ $user->profile->city or '' }}@endif" @if(isset($user->profile->city)) readonly @endif>
 
                         @if ($errors->has('order_city'))
                             <span class="help-block">
@@ -202,10 +212,10 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_street') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label  class="col-md-3 control-label">Улица <span class="red">*</span></label>
+                    <label  class="col-md-3 control-label">Улица<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_street" value="@if(old()){{ old('order_street') }}@else{{ $user->profile->street or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_street" value="@if(old()){{ old('order_street') }}@else{{ $user->profile->street or '' }}@endif" @if(isset($user->profile->street)) readonly @endif>
 
                         @if ($errors->has('order_street'))
                             <span class="help-block">
@@ -215,10 +225,10 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_house') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label  class="col-md-3 control-label">Дом <span class="red">*</span></label>
+                    <label  class="col-md-3 control-label">Дом<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_house" value="@if(old()){{ old('order_house') }}@else{{ $user->profile->house or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_house" value="@if(old()){{ old('order_house') }}@else{{ $user->profile->house or '' }}@endif" @if(isset($user->profile->house)) readonly @endif>
 
                         @if ($errors->has('order_house'))
                             <span class="help-block">
@@ -231,7 +241,7 @@
                     <label  class="col-md-3 control-label">Корпус</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_house_block" value="@if(old()){{ old('order_house_block') }}@else{{ $user->profile->house_block or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_house_block" value="@if(old()){{ old('order_house_block') }}@else{{ $user->profile->house_block or '' }}@endif" @if(isset($user->profile->house_block)) readonly @endif>
 
                         @if ($errors->has('order_house_block'))
                             <span class="help-block">
@@ -244,7 +254,7 @@
                     <label  class="col-md-3 control-label">Квартира/офис</label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_office" value="@if(old()){{ old('order_office') }}@else{{ $user->profile->office or '' }}@endif" >
+                        <input  type="text" class="form-control" name="order_office" value="@if(old()){{ old('order_office') }}@else{{ $user->profile->office or '' }}@endif" @if(isset($user->profile->office)) readonly @endif>
 
                         @if ($errors->has('order_office'))
                             <span class="help-block">

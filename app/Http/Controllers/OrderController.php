@@ -43,7 +43,7 @@ class OrderController extends Controller
 
             $list_validate = [
                 'order_client_name' => 'required',
-                //'order_email' => 'required',
+                'order_email' => 'required',
                 'order_phone' => 'required',
                 'order_address' => 'required'
             ];

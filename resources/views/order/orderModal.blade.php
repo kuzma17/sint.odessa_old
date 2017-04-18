@@ -20,7 +20,7 @@ $type_order = \App\TypeOrder::all();
             <form name="order" method="post" class="form-horizontal" action="{{ url('/order') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label class="col-md-3 control-label">Тип услуги <span class="red">*</span></label>
+                    <label class="col-md-3 control-label">Тип услуги<span class="red">*</span></label>
                     <div class="col-md-9">
                         <select name="type_order" class="form-control" autofocus>
                             @foreach($type_order as $type)
@@ -30,115 +30,120 @@ $type_order = \App\TypeOrder::all();
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label">Тип пользователя <span class="red">*</span></label>
+                    <label class="col-md-4 control-label">Тип пользователя<span class="red">*</span></label>
 
                     <div class="col-md-8 form-inline">
-                        <input type="radio" class="form-control type_user" name="order_type_client" value="1" @if((isset($user->profile) && $user->profile->type_client_id == 1) || !isset($user->profile)) checked @endif> частное лицо
-                        <input type="radio" class="form-control type_company" name="order_type_client" value="2" @if(isset($user->profile) && $user->profile->type_client_id == 2) checked @endif> организация
-
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('order_name') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
-
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif required autofocus>
-                        <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
-
-                        @if ($errors->has('order_name'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_name') }}</strong>
-                                    </span>
+                        @if(isset($user->profile) && $user->profile->type_client_id)
+                            <input type="radio" class="form-control type_user"  @if($user->profile->type_client_id == 1) checked @endif disabled> частное лицо
+                            <input type="radio" class="form-control type_company"  @if($user->profile->type_client_id == 2) checked @endif disabled> организация
+                            <input type="hidden" name="order_type_client" value="{{ $user->profile->type_client_id }}">
+                        @else
+                            <input type="radio" class="form-control type_user" name="order_type_client" value="1" checked > частное лицо
+                            <input type="radio" class="form-control type_company" name="order_type_client" value="2" > организация
                         @endif
-                    </div>
-                </div>
-                <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if((isset($user->profile) && $user->profile->type_client_id == 1 ) || !isset($user->profile)) style="display: none" @endif>
-                    <label for="phone" class="col-md-3 control-label">Имя</label>
+</div>
+</div>
+<div class="form-group{{ $errors->has('order_name') ? ' has-error' : '' }}">
+<label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" >
-                        <p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
+<div class="col-md-9">
+<input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif required autofocus>
+<p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
 
-                        @if ($errors->has('order_user_company'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_user_company') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('order_email') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label">E-mail <span class="red">*</span></label>
+@if ($errors->has('order_name'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_name') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if((isset($user->profile) && $user->profile->type_client_id == 1 ) || !isset($user->profile)) style="display: none" @endif>
+<label for="phone" class="col-md-3 control-label">Имя</label>
 
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" @if(isset($user->email)) readonly @endif required>
+<div class="col-md-9">
+<input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" >
+<p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
 
-                        @if ($errors->has('order_email'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_email') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('order_phone') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label">телефон <span class="red">*</span></label>
+@if ($errors->has('order_user_company'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_user_company') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="form-group{{ $errors->has('order_email') ? ' has-error' : '' }}">
+<label class="col-md-3 control-label">E-mail<span class="red">*</span></label>
 
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if(isset($user->profile->phone)) readonly @endif required>
+<div class="col-md-9">
+<input type="text" class="form-control" name="order_email" value="{{ $user->email or '' }}" @if(isset($user->email)) readonly @endif required>
 
-                        @if ($errors->has('order_phone'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_phone') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
-                    <label  class="col-md-3 control-label">Адрес доставки <span class="red">*</span></label>
+@if ($errors->has('order_email'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_email') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="form-group{{ $errors->has('order_phone') ? ' has-error' : '' }}">
+<label class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
-                    <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" required>
+<div class="col-md-9">
+<input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if((isset($user->profile) && $user->profile->type_client_id== 1) && isset($user->profile->phone)) readonly @endif required>
 
-                        @if ($errors->has('order_address'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_address') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="client_company_order" @if((isset($user->profile) && $user->profile->type_client_id== 1) || !isset($user->profile)) style="display: none" @endif>
-                    <div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
-                        <label class="col-md-3 control-label">Форма оплаты <span class="red">*</span></label>
+@if ($errors->has('order_phone'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_phone') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
+<label  class="col-md-3 control-label">Адрес доставки<span class="red">*</span></label>
 
-                        <div class="col-md-9 form-inline">
-                            <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) checked @endif> наличный расчет
-                            <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичный расчет
-                            <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if(isset($user->profile) && $user->profile->type_payment_id == 3) checked @endif> безналичный с НДС
-                        </div>
-                        <p class="order_info">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
-                        Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
-                        Также Вы можете сами внести все недостающие данные, воспользовавшись расширенным заказом</a>.</p>
-                    </div>
-                </div>
-                <div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
-                    <label class="col-md-3 control-label">Комментарий</label>
+<div class="col-md-9">
+<input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" required>
 
-                    <div class="col-md-9">
-                        <textarea class="form-control" name="order_comment"></textarea>
+@if ($errors->has('order_address'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_address') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="client_company_order" @if((isset($user->profile) && $user->profile->type_client_id== 1) || !isset($user->profile)) style="display: none" @endif>
+<div class="form-group{{ $errors->has('fio') ? ' has-error' : '' }}">
+<label class="col-md-3 control-label">Форма оплаты<span class="red">*</span></label>
 
-                        @if ($errors->has('order_comment'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('order_comment') }}</strong>
-                                    </span>
-                        @endif
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-4">
-                        <input type="submit" name="add_order" class="btn btn-primary" value="Сохранить">
-                        <input id="all_order" type="submit" name="all_order" class="btn btn-default" value="Расширенный заказ"  @if(isset($user->profile) && $user->profile->type_client_id== 1 || !isset($user->profile)) style="display: none" @endif>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="col-md-9 form-inline">
+    <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((isset($user->profile) && $user->profile->type_payment_id == 1) || !isset($user->profile)) checked @endif> наличный расчет
+    <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичный расчет
+    <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if(isset($user->profile) && $user->profile->type_payment_id == 3) checked @endif> безналичный с НДС
+</div>
+<p class="order_info">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
+Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
+Также Вы можете сами внести все недостающие данные, воспользовавшись расширенным заказом</a>.</p>
+</div>
+</div>
+<div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
+<label class="col-md-3 control-label">Комментарий</label>
+
+<div class="col-md-9">
+<textarea class="form-control" name="order_comment"></textarea>
+
+@if ($errors->has('order_comment'))
+    <span class="help-block">
+                <strong>{{ $errors->first('order_comment') }}</strong>
+            </span>
+@endif
+</div>
+</div>
+<div class="form-group">
+<div class="col-md-8 col-md-offset-4">
+<input type="submit" name="add_order" class="btn btn-primary" value="Сохранить">
+<input id="all_order" type="submit" name="all_order" class="btn btn-default" value="Расширенный заказ"  @if(isset($user->profile) && $user->profile->type_client_id== 1 || !isset($user->profile)) style="display: none" @endif>
+</div>
+</div>
+</form>
+</div>
+</div>
 </div>

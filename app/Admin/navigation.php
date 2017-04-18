@@ -74,23 +74,31 @@ return [
 
     [
         'title'=>'Акции',
-        'icon'=>'fa fa-square-o',
+        'icon'=>'fa fa-star-o',
         'model'=> \App\Stock::class,
         'priority' => 900,
     ],
 
     [
         'title'=>'Settings',
-        'icon'=>'fa fa-square-o',
+        'icon'=>'fa fa-cog',
         'model'=> \App\Settings::class,
         'priority' => 1000,
+    ],
+
+    [
+        'title'=>'Orders',
+        'icon'=>'fa fa-cart-plus',
+        'model'   => \App\Order::class,
+        'priority' => 1100,
+
     ],
 
     [
         'title'=>'Выход',
         'icon'=>'fa fa-sign-out',
         'url'   => '/admin/logout',
-        'priority' => 1100,
+        'priority' => 2000,
 
     ]
 
