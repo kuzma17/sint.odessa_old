@@ -1657,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelRUS/SleepingOwlAdmin.git",
-                "reference": "cdd72ef22dc64adfbf9f6cd087882073530cd1dd"
+                "reference": "d18c286d4cefca249556e2e80547eae643e0ccb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/cdd72ef22dc64adfbf9f6cd087882073530cd1dd",
-                "reference": "cdd72ef22dc64adfbf9f6cd087882073530cd1dd",
+                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/d18c286d4cefca249556e2e80547eae643e0ccb8",
+                "reference": "d18c286d4cefca249556e2e80547eae643e0ccb8",
                 "shasum": ""
             },
             "require": {
@@ -1715,7 +1715,7 @@
                 "crud",
                 "laravel"
             ],
-            "time": "2017-04-18T09:44:43+00:00"
+            "time": "2017-04-18T15:27:13+00:00"
         },
         {
             "name": "league/flysystem",
@@ -3623,12 +3623,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/padraic/mockery.git",
+                "url": "https://github.com/mockery/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },

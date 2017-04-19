@@ -100,7 +100,25 @@ return [
         'url'   => '/admin/logout',
         'priority' => 2000,
 
+    ],
+
+    [
+        'title' => 'Permissions',
+        'icon' => 'fa fa-group',
+        'priority' =>'10000',
+        'pages' => [
+            (new Page(\App\User::class))
+                ->setIcon('fa fa-user')
+                ->setPriority(10),
+            (new Page(\App\Order::class))
+                ->setIcon('fa fa-cart-plus')
+                ->setPriority(20),
+            (new Page(\App\Role::class))
+                ->setIcon('fa fa-group')
+                ->setPriority(100)
+        ]
     ]
+
 
     // Examples
     // [

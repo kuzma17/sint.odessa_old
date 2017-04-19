@@ -418,7 +418,8 @@ h5{
 @media (max-width: 970px) {
     .banner img{
         margin-bottom: 10px;
-        width: auto;
+        width: 150px;
+        height: auto;
         float: left;
         margin-left: 10px;
     }
