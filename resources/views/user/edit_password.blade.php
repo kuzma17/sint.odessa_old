@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group{{ $errors->has('confirmPassword') ? ' has-error' : '' }}">
-                <label for="confirmPassword" class="col-md-4 control-label">Еще раз Новый пароль</label>
+                <label for="confirmPassword" class="col-md-4 control-label">Пароль повторно</label>
 
                 <div class="col-md-6">
                     <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>

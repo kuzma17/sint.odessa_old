@@ -13,9 +13,9 @@
             @endif
             <tr><td>Телефон:</td><td>{{ $user->profile->phone or '' }}</td></tr>
             <tr><td>Адрес:</td><td>{{ $user->profile->address or '' }}</td></tr>
-            <tr><td >E-mail</td><td>{{ $user->email or '' }}</td></tr>
+            <tr><td >E-mail:</td><td>{{ $user->email or '' }}</td></tr>
             @if(isset($user->profile) && $user->profile->type_client_id == 2 )
-                <tr><td >Форма оплаты</td><td>{{ $user->profile->type_payment->name or '' }}</td></tr>
+                <tr><td >Предпочтительная форма оплаты:</td><td>{{ $user->profile->type_payment->name or '' }}</td></tr>
                 @if(isset($user->profile) && $user->profile->type_payment_id == 2 ||  $user->profile->type_payment_id == 3)
                     <tr><td>Полное наименование организации:</td><td>{{ $user->profile->company_full }}</td></tr>
                     <tr><td>Код ЕДРПОУ:</td><td>{{ $user->profile->edrpou or '' }}</td></tr>

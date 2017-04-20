@@ -47,8 +47,7 @@ $type_order = \App\TypeOrder::all();
 <label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
 <div class="col-md-9">
-<input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif required autofocus>
-<p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
+<input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif" required autofocus>
 
 @if ($errors->has('order_name'))
     <span class="help-block">
@@ -61,8 +60,7 @@ $type_order = \App\TypeOrder::all();
 <label for="phone" class="col-md-3 control-label">Имя</label>
 
 <div class="col-md-9">
-<input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" >
-<p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
+<input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" placeholder="Фамилия Имя Отчество контактного лица компании.">
 
 @if ($errors->has('order_user_company'))
     <span class="help-block">
@@ -88,7 +86,7 @@ $type_order = \App\TypeOrder::all();
 <label class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
 <div class="col-md-9">
-<input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if((isset($user->profile) && $user->profile->type_client_id== 1) && isset($user->profile->phone)) readonly @endif required>
+<input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if((isset($user->profile) && $user->profile->type_client_id== 1) && isset($user->profile->phone)) readonly @endif placeholder="номер мобильного телефона(+38xxxxxxxxxx)" required>
 
 @if ($errors->has('order_phone'))
     <span class="help-block">
@@ -119,7 +117,7 @@ $type_order = \App\TypeOrder::all();
     <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичный расчет
     <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if(isset($user->profile) && $user->profile->type_payment_id == 3) checked @endif> безналичный с НДС
 </div>
-<p class="order_info">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
+<p class="order_info" style="margin-left: 20px">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
 Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
 Также Вы можете сами внести все недостающие данные, воспользовавшись расширенным заказом</a>.</p>
 </div>
@@ -128,7 +126,7 @@ $type_order = \App\TypeOrder::all();
 <label class="col-md-3 control-label">Комментарий</label>
 
 <div class="col-md-9">
-<textarea class="form-control" name="order_comment"></textarea>
+<textarea class="form-control" name="order_comment" placeholder="Оставьте, пожалуйста, комментарий к заказу (например, “забрать картридж - 1 шт” или “забрать принтер” и описание неисправности)"></textarea>
 
 @if ($errors->has('order_comment'))
     <span class="help-block">

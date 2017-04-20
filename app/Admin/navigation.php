@@ -110,6 +110,9 @@ return [
             (new Page(\App\User::class))
                 ->setIcon('fa fa-user')
                 ->setPriority(10),
+            (new Page(\App\UserProfile::class))
+                ->setIcon('fa fa-user-o')
+                ->setPriority(10),
             (new Page(\App\Order::class))
                 ->setIcon('fa fa-cart-plus')
                 ->setPriority(20),

@@ -42,8 +42,7 @@
                 <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_client_name" value="@if(old()){{ old('order_client_name') }}@else{{ $order->order_client_name or ''}}@endif" @if(isset($user->profile->client_name)) readonly @endif autofocus>
-                    <p class="order_info info_account">@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif</p>
+                    <input placeholder="@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif" type="text" class="form-control" name="order_client_name" value="@if(old()){{ old('order_client_name') }}@else{{ $order->order_client_name or ''}}@endif" @if(isset($user->profile->client_name)) readonly @endif autofocus>
 
                     @if ($errors->has('order_client_name'))
                         <span class="help-block">
@@ -56,8 +55,8 @@
                 <label  class="col-md-3 control-label">Контактное лицо</label>
 
                 <div class="col-md-9">
-                    <input id="user_company" type="text" class="form-control" name="order_user_company" value="@if(old()){{ old('order_user_company') }}@else{{ $order->order_user_company or '' }}@endif" >
-                    <p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
+                    <input placeholder="Фамилия Имя Отчество контактного лица компании." id="user_company" type="text" class="form-control" name="order_user_company" value="@if(old()){{ old('order_user_company') }}@else{{ $order->order_user_company or '' }}@endif" >
+
 
                     @if ($errors->has('order_user_company'))
                         <span class="help-block">
@@ -83,7 +82,7 @@
                 <label  class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif >
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="placeholder="номер мобильного телефона(+38xxxxxxxxxx)">
 
                     @if ($errors->has('order_phone'))
                         <span class="help-block">
@@ -113,15 +112,15 @@
                         <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) checked @endif> наличный расчет
                         <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if((old() && old('order_type_payment') == 2) || (!old() && isset($order) && $order->order_type_payment == 2)) checked @endif> безналичный расчет
                         <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if((old() && old('order_type_payment') == 3) || (!old() && isset($order) && $order->order_type_payment == 3)) checked @endif> безналичный с НДС
-                        <p class="order_info">Для безналичного расчета укажите пожалуйста реквизиты компании.</p>
+                        <p class="order_info">Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа. Обращаем Ваше внимание, что после заполнения всех
+                            реквизитов редактирование будет доступно только через администратора на сайте или по телефону офиса, который Вас обслуживает.</p>
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
-                        <p class="order_info">Полное наименование организации (согласно выписке из госреестра) </p>
+                        <input placeholder="Полное наименование организации (согласно выписке из госреестра)" type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
 
                         @if ($errors->has('order_company_full'))
                             <span class="help-block">
@@ -134,8 +133,8 @@
                     <label class="col-md-3 control-label">Код ЕДРПОУ<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif>
-                        <p class="order_info">Должен содержать 8 - 10 знаков</p>
+                        <input placeholder="Должен содержать 8 - 10 знаков" type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif>
+
 
                         @if ($errors->has('order_edrpou'))
                             <span class="help-block">
@@ -148,8 +147,8 @@
                     <label  class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" @if(isset($user->profile->inn)) readonly @endif>
-                        <p class="order_info">Индивидуальный налоговый номер, должен содержать 10 знаков</p>
+                        <input placeholder="Индивидуальный налоговый номер, должен содержать 10 знаков" type="text" class="form-control" name="order_inn" value="@if(old()){{ old('order_inn') }}@else{{ $user->profile->inn or '' }}@endif" @if(isset($user->profile->inn)) readonly @endif>
+
 
                         @if ($errors->has('order_inn'))
                             <span class="help-block">
@@ -162,8 +161,8 @@
                     <label  class="col-md-3 control-label">Индекс<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" @if(isset($user->profile->code_index)) readonly @endif>
-                        <p class="order_info">Почтовый индекс, должен содержать 5 знаков</p>
+                        <input  type="text" class="form-control" name="order_code_index" value="@if(old()){{ old('order_code_index') }}@else{{ $user->profile->code_index or '' }}@endif" @if(isset($user->profile->code_index)) readonly @endif placeholder="Почтовый индекс, должен содержать 5 знаков">
+
 
                         @if ($errors->has('order_code_index'))
                             <span class="help-block">
@@ -268,7 +267,7 @@
                 <label  class="col-md-3 control-label">Комментарий</label>
 
                 <div class="col-md-9">
-                    <textarea class="form-control" name="order_comment">@if(old()){{ old('order_comment') }}@else{{ $order->order_comment or ''}}@endif</textarea>
+                    <textarea class="form-control" name="order_comment" placeholder="Оставьте, пожалуйста, комментарий к заказу (например, “забрать картридж - 1 шт” или “забрать принтер” и описание неисправности)">@if(old()){{ old('order_comment') }}@else{{ $order->order_comment or ''}}@endif</textarea>
 
                     @if ($errors->has('order_comment'))
                         <span class="help-block">
