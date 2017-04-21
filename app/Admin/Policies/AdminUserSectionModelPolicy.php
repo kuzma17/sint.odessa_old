@@ -1,9 +1,9 @@
 <?php
-namespace App\Policies;
+namespace App\Admin\Policies;
 use App\User;
-use App\Http\Admin\User as Users;
+use App\Http\Admin\AdminUser;
 use Illuminate\Auth\Access\HandlesAuthorization;
-class UserSectionModelPolicy
+class AdminUserSectionModelPolicy
 {
     use HandlesAuthorization;
     /**
@@ -19,11 +19,11 @@ class UserSectionModelPolicy
      *
      * @return bool
      */
-    public function display(User $user, Users $item)
+    public function display(User $user, AdminUser $item)
     {
-        //if($user->isAdmin()){
-          //  return true;
-        //}
+        if($user->isAdmin()){
+            return true;
+        }
         return true;
     }
     /**
@@ -32,7 +32,7 @@ class UserSectionModelPolicy
      *
      * @return bool
      */
-    public function edit(User $user, Users $item)
+    public function edit(User $user, AdminUser $item)
     {
         if($user->isAdmin()){
             return true;
@@ -45,7 +45,7 @@ class UserSectionModelPolicy
      *
      * @return bool
      */
-    public function delete(User $user, Users $item)
+    public function delete(User $user, AdminUser $item)
     {
         if($user->isAdmin()){
             return true;

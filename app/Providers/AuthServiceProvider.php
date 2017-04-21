@@ -14,10 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
-        \App\User::class => \App\Policies\UserSectionModelPolicy::class,
-        \App\Role::class => \App\Policies\RolePolicy::class,
-        \App\Post::class => \App\Policies\PostPolicy::class
+        'App\Model' => 'App\Policies\ModelPolicy'
         ];
 
     /**
@@ -27,12 +24,12 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        //$this->registerPolicies();
 
     }
 
-    protected function getPermissions()
-    {
-        return Permission::with('roles')->get();
-    }
+    //protected function getPermissions()
+   // {
+        //return Permission::with('roles')->get();
+    //}
 }

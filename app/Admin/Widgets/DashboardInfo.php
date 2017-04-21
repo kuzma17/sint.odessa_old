@@ -1,8 +1,8 @@
 <?php
-namespace Admin\Widgets;
+namespace App\Admin\Widgets;
 use AdminTemplate;
 use SleepingOwl\Admin\Widgets\Widget;
-class DashboardMap extends Widget
+class DashboardInfo extends Widget
 {
     /**
      * Get content as a string of HTML.
@@ -11,7 +11,7 @@ class DashboardMap extends Widget
      */
     public function toHtml()
     {
-        return view('admin::dashboard');
+        return view('admin.dashboard');
     }
     /**
      * @return string|array
