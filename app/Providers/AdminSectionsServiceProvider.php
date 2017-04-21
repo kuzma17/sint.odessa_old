@@ -21,6 +21,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         'App\User' => 'App\Http\Admin\User',
         'App\Order' => 'App\Http\Admin\Order',
         'App\UserProfile' => 'App\Http\Admin\UserProfile',
+        'App\AdminUser' => 'App\Http\Admin\AdminUser',
     ];
 
     /**
@@ -30,8 +31,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
      */
     public function boot(Admin $admin)
     {
-    	//
-
+        $this->registerPolicies('App\\Policies\\');
         parent::boot($admin);
         $this->app->call([$this, 'registerViews']);
 

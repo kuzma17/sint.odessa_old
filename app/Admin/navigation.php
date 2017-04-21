@@ -110,6 +110,9 @@ return [
             (new Page(\App\User::class))
                 ->setIcon('fa fa-user')
                 ->setPriority(10),
+            (new Page(\App\AdminUser::class))
+                ->setIcon('fa fa-user-circle')
+                ->setPriority(10),
             (new Page(\App\UserProfile::class))
                 ->setIcon('fa fa-user-o')
                 ->setPriority(10),

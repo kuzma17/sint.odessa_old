@@ -10,8 +10,8 @@ use App\Post;
 use SleepingOwl\Admin\Model\ModelConfiguration;
 
 AdminSection::registerModel(Post::class, function (ModelConfiguration $model) {
-   // $model->setTitle('статьи')->enableAccessCheck();
-    $model->setTitle('статьи');
+    $model->setTitle('статьи')->enableAccessCheck();
+    //$model->setTitle('статьи');
     // Display
     $model->onDisplay(function () {
         $display = AdminDisplay::table()->setColumns(

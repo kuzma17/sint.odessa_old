@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Permission;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -14,7 +15,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'App\Model' => 'App\Policies\ModelPolicy',
-    ];
+        \App\User::class => \App\Policies\UserSectionModelPolicy::class,
+        \App\Role::class => \App\Policies\RolePolicy::class,
+        \App\Post::class => \App\Policies\PostPolicy::class
+        ];
 
     /**
      * Register any authentication / authorization services.
@@ -25,6 +29,10 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+    }
+
+    protected function getPermissions()
+    {
+        return Permission::with('roles')->get();
     }
 }
