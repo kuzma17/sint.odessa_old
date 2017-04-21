@@ -11,7 +11,7 @@ class DashboardInfo extends Widget
      */
     public function toHtml()
     {
-        return view('admin.dashboard');
+        return view('admin.dashboard')->render();
     }
     /**
      * @return string|array
