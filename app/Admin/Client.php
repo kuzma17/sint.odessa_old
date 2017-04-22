@@ -51,7 +51,7 @@ class Client extends Section
                 AdminColumn::link('user.name', 'Nic'),
                 AdminColumn::link('client_name', 'Name client'),
                 AdminColumn::email('user.email', 'Email')->setWidth('150px'),
-                //AdminColumn::image('avatar1.avatar', 'avatar'),
+                AdminColumn::image('avatar1.avatar', 'avatar'),
                 AdminColumn::link('type_client.name', 'type client'),
                 AdminColumn::link('type_payment.name', 'type payment'),
                 AdminColumn::link('phone', 'Phone'),
@@ -66,6 +66,29 @@ class Client extends Section
      */
     public function onEdit($id)
     {
+        return AdminForm::panel()->addBody(
+            AdminFormElement::text('user.name', 'Nic'),
+            AdminFormElement::text('client_name', 'Name client'),
+            AdminFormElement::text('user.email', 'Email'),
+            AdminFormElement::password('user.password', 'Пароль')->hashWithBcrypt(),
+            AdminFormElement::image('avatar1.avatar', 'image'),
+            AdminFormElement::select('type_client_id', trans('type client'))->setModelForOptions(new \App\TypeClient())->setDisplay('name'),
+            AdminFormElement::select('type_payment_id', trans('type client'))->setModelForOptions(new \App\TypePayment())->setDisplay('name'),
+            AdminFormElement::text('phone', 'Телефон'),
+            AdminFormElement::text('address', 'Адрес доставки'),
+            AdminFormElement::text('user_company', 'user_company'),
+            AdminFormElement::text('company_full', 'Полное наименование организации'),
+            AdminFormElement::text('edrpou', 'код ЕДРПОУ'),
+            AdminFormElement::text('inn', 'код ИНН'),
+            AdminFormElement::text('code_index', 'Почтовый индеч'),
+            AdminFormElement::text('region', 'Регион'),
+            AdminFormElement::text('area', 'Район'),
+            AdminFormElement::text('city', 'Город'),
+            AdminFormElement::text('street', 'Улица'),
+            AdminFormElement::text('house', 'Номер дома'),
+            AdminFormElement::text('house_block', 'Корпус'),
+            AdminFormElement::text('office', 'Офис/Квартира')
+        );
         //return AdminForm::panel()->addBody(
           //  AdminFormElement::text('user.name', 'Nic'),
           //  AdminFormElement::text('client_name', 'Name client'),
@@ -90,9 +113,9 @@ class Client extends Section
           //  AdminFormElement::text('office', 'Офис/Квартира')
         //);
 
-        $user_id = $this->model->find($id)->user_id;
-        $user = User::find($user_id);
-        return view('admin.profile', ['user' => $user]);
+        //$user_id = $this->model->find($id)->user_id;
+        //$user = User::find($user_id);
+        ///return view('admin.profile', ['user' => $user]);
     }
 
     /**
