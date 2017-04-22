@@ -62,11 +62,11 @@ class Order extends Section
     public function onEdit($id)
     {
         return AdminForm::panel()->addBody(
-            AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('type_order.name')->setLabel('Тип услуги'),
-            AdminColumn::link('client_name')->setLabel('Клиент'),
-            AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
-            AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
+            //AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
+            //AdminColumn::link('type_order.name')->setLabel('Тип услуги'),
+           // AdminColumn::link('client_name')->setLabel('Клиент'),
+            //AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
+            //AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
             //AdminFormElement::wysiwyg('content', 'текс статьи'),
             //AdminFormElement::checkbox('published', 'published'),
             //AdminFormElement::columns()->addColumn(function (){ return[

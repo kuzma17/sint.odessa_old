@@ -149,7 +149,6 @@ return [
     */
 
     'domain' => env('SESSION_DOMAIN', null),
-    //'domain' => 'sint.odessa.ru.sint',
 
     /*
     |--------------------------------------------------------------------------
