@@ -1,38 +1,92 @@
 <?php
+
+namespace App\Admin;
+
+use AdminColumn;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
+use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Section;
+
 /**
- * Created by PhpStorm.
- * User: kuzma
- * Date: 16.11.16
- * Time: 15:27
+ * Class Page
+ *
+ * @property \App\Page $model
+ *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
+class Page extends Section
+{
+    /**
+     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
+     *
+     * @var bool
+     */
+    protected $checkAccess = true;
 
-use App\Page;
-use SleepingOwl\Admin\Model\ModelConfiguration;
+    /**
+     * @var string
+     */
+    protected $title = 'Страници';
 
-AdminSection::registerModel(Page::class, function (ModelConfiguration $model) {
-    // $model->setTitle('статьи')->enableAccessCheck();
-    $model->setTitle('статьи');
-    // Display
-    $model->onDisplay(function () {
-        $display = AdminDisplay::table()->setColumns(
-            AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('url'),
-            AdminColumn::link('title')->setLabel('Title')
-        );
-        $display->paginate(10);
-        return $display;
-    });
-    // Create And Edit
-    $model->onCreateAndEdit(function() {
-        $form = AdminForm::panel()->addBody(
+    /**
+     * @var string
+     */
+    protected $alias;
 
-            AdminFormElement::text('title', 'Title'),
-            AdminFormElement::text('url', 'url'),
-            AdminFormElement::wysiwyg('content', 'текс страници'),
-            AdminFormElement::text('keywords', 'keywords')
-        );
-        $form->getButtons()->hideSaveAndCreateButton()->hideSaveAndCloseButton();
-        return $form;
-    });
-})
-    ->addMenuPage(Page::class, 0);
+    /**
+     * @return DisplayInterface
+     */
+    public function onDisplay()
+    {
+        return  AdminDisplay::table()
+            ->setHtmlAttribute('class', 'table-primary')
+            ->setColumns(
+                AdminColumn::link('id', 'id')->setWidth('50px'),
+                AdminColumn::link('url', 'url'),
+                AdminColumn::link('title', 'Title')
+            );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return FormInterface
+     */
+    public function onEdit($id)
+    {
+        return AdminForm::panel()
+            ->addBody(
+                AdminFormElement::text('title', 'Title'),
+                AdminFormElement::text('url', 'url'),
+                AdminFormElement::wysiwyg('content', 'текс страници'),
+                AdminFormElement::text('keywords', 'keywords')
+            );
+    }
+
+    /**
+     * @return FormInterface
+     */
+    public function onCreate()
+    {
+        return $this->onEdit(null);
+    }
+
+    /**
+     * @return void
+     */
+    public function onDelete($id)
+    {
+        // todo: remove if unused
+    }
+
+    /**
+     * @return void
+     */
+    public function onRestore($id)
+    {
+        // todo: remove if unused
+    }
+}

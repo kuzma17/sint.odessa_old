@@ -42,7 +42,7 @@ return [
     ],
 
     [
-        'title'=>'News',
+        'title'=>'Новости',
         'icon'=>'fa fa-newspaper-o',
         'model'   => \App\News::class,
         'priority' => 400,
@@ -50,23 +50,23 @@ return [
     ],
 
     [
-        'title'=>'Статьи',
+        'title'=>'Страници',
         'icon'=>'fa fa-file-text-o',
-        'model' => \App\Post::class,
+        'model' => \App\Page::class,
         'priority' => 500,
     ],
 
 
 
     [
-        'title'=>'Slider',
+        'title'=>'Слайдер',
         'icon'=>'fa fa-picture-o',
         'model'=> \App\Slider::class,
         'priority' => 700,
     ],
 
     [
-        'title'=>'Banners',
+        'title'=>'Баннеры',
         'icon'=>'fa fa-square-o',
         'model'=> \App\Banner::class,
         'priority' => 800,
@@ -80,14 +80,14 @@ return [
     ],
 
     [
-        'title'=>'Settings',
+        'title'=>'Параметры',
         'icon'=>'fa fa-cog',
         'model'=> \App\Settings::class,
         'priority' => 1000,
     ],
 
     [
-        'title'=>'Orders',
+        'title'=>'Заказы',
         'icon'=>'fa fa-cart-plus',
         'model'   => \App\Order::class,
         'priority' => 1100,
@@ -103,7 +103,7 @@ return [
     ],
 
     [
-        'title' => 'Permissions',
+        'title' => '= testing menu =',
         'icon' => 'fa fa-group',
         'priority' =>'10000',
         'pages' => [
@@ -119,9 +119,12 @@ return [
             (new Page(\App\Order::class))
                 ->setIcon('fa fa-cart-plus')
                 ->setPriority(20),
-            (new Page(\App\Role::class))
+            (new Page(\App\Status::class))
                 ->setIcon('fa fa-group')
-                ->setPriority(100)
+                ->setPriority(100),
+            (new Page(\App\StatusRepair::class))
+                ->setIcon('fa fa-group')
+                ->setPriority(200)
         ]
     ]
 

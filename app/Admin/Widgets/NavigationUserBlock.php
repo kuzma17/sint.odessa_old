@@ -11,7 +11,12 @@ class NavigationUserBlock extends Widget
      */
     public function toHtml()
     {
-        return view('admin.navbar', ['user' => auth()->user()])->render();
+        $user = auth()->user();
+        $avatar = 'images/avatars/no_avatar.png';
+        if($user->avatar && $user->avatar->avatar != '') {
+            $avatar = $user->avatar->avatar;
+        }
+        return view('admin.navbar', ['user' => $user, 'avatar' => $avatar])->render();
     }
     /**
      * @return string|array

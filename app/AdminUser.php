@@ -15,4 +15,8 @@ class AdminUser extends Model
     public function role(){
         return $this->belongsTo(Role::class);
     }
+
+    public function avatar(){
+        return $this->user->avatar();
+    }
 }

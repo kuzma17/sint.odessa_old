@@ -1,36 +1,67 @@
 <?php
+
+namespace App\Admin;
+
+use AdminColumn;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
+use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Section;
+
 /**
- * Created by PhpStorm.
- * User: kuzma
- * Date: 16.11.16
- * Time: 14:44
+ * Class Order
+ *
+ * @property \App\Order $model
+ *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
+class Order extends Section
+{
+    /**
+     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
+     *
+     * @var bool
+     */
+    protected $checkAccess = true;
 
-use App\Order;
-use SleepingOwl\Admin\Model\ModelConfiguration;
+    /**
+     * @var string
+     */
+    protected $title = 'Закакзы';
 
-AdminSection::registerModel(Order::class, function (ModelConfiguration $model) {
+    /**
+     * @var string
+     */
+    protected $alias;
 
-    $model->setTitle('Orders');
-    // Display
-    $model->onDisplay(function () {
-        $display = AdminDisplay::table()->setColumns(
-            AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('type_order.name')->setLabel('Тип услуги'),
-            AdminColumn::link('client_name')->setLabel('Клиент'),
-            AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
-            AdminColumn::link('status.name', 'Статус')
+    /**
+     * @return DisplayInterface
+     */
+    public function onDisplay()
+    {
+        return AdminDisplay::datatables()
+            ->with('type_order')
+            ->setOrder([[3, 'desc']]) // сортировка по номеру столбца отображаемого в админке
+            ->setHtmlAttribute('class', 'table-success')
+            ->setColumns([
+                AdminColumn::link('id', '№'),
+                AdminColumn::link('type_order.name', 'Тип услуги')->setWidth('150px'),
+                AdminColumn::link('client_name', 'Клиент'),
+                AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
+                AdminColumn::link('status.name', 'Статус'),
+            ])->paginate(20);
+    }
 
-        );
-        $display->setApply(function ($query) {
-            $query->orderBy('created_at', 'desc');
-        });
-        $display->paginate(10);
-        return $display;
-    });
-    // Create And Edit
-    $model->onCreateAndEdit(function() {
-        $form = AdminForm::panel()->addBody(
+    /**
+     * @param int $id
+     *
+     * @return FormInterface
+     */
+    public function onEdit($id)
+    {
+        return AdminForm::panel()->addBody(
             AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
             AdminColumn::link('type_order.name')->setLabel('Тип услуги'),
             AdminColumn::link('client_name')->setLabel('Клиент'),
@@ -46,7 +77,29 @@ AdminSection::registerModel(Order::class, function (ModelConfiguration $model) {
             //AdminFormElement::radio('userInfo.gender', trans('labels.user.info.gender'))->setOptions(array('0' => trans('labels.user.info.gender_woman'), '1' => trans('labels.user.info.gender_man'))),
             AdminFormElement::select('status_id', trans('Статус'))->setModelForOptions(new \App\Status())->setDisplay('name')
         );
-        return $form;
-    });
-})
-    ->addMenuPage(Order::class, 0);
+    }
+
+    /**
+     * @return FormInterface
+     */
+    public function onCreate()
+    {
+        return $this->onEdit(null);
+    }
+
+    /**
+     * @return void
+     */
+    public function onDelete($id)
+    {
+        // todo: remove if unused
+    }
+
+    /**
+     * @return void
+     */
+    public function onRestore($id)
+    {
+        // todo: remove if unused
+    }
+}

@@ -1,7 +1,7 @@
 <?php
 namespace App\Admin\Policies;
 use App\User;
-use App\Http\Admin\User as Users;
+use App\Admin\User as Users;
 use Illuminate\Auth\Access\HandlesAuthorization;
 class UserSectionModelPolicy
 {
@@ -30,7 +30,20 @@ class UserSectionModelPolicy
         if($user->isAdmin()){
             return true;
         }
-        return true;
+        return false;
+    }
+    /**
+     * @param User $user
+     * @param User $item
+     *
+     * @return bool
+     */
+    public function create(User $user, Users $item)
+    {
+        if($user->isAdmin()){
+            return true;
+        }
+        return false;
     }
     /**
      * @param User $user

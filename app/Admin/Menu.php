@@ -1,41 +1,95 @@
 <?php
+
+namespace App\Admin;
+
+use AdminColumn;
+use AdminColumnEditable;
+use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
+use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
+use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Section;
+
 /**
- * Created by PhpStorm.
- * User: kuzma
- * Date: 08.10.16
- * Time: 12:22
+ * Class Menu
+ *
+ * @property \App\Menu $model
+ *
+ * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
+class Menu extends Section
+{
+    /**
+     * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
+     *
+     * @var bool
+     */
+    protected $checkAccess = true;
 
-use App\Menu;
-use SleepingOwl\Admin\Model\ModelConfiguration;
+    /**
+     * @var string
+     */
+    protected $title = 'Меню';
 
-AdminSection::registerModel(Menu::class, function (ModelConfiguration $model) {
-    $model->setTitle('Slider');
-    // Display
-    $model->onDisplay(function () {
-        $display = AdminDisplay::table()->setColumns(
-            AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('url', 'url'),
-            AdminColumn::link('title', 'title'),
-            AdminColumn::link('weight')->setLabel('weight'),
-            AdminColumnEditable::checkbox('active')->setLabel('active')
-        );
-        $display->paginate(10);
-        return $display;
-    });
-    // Create And Edit
-    $model->onCreateAndEdit(function() {
-        $form = AdminForm::panel()
-            ->setHtmlAttribute('enctype', 'multipart/form-data')
+    /**
+     * @var string
+     */
+    protected $alias;
+
+    /**
+     * @return DisplayInterface
+     */
+    public function onDisplay()
+    {
+        return  AdminDisplay::table()
+            ->setHtmlAttribute('class', 'table-primary')
+            ->setColumns(
+                AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
+                AdminColumn::link('url', 'url'),
+                AdminColumn::link('title', 'title'),
+                AdminColumn::link('weight')->setLabel('weight'),
+                AdminColumnEditable::checkbox('active')->setLabel('active')
+            );
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return FormInterface
+     */
+    public function onEdit($id)
+    {
+        return AdminForm::panel()
             ->addBody(
                 AdminFormElement::text('url', 'url'),
                 AdminFormElement::text('title', 'title'),
                 AdminFormElement::text('weight', 'weight'),
-               // AdminFormElement::columns()->addColumn(function (){ return[
-                    AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
-               // ];})
+                AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
             );
-        return $form;
-    });
-})
-    ->addMenuPage(Menu::class, 0);
+    }
+
+    /**
+     * @return FormInterface
+     */
+    public function onCreate()
+    {
+        return $this->onEdit(null);
+    }
+
+    /**
+     * @return void
+     */
+    public function onDelete($id)
+    {
+        // todo: remove if unused
+    }
+
+    /**
+     * @return void
+     */
+    public function onRestore($id)
+    {
+        // todo: remove if unused
+    }
+}

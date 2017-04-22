@@ -17,12 +17,20 @@ class AdminSectionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sections = [
-        'App\User' => 'App\Http\Admin\User',
-        'App\Order' => 'App\Http\Admin\Order',
-        'App\UserProfile' => 'App\Http\Admin\Client',
-        'App\AdminUser' => 'App\Http\Admin\AdminUser',
+        'App\User' => 'App\Admin\User',
+        'App\Order' => 'App\Admin\Order',
+        'App\UserProfile' => 'App\Admin\Client',
+        'App\AdminUser' => 'App\Admin\AdminUser',
+        'App\Banner' => 'App\Admin\Banner',
+        'App\Menu' => 'App\Admin\Menu',
+        'App\News' => 'App\Admin\News',
+        'App\Page' => 'App\Admin\Page',
+        'App\Settings' => 'App\Admin\Settings',
+        'App\Slider' => 'App\Admin\Slider',
+        'App\Stock' => 'App\Admin\Stock',
+        'App\Status' => 'App\Admin\Status',
+        'App\StatusRepair' => 'App\Admin\StatusRepair',
     ];
-
     /**
      * Register sections.
      *

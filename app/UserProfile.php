@@ -34,6 +34,14 @@ class UserProfile extends Model
         return $this->belongsTo('App\Status');
     }
 
+    //public function avatar(){
+       // return $this->hasManyThrough('App\UserAvatar', 'App\User', 'id', 'user_id');
+        //return $this->user()->avatar();
+   // }
 
+    public function avatar1(){
+    // return $this->hasManyThrough('App\UserAvatar', 'App\User', 'id', 'user_id');
+        return $this->user->avatar();
+     }
 
 }

@@ -1,19 +1,21 @@
 <?php
 
-namespace App\Admin\Sections;
+namespace App\Admin;
 
+use AdminColumn;
+use AdminDisplay;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
- * Class Page
+ * Class User
  *
- * @property \App\Page $model
+ * @property \App\User $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Page extends Section
+class User extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -25,7 +27,7 @@ class Page extends Section
     /**
      * @var string
      */
-    protected $title = 'Page';
+    protected $title = 'Users';
 
     /**
      * @var string
@@ -37,7 +39,14 @@ class Page extends Section
      */
     public function onDisplay()
     {
-        // todo: remove if unused
+        return AdminDisplay::datatables()
+            ->with('roles')
+            ->setHtmlAttribute('class', 'table-warning')
+            ->setColumns([
+                AdminColumn::link('name', 'Username'),
+                AdminColumn::email('email', 'Email')->setWidth('150px'),
+                AdminColumn::lists('roles.label', 'Roles')->setWidth('200px'),
+            ])->paginate(20);
     }
 
     /**

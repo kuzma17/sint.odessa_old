@@ -1,9 +1,9 @@
 <?php
 namespace App\Admin\Policies;
 use App\User;
-use App\Admin\Order;
+use App\Admin\StatusRepair;
 use Illuminate\Auth\Access\HandlesAuthorization;
-class OrderSectionModelPolicy
+class StatusRepairSectionModelPolicy
 {
     use HandlesAuthorization;
     /**
@@ -12,22 +12,22 @@ class OrderSectionModelPolicy
      *
      * @return bool
      */
-   // public function before(User $user, $ability, Order $section, User $item = null)
-   /// {
-     //   if($user->isAdmin()){
-     //       return true;
-      //  }
+    // public function before(User $user, $ability, StatusRepair $section, User $item = null)
+    /// {
+    //   if($user->isAdmin()){
+    //       return true;
+    //  }
     //    return true;
-   // }
+    // }
     /**
      * @param User $user
      * @param User $item
      *
      * @return bool
      */
-    public function display(User $user, Order $item)
+    public function display(User $user, StatusRepair $item)
     {
-        if($user->isAdmin() || $user->isManager()){
+        if($user->isAdmin()){
             return true;
         }
         return false;
@@ -38,9 +38,9 @@ class OrderSectionModelPolicy
      *
      * @return bool
      */
-    public function create(User $user, Order $item)
+    public function create(User $user, StatusRepair $item)
     {
-        if($user->isAdmin() || $user->isManager()){
+        if($user->isAdmin()){
             return true;
         }
         return false;
@@ -51,9 +51,9 @@ class OrderSectionModelPolicy
      *
      * @return bool
      */
-    public function edit(User $user, Order $item)
+    public function edit(User $user, StatusRepair $item)
     {
-        if($user->isAdmin() || $user->isManager()){
+        if($user->isAdmin()){
             return true;
         }
         return false;
@@ -64,9 +64,9 @@ class OrderSectionModelPolicy
      *
      * @return bool
      */
-    public function delete(User $user, Order $item)
+    public function delete(User $user, StatusRepair $item)
     {
-        if($user->isAdmin() || $user->isManager()){
+        if($user->isAdmin()){
             return true;
         }
         return false;

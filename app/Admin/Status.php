@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Http\Admin;
+namespace App\Admin;
 
 use AdminColumn;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
-use App\Role;
-use App\User;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
- * Class AdminUser
+ * Class Status
  *
- * @property \App\AdminUser $model
+ * @property \App\Status $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class AdminUser extends Section
+class Status extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -31,7 +29,7 @@ class AdminUser extends Section
     /**
      * @var string
      */
-    protected $title = 'AdminUser';
+    protected $title = 'Статусы заказа';
 
     /**
      * @var string
@@ -43,15 +41,12 @@ class AdminUser extends Section
      */
     public function onDisplay()
     {
-        return AdminDisplay::table()
-            ->with('user', 'role')
-            ->setHtmlAttribute('class', 'table-warning')
-            ->setColumns([
-                AdminColumn::link('user.name', 'Username'),
-                AdminColumn::email('user.email', 'Email')->setWidth('150px'),
-                AdminColumn::link('role.label', 'Roles')->setWidth('200px'),
-                AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
-            ])->paginate(20);
+        return  AdminDisplay::table()
+            ->setHtmlAttribute('class', 'table-primary')
+            ->setColumns(
+                AdminColumn::link('id', 'id')->setWidth('50px'),
+                AdminColumn::link('name', 'Статус')
+            );
     }
 
     /**
@@ -61,11 +56,11 @@ class AdminUser extends Section
      */
     public function onEdit($id)
     {
-        return AdminForm::panel()->addBody(
-            AdminFormElement::text('user.name', 'Username'),
-            AdminFormElement::text('user.email', 'Username'),
-            AdminFormElement::select('role_id', trans('Role'))->setModelForOptions(new Role())->setDisplay('name')
-        );
+        return AdminForm::panel()
+            ->addBody(
+                AdminFormElement::text('id', 'id')->required(),
+                AdminFormElement::text('name', 'Статус')->required()
+            );
     }
 
     /**
@@ -81,8 +76,7 @@ class AdminUser extends Section
      */
     public function onDelete($id)
     {
-        $user_id = $this->model->find($id)->user_id;
-        User::destroy($user_id);
+        // todo: remove if unused
     }
 
     /**

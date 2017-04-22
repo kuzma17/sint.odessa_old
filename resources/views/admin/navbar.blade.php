@@ -6,13 +6,13 @@
     </li>
     <li class="dropdown user user-menu" style="margin-right: 20px;">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <span class="glyphicon glyphicon-user"></span>
+            <img src="/{{ $avatar }}" class="user-image" />
             <span class="hidden-xs">{{ $user->name }}</span>
         </a>
         <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-                <img src="{{ $user->avatar_url_or_blank }}" class="img-circle" />
+                <img src="/{{ $avatar }}" class="img-circle" />
                 <p>
                     {{ $user->name }}
                     <small>@lang('sleeping_owl::lang.auth.since', ['date' => $user->created_at->format('d.m.Y')])</small>

@@ -1,21 +1,23 @@
 <?php
 
-namespace App\Http\Admin;
+namespace App\Admin;
 
 use AdminColumn;
 use AdminDisplay;
+use AdminForm;
+use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
- * Class User
+ * Class StatusRepair
  *
- * @property \App\User $model
+ * @property \App\StatusRepair $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class User extends Section
+class StatusRepair extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -27,7 +29,7 @@ class User extends Section
     /**
      * @var string
      */
-    protected $title = 'Users';
+    protected $title = 'Статусы ремонта';
 
     /**
      * @var string
@@ -39,14 +41,12 @@ class User extends Section
      */
     public function onDisplay()
     {
-        return AdminDisplay::datatables()
-            ->with('roles')
-            ->setHtmlAttribute('class', 'table-warning')
-            ->setColumns([
-                AdminColumn::link('name', 'Username'),
-                AdminColumn::email('email', 'Email')->setWidth('150px'),
-                AdminColumn::lists('roles.label', 'Roles')->setWidth('200px'),
-            ])->paginate(20);
+        return  AdminDisplay::table()
+            ->setHtmlAttribute('class', 'table-primary')
+            ->setColumns(
+                AdminColumn::link('id', 'id')->setWidth('50px'),
+                AdminColumn::link('name', 'Статус')
+            );
     }
 
     /**
@@ -56,7 +56,11 @@ class User extends Section
      */
     public function onEdit($id)
     {
-        // todo: remove if unused
+        return AdminForm::panel()
+            ->addBody(
+                AdminFormElement::text('id', 'id')->required(),
+                AdminFormElement::text('name', 'Статус')->required()
+            );
     }
 
     /**

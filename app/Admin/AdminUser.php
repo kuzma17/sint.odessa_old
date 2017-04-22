@@ -3,22 +3,23 @@
 namespace App\Admin;
 
 use AdminColumn;
-use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Role;
+use App\User;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
 
 /**
- * Class Slider
+ * Class AdminUser
  *
- * @property \App\Slider $model
+ * @property \App\AdminUser $model
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Slider extends Section
+class AdminUser extends Section
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -30,7 +31,7 @@ class Slider extends Section
     /**
      * @var string
      */
-    protected $title = 'Слайдер';
+    protected $title = 'AdminUser';
 
     /**
      * @var string
@@ -42,14 +43,16 @@ class Slider extends Section
      */
     public function onDisplay()
     {
-        return  AdminDisplay::table()
-            ->setHtmlAttribute('class', 'table-primary')
-            ->setColumns(
-                AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-                AdminColumnEditable::checkbox('active')->setLabel('active'),
-                AdminColumn::link('weight')->setLabel('weight'),
-                AdminColumn::image('image', 'image')
-            );
+        return AdminDisplay::table()
+            ->with('user', 'role')
+            ->setHtmlAttribute('class', 'table-warning')
+            ->setColumns([
+                AdminColumn::link('user.name', 'Username'),
+                AdminColumn::email('user.email', 'Email')->setWidth('150px'),
+                AdminColumn::image('avatar.avatar', 'avatar'),
+                AdminColumn::link('role.label', 'Roles')->setWidth('200px'),
+                AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
+            ])->paginate(20);
     }
 
     /**
@@ -62,11 +65,12 @@ class Slider extends Section
         return AdminForm::panel()
             ->setHtmlAttribute('enctype', 'multipart/form-data')
             ->addBody(
-                AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
-                AdminFormElement::text('weight', 'weight'),
-                AdminFormElement::image('image', 'image')->setUploadPath(function() {return 'images/slider';}),
-                AdminFormElement::text('slogan', 'slogan')
-            );
+                AdminFormElement::text('user.name', 'Username'),
+                AdminFormElement::image('avatar.avatar', 'image')->setUploadPath(function() {return 'images/avatars';}),
+                AdminFormElement::text('user.email', 'E-mail'),
+                AdminFormElement::password('user.password', 'Password')->hashWithBcrypt(),
+                AdminFormElement::select('role_id', trans('Role'))->setModelForOptions(new Role())->setDisplay('label')
+        );
     }
 
     /**
@@ -82,7 +86,8 @@ class Slider extends Section
      */
     public function onDelete($id)
     {
-        // todo: remove if unused
+        $user_id = $this->model->find($id)->user_id;
+        User::destroy($user_id);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 namespace App\Admin\Policies;
 use App\User;
-use App\Http\Admin\Client;
+use App\Admin\Client;
 use Illuminate\Auth\Access\HandlesAuthorization;
 class ClientSectionModelPolicy
 {
@@ -27,10 +27,23 @@ class ClientSectionModelPolicy
      */
     public function display(User $user, Client $item)
     {
-        if($user->isAdmin()){
+        if($user->isAdmin() || $user->isManager()){
             return true;
         }
-        return true;
+        return false;
+    }
+    /**
+     * @param User $user
+     * @param User $item
+     *
+     * @return bool
+     */
+    public function create(User $user, Client $item)
+    {
+        if($user->isAdmin() || $user->isManager()){
+            return true;
+        }
+        return false;
     }
     /**
      * @param User $user
@@ -40,7 +53,7 @@ class ClientSectionModelPolicy
      */
     public function edit(User $user, Client $item)
     {
-        if($user->isAdmin()){
+        if($user->isAdmin() || $user->isManager()){
             return true;
         }
         return false;
@@ -53,7 +66,7 @@ class ClientSectionModelPolicy
      */
     public function delete(User $user, Client $item)
     {
-        if($user->isAdmin()){
+        if($user->isAdmin() || $user->isManager()){
             return true;
         }
         return false;

@@ -24,7 +24,7 @@ class AdminAuthenticate
                 return redirect()->guest('login_admin');
             }
         }
-        if (! $auth->user()->isAdmin() && ! $auth->user()->isManager()) {
+        if (! $auth->user()->isAdmin() && ! $auth->user()->isModerator() && ! $auth->user()->isManager()) {
             return response('Access denied.', 401);
             //return abort(503);
         }
