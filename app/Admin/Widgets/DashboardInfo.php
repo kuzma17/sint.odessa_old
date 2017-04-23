@@ -11,20 +11,20 @@ class DashboardInfo extends Widget
      */
     public function toHtml()
     {
-        return view('admin.dashboard')->render();
+        return view('admin.dashboard_info')->render();
     }
     /**
      * @return string|array
      */
     public function template()
     {
-        return AdminTemplate::getViewPath('dashboard');
+        return AdminTemplate::getViewPath('_layout.base');
     }
     /**
      * @return string
      */
     public function block()
     {
-        return 'block.top';
+        return 'content';
     }
 }

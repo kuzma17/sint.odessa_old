@@ -9,7 +9,7 @@ use SleepingOwl\Admin\Providers\AdminSectionsServiceProvider as ServiceProvider;
 class AdminSectionsServiceProvider extends ServiceProvider
 {
     protected $widgets = [
-        \App\Admin\Widgets\DashboardInfo::class,
+        //\App\Admin\Widgets\DashboardInfo::class,
         \App\Admin\Widgets\NavigationUserBlock::class
     ];
 
@@ -17,7 +17,6 @@ class AdminSectionsServiceProvider extends ServiceProvider
      * @var array
      */
     protected $sections = [
-        'App\User' => 'App\Admin\User',
         'App\Order' => 'App\Admin\Order',
         'App\UserProfile' => 'App\Admin\Client',
         'App\AdminUser' => 'App\Admin\AdminUser',

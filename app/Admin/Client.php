@@ -102,7 +102,7 @@ class Client extends Section
                 AdminFormElement::text('client_name', 'Name client'),
                 AdminFormElement::text('user.email', 'Email'),
                 AdminFormElement::password('user.password', 'Пароль')->hashWithBcrypt(),
-                AdminFormElement::image('avatar1.avatar', 'image'),
+                AdminFormElement::image('avatar1.avatar', 'image')->setUploadPath(function() {return 'images/avatars';}),
                 AdminFormElement::select('type_client_id', trans('type client'))->setModelForOptions(new \App\TypeClient())->setDisplay('name'),
                 AdminFormElement::text('phone', 'Телефон'),
                 AdminFormElement::text('address', 'Адрес доставки'),

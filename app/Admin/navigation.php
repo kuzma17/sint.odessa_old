@@ -87,10 +87,41 @@ return [
     ],
 
     [
+        'title'=>'Администраторы',
+        'icon'=>'fa fa-user-circle',
+        'model'=> \App\AdminUser::class,
+        'priority' => 1100,
+    ],
+
+    [
+        'title'=>'Клиенты',
+        'icon'=>'fa fa-user-o',
+        'model'   => \App\UserProfile::class,
+        'priority' => 1200,
+
+    ],
+
+    [
         'title'=>'Заказы',
         'icon'=>'fa fa-cart-plus',
         'model'   => \App\Order::class,
-        'priority' => 1100,
+        'priority' => 1300,
+
+    ],
+
+    [
+        'title'=>'Статусы заказа',
+        'icon'=>'fa fa-thumbs-o-up',
+        'model'   => \App\Status::class,
+        'priority' => 1400,
+
+    ],
+
+    [
+        'title'=>'Статусы ремонта',
+        'icon'=>'fa fa-hand-o-right',
+        'model'   => \App\StatusRepair::class,
+        'priority' => 1500,
 
     ],
 
@@ -107,9 +138,6 @@ return [
         'icon' => 'fa fa-group',
         'priority' =>'10000',
         'pages' => [
-            (new Page(\App\User::class))
-                ->setIcon('fa fa-user')
-                ->setPriority(10),
             (new Page(\App\AdminUser::class))
                 ->setIcon('fa fa-user-circle')
                 ->setPriority(10),
