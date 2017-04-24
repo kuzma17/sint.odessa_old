@@ -48,9 +48,17 @@
                                 var ctx = document.getElementById("myChart");
                                 var myChart = new Chart(ctx, {
                                     type: 'line',
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: 'Активность посетителей за последние 30 дней'
+                                        }
+                                    },
                                     data: {
                                         labels: {!! $chart1['dateArray'] !!},
                                         datasets: {!! $chart1['dataArray'] !!}
+
+
                                     }
 
                                 });
