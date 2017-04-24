@@ -210,13 +210,19 @@
             <!-- //Rating@Mail.ru logo -->
 
 
+                <!-- Yandex.Metrika informer -->
+                <a href="https://metrika.yandex.ru/stat/?id=44403004&amp;from=informer"
+                   target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/44403004/2_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                                                       style="width:80px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" class="ym-advanced-informer" data-cid="44403004" data-lang="ru" /></a>
+                <!-- /Yandex.Metrika informer -->
+
                 <!-- Yandex.Metrika counter -->
                 <script type="text/javascript">
                     (function (d, w, c) {
                         (w[c] = w[c] || []).push(function() {
                             try {
-                                w.yaCounter33707594 = new Ya.Metrika({
-                                    id:33707594,
+                                w.yaCounter44403004 = new Ya.Metrika({
+                                    id:44403004,
                                     clickmap:true,
                                     trackLinks:true,
                                     accurateTrackBounce:true
@@ -236,7 +242,7 @@
                         } else { f(); }
                     })(document, window, "yandex_metrika_callbacks");
                 </script>
-                <noscript><div><img src="https://mc.yandex.ru/watch/33707594" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+                <noscript><div><img src="https://mc.yandex.ru/watch/44403004" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
                 <!-- /Yandex.Metrika counter -->
             </div>
         </div>

@@ -188,6 +188,8 @@ return [
         SocialiteProviders\Manager\ServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
+        // Yandex
+        Alexusmai\YandexMetrika\YandexMetrikaServiceProvider::class,
 
 
     ],
@@ -241,6 +243,8 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
+
+        'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
 
     ],
 

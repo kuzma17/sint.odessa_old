@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!-- MAP & BOX PANE -->
 <div class="box box-success">
     <div class="box-header with-border">
@@ -10,7 +13,7 @@
             <div class="col-md-9 col-sm-8">
                 <div class="pad">
                     <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 325px;">
+                    <div id="world-map-markers" style="height: 800px;">
                         <div class="jvectormap-container" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: transparent;">
 
 
@@ -19,6 +22,55 @@
                             <?php $this_date = '2017-03-31 20:11:11'; ?>
                             <p>Новых клиентов: {{ \App\UserProfile::where('created_at', '>', $this_date)->count() }}</p>
                             <p>Новых заказов: {{ \App\Order::where('created_at', '>', $this_date)->count() }}</p>
+
+                            <div id="chart1">132</div>
+
+                            <?php
+
+                            $metrika = \YandexMetrika::getVisitsViewsUsers()->adapt();
+                            $chart1 = $metrika->adaptData;
+
+                                var_dump($chart1);
+                                //echo $chart1;
+
+                            ?>
+                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+                            <script src="{{ asset('js/highcharts.js') }}"></script>
+                            <script type="text/javascript">
+                                var chart;
+                                $(document).ready(function() {
+                                    chart = new Highcharts.Chart({
+                                        chart: {
+                                            renderTo: 'chart1',
+                                            //defaultSeriesType: 'area'
+                                            type: 'spline'
+                                        },
+                                        title: {
+                                            text: 'Активность посетителей за последние 30 дней'
+                                        },
+                                        subtitle: {
+                                            text: 'test diagram'
+                                        },
+                                        xAxis: {
+                                            categories: {!! $chart1['dateArray'] !!}
+                                        },
+                                        yAxis: {
+                                            title: {
+                                                text: 'Количество'
+                                            },
+                                            plotLines: [{
+                                                value: 0,
+                                                width: 1,
+                                                color: '#808080'
+                                            }]
+                                        },
+
+                                        series: {!! $chart1['dataArray'] !!}
+                                    });
+
+
+                                });
+                            </script>
 
                         </div>
                     </div>
