@@ -13,7 +13,7 @@
             <div class="col-md-9 col-sm-8">
                 <div class="pad">
                     <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 800px;">
+                    <div id="world-map-markers" style="height: 1000px;">
                         <div class="jvectormap-container" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: transparent;">
 
 
@@ -23,7 +23,6 @@
                             <p>Новых клиентов: {{ \App\UserProfile::where('created_at', '>', $this_date)->count() }}</p>
                             <p>Новых заказов: {{ \App\Order::where('created_at', '>', $this_date)->count() }}</p>
 
-                            <div id="chart1">132</div>
 
                             <?php
 
@@ -34,44 +33,48 @@
                                 //echo $chart1;
 
                             ?>
-                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-                            <script src="{{ asset('js/highcharts.js') }}"></script>
-                            <script type="text/javascript">
-                                var chart;
-                                $(document).ready(function() {
-                                    chart = new Highcharts.Chart({
-                                        chart: {
-                                            renderTo: 'chart1',
-                                            //defaultSeriesType: 'area'
-                                            type: 'spline'
-                                        },
-                                        title: {
-                                            text: 'Активность посетителей за последние 30 дней'
-                                        },
-                                        subtitle: {
-                                            text: 'test diagram'
-                                        },
-                                        xAxis: {
-                                            categories: {!! $chart1['dateArray'] !!}
-                                        },
-                                        yAxis: {
-                                            title: {
-                                                text: 'Количество'
-                                            },
-                                            plotLines: [{
-                                                value: 0,
-                                                width: 1,
-                                                color: '#808080'
-                                            }]
-                                        },
+                            <div id="chart1" width="200" height="200">132</div>
+                            <hr>
+                            <canvas id="myChart" style="width: 400px; height: 100px"></canvas>
+                            <hr>
+                            <canvas id="myChart1" style="width: 400px; height: 100px"></canvas>
+                            <hr>
+                            <canvas id="myChart2" style="width: 400px; height: 100px"></canvas>
+                            <script src="{{ asset('js/Chart.min.js') }}"></script>
 
-                                        series: {!! $chart1['dataArray'] !!}
-                                    });
+                            <script>
 
+                                //doc: http://www.chartjs.org/docs/
+                                var ctx = document.getElementById("myChart");
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: {!! $chart1['dateArray'] !!},
+                                        datasets: {!! $chart1['dataArray'] !!}
+                                    }
+
+                                });
+
+                                var ctx1 = document.getElementById("myChart1");
+                                var myChart = new Chart(ctx1, {
+                                    type: 'bar',
+                                    data: {
+                                        labels: {!! $chart1['dateArray'] !!},
+                                        datasets: {!! $chart1['dataArray'] !!}
+                                    }
+
+                                });
+
+                                var ctx2 = document.getElementById("myChart2");
+                                var myChart = new Chart(ctx2, {
+                                    type: 'pie',
+                                    data: {
+                                        labels: {!! $chart1['dateArray'] !!},
+                                        datasets: {!! $chart1['dataArray'] !!}
+                                    }
 
                                 });
                             </script>
-
                         </div>
                     </div>
                 </div>

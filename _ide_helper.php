@@ -11633,6 +11633,34 @@ namespace Intervention\Image\Facades {
     }         
 }
     
+namespace Alexusmai\YandexMetrika {
+
+    class YandexMetrikaFacade {
+        
+        /**
+         * Приводим полученные данные в удобочитаемый вид
+         *
+         * @return $this 
+         * @static 
+         */
+        public static function adapt()
+        {
+            return \Alexusmai\YandexMetrika\YandexMetrika::adapt();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getRequestToApi($urlParams, $urlApi)
+        {
+            return \Alexusmai\YandexMetrika\YandexMetrika::getRequestToApi($urlParams, $urlApi);
+        }
+        
+    }         
+}
+    
 namespace KodiCMS\Assets\Facades {
 
     class PackageManager {
@@ -17391,6 +17419,8 @@ namespace {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
     
     class Image extends \Intervention\Image\Facades\Image {}
+    
+    class YandexMetrika extends \Alexusmai\YandexMetrika\YandexMetrikaFacade {}
     
     class PackageManager extends \KodiCMS\Assets\Facades\PackageManager {}
     
