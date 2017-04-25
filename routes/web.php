@@ -61,3 +61,5 @@ Route::get('/admin/logout', ['as'=>'admin.logout', 'uses'=>'Auth\LoginController
 Route::get('/{url}', ['as'=>'page', 'uses'=>'PageController@page']);
 
 Route::post('upload-image', ['as'=>'upload_image', 'uses'=>'FileUploadController@uploader']);
+
+Route::get('/search/{query}', ['as'=>'search', 'uses'=>'SearchController@search']);
