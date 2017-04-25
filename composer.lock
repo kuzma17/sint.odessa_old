@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b20c9a78fd0e4d4cc753762bdae325f",
+    "content-hash": "0edd2c04095b510c88cdd3b5116638a4",
     "packages": [
         {
             "name": "alexusmai/yandex-metrika",
-            "version": "0.5",
+            "version": "dev-chart_js",
             "source": {
                 "type": "git",
-                "url": "https://github.com/alexusmai/yandex-metrika.git",
-                "reference": "bb891eb174276e3892871daf72a626a0cbb76e17"
+                "url": "https://github.com/kuzma17/yandex-metrika.git",
+                "reference": "ff8534478605c3541c0752ba8117ac0f715b2458"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alexusmai/yandex-metrika/zipball/bb891eb174276e3892871daf72a626a0cbb76e17",
-                "reference": "bb891eb174276e3892871daf72a626a0cbb76e17",
+                "url": "https://api.github.com/repos/kuzma17/yandex-metrika/zipball/ff8534478605c3541c0752ba8117ac0f715b2458",
+                "reference": "ff8534478605c3541c0752ba8117ac0f715b2458",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,6 @@
                     "Alexusmai\\YandexMetrika\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -48,7 +47,10 @@
                 "metrika",
                 "yandex"
             ],
-            "time": "2017-02-02T10:41:03+00:00"
+            "support": {
+                "source": "https://github.com/kuzma17/yandex-metrika/tree/chart_js"
+            },
+            "time": "2017-04-25T14:25:21+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1763,16 +1765,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.38",
+            "version": "1.0.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "4ba6e13f5116204b21c3afdf400ecf2b9eb1c482"
+                "reference": "2474325ee924134bb05848663b12531f6f2e9fbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4ba6e13f5116204b21c3afdf400ecf2b9eb1c482",
-                "reference": "4ba6e13f5116204b21c3afdf400ecf2b9eb1c482",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/2474325ee924134bb05848663b12531f6f2e9fbe",
+                "reference": "2474325ee924134bb05848663b12531f6f2e9fbe",
                 "shasum": ""
             },
             "require": {
@@ -1842,7 +1844,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-04-22T18:59:19+00:00"
+            "time": "2017-04-25T15:24:43+00:00"
         },
         {
             "name": "league/oauth1-client",
@@ -2572,6 +2574,108 @@
             ],
             "description": "VKontakte OAuth2 Provider for Laravel Socialite",
             "time": "2016-11-02T15:38:45+00:00"
+        },
+        {
+            "name": "sofa/eloquence",
+            "version": "v5.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jarektkaczyk/eloquence.git",
+                "reference": "b19ee7a40a66d9d6655af9869060456b508ed5e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jarektkaczyk/eloquence/zipball/b19ee7a40a66d9d6655af9869060456b508ed5e5",
+                "reference": "b19ee7a40a66d9d6655af9869060456b508ed5e5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.3.*",
+                "php": ">=5.6.4",
+                "sofa/hookable": "5.3.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.4",
+                "phpunit/phpunit": "4.5.0",
+                "squizlabs/php_codesniffer": "2.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sofa\\Eloquence\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarek Tkaczyk",
+                    "email": "jarek@softonsofa.com",
+                    "homepage": "http://softonsofa.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Flexible Searchable, Mappable, Metable, Validation and more extensions for Laravel Eloquent ORM.",
+            "keywords": [
+                "eloquent",
+                "laravel",
+                "mappable",
+                "metable",
+                "mutable",
+                "searchable"
+            ],
+            "time": "2016-09-01T15:44:48+00:00"
+        },
+        {
+            "name": "sofa/hookable",
+            "version": "V5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jarektkaczyk/hookable.git",
+                "reference": "a6f0753f3e404287700c8418c30adf0f4f226c65"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jarektkaczyk/hookable/zipball/a6f0753f3e404287700c8418c30adf0f4f226c65",
+                "reference": "a6f0753f3e404287700c8418c30adf0f4f226c65",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.3.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "crysalead/kahlan": "~1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sofa\\Hookable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jarek Tkaczyk",
+                    "email": "jarek@softonsofa.com",
+                    "homepage": "http://softonsofa.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Eloquent hooks system.",
+            "keywords": [
+                "eloquent",
+                "laravel"
+            ],
+            "time": "2016-08-26T13:37:29+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5099,7 +5203,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "laravelrus/sleepingowl": 20
+        "laravelrus/sleepingowl": 20,
+        "alexusmai/yandex-metrika": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

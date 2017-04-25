@@ -190,7 +190,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         // Yandex
         Alexusmai\YandexMetrika\YandexMetrikaServiceProvider::class,
-
+        // Search
+        Sofa\Eloquence\ServiceProvider::class,
 
     ],
 

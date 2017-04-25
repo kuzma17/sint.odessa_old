@@ -25,62 +25,140 @@
 
 
                             <?php
+                            $metrika1 = \YandexMetrika::getVisitsViewsUsers()->adapt();
+                            $chart1 = $metrika1->adaptData;
+                              //  var_dump($chart1);
 
-                            $metrika = \YandexMetrika::getVisitsViewsUsers()->adapt();
-                            $chart1 = $metrika->adaptData;
+                            $metrika2 = \YandexMetrika::getTopPageViews()->adapt();
+                            $chart2 = $metrika2->adaptData;
+                           // var_dump($chart2);
 
-                                var_dump($chart1);
-                                //echo $chart1;
-
+                            $metrika3 = \YandexMetrika::getVisitsUsersSearchEngine()->adapt();
+                            $chart3 = $metrika3->adaptData;
+                           // var_dump($chart3);
                             ?>
-                            <div id="chart1" width="200" height="200">132</div>
+
                             <hr>
-                            <canvas id="myChart" style="width: 400px; height: 100px"></canvas>
-                            <hr>
-                            <canvas id="myChart1" style="width: 400px; height: 100px"></canvas>
-                            <hr>
-                            <canvas id="myChart2" style="width: 400px; height: 100px"></canvas>
+                            <div style="width:600px; float: left">
+                                <canvas id="Chart1" ></canvas>
+                            </div>
+
+                            <div style="width:270px;float: left">
+                                <canvas id="Chart2" ></canvas>
+                            </div>
+
+                            <div style="width:600px;float: left">
+                                <canvas id="Chart3" ></canvas>
+                            </div>
+
                             <script src="{{ asset('js/Chart.min.js') }}"></script>
 
                             <script>
 
-                                //doc: http://www.chartjs.org/docs/
-                                var ctx = document.getElementById("myChart");
-                                var myChart = new Chart(ctx, {
+                                var ctx = document.getElementById("Chart1");
+                                var data1 = {
+                                    labels: {!! $chart1['dateArray'] !!},
+                                    datasets: {!! $chart1['dataArray'] !!}
+                                };
+                                var Chart1 = new Chart(ctx, {
                                     type: 'line',
+                                    data: data1,
                                     options: {
                                         title: {
                                             display: true,
                                             text: 'Активность посетителей за последние 30 дней'
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                stacked: true
+                                            }],
+                                            yAxes: [{
+                                                stacked: true
+                                            }]
                                         }
-                                    },
-                                    data: {
-                                        labels: {!! $chart1['dateArray'] !!},
-                                        datasets: {!! $chart1['dataArray'] !!}
-
-
                                     }
-
                                 });
 
-                                var ctx1 = document.getElementById("myChart1");
-                                var myChart = new Chart(ctx1, {
-                                    type: 'bar',
-                                    data: {
-                                        labels: {!! $chart1['dateArray'] !!},
-                                        datasets: {!! $chart1['dataArray'] !!}
-                                    }
-
-                                });
-
-                                var ctx2 = document.getElementById("myChart2");
-                                var myChart = new Chart(ctx2, {
+                                var ctx2 = document.getElementById("Chart2");
+                                var data2 = {
+                                    labels: {!! $chart3['labelArray'] !!},
+                                    datasets: [
+                                        {
+                                            data: {!! $chart3['dataArray'] !!},
+                                            backgroundColor: [
+                                                "#FF6384",
+                                                "#36A2EB",
+                                                "#FFCE56",
+                                                "#ff9933",
+                                                    "#0000ff",
+                                                    "#00ff00",
+                                                    "#ffff00",
+                                                    "#00ccff",
+                                                    "#ff0000",
+                                                    "#ffbf00"
+                                            ],
+                                            hoverBackgroundColor: [
+                                                "#FF6384",
+                                                "#36A2EB",
+                                                "#FFCE56"
+                                            ]
+                                        }]
+                                };
+                                var Chart2 = new Chart(ctx2, {
                                     type: 'pie',
-                                    data: {
-                                        labels: {!! $chart1['dateArray'] !!},
-                                        datasets: {!! $chart1['dataArray'] !!}
-                                    }
+                                    data: data2,
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: 'Количество визитов с учетом поисковых систем'
+                                        },
 
+                                    }
+                                });
+
+                                var ctx3 = document.getElementById("Chart3");
+                                var data3 = {
+                                    labels: {!! $chart2['labelArray'] !!},
+                                    datasets: [
+                                        {
+                                            label:'home',
+                                            data: {!! $chart2['dataArray'] !!},
+                                            backgroundColor: [
+                                                "#FF6384",
+                                                "#36A2EB",
+                                                "#FFCE56",
+                                                "#ff9933",
+                                                "#0000ff",
+                                                "#00ff00",
+                                                "#ffff00",
+                                                "#00ccff",
+                                                "#ff0000",
+                                                "#ffbf00"
+                                            ],
+                                            hoverBackgroundColor: [
+                                                "#FF6384",
+                                                "#36A2EB",
+                                                "#FFCE56"
+                                            ]
+                                        }]
+                                };
+                                var Chart3 = new Chart(ctx3, {
+                                    type: 'bar',
+                                    data: data3,
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: 'Самые просматриваемые страницы'
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                stacked: true
+                                            }],
+                                            yAxes: [{
+                                                stacked: true
+                                            }]
+                                        }
+                                    }
                                 });
                             </script>
                         </div>
