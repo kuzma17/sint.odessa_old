@@ -576,3 +576,7 @@ h5{
     size: 10px;
     font-style: italic
 }
+
+.search_list img{
+    width:100px;
+}

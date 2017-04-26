@@ -2,14 +2,6 @@
 @section('content')
     <?php if(isset(Auth::user()->avatar)){$avatar = Auth::user()->avatar->avatar;} ?>
     <h3>Личный кабинет пользователя</h3>
-    @if($message = Session::pull('ok_message'))
-        <div class="alert alert-success alert-message">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <i class="fa fa-check fa-lg"></i> {{ $message }}
-        </div>
-    @endif
     @if (count($errors) > 0)
         <div class="alert alert-warning alert-message">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">

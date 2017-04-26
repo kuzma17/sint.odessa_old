@@ -10,4 +10,5 @@ class News extends Model
     use Eloquence;
     protected $table = 'news';
     protected $searchableColumns = ['title', 'content'];
+
 }

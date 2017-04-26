@@ -46,6 +46,7 @@
                             <div style="width:270px;float: left">
                                 <canvas id="Chart2" ></canvas>
                             </div>
+                            <div style="clear: both"></div>
 
                             <div style="width:600px;float: left">
                                 <canvas id="Chart3" ></canvas>
