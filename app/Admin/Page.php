@@ -59,8 +59,8 @@ class Page extends Section
     {
         return AdminForm::panel()
             ->addBody(
-                AdminFormElement::text('title', 'Title'),
-                AdminFormElement::text('url', 'url'),
+                AdminFormElement::text('title', 'Title')->required(),
+                AdminFormElement::text('url', 'url')->required(),
                 AdminFormElement::wysiwyg('content', 'текс страници'),
                 AdminFormElement::text('keywords', 'keywords')
             );

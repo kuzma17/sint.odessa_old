@@ -99,12 +99,12 @@ class Client extends Section
         $formPrimary = AdminForm::form()->addElement(
             new FormElements([
                 AdminFormElement::text('user.name', 'Nic'),
-                AdminFormElement::text('client_name', 'Name client'),
-                AdminFormElement::text('user.email', 'Email'),
+                AdminFormElement::text('client_name', 'Name client')->required(),
+                AdminFormElement::text('user.email', 'Email')->required(),
                 AdminFormElement::password('user.password', 'Пароль')->hashWithBcrypt(),
                 AdminFormElement::image('avatar1.avatar', 'image')->setUploadPath(function() {return 'images/avatars';}),
                 AdminFormElement::select('type_client_id', trans('type client'))->setModelForOptions(new \App\TypeClient())->setDisplay('name'),
-                AdminFormElement::text('phone', 'Телефон'),
+                AdminFormElement::text('phone', 'Телефон')->required(),
                 AdminFormElement::text('address', 'Адрес доставки'),
             ])
         );

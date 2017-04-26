@@ -62,8 +62,8 @@ class Menu extends Section
     {
         return AdminForm::panel()
             ->addBody(
-                AdminFormElement::text('url', 'url'),
-                AdminFormElement::text('title', 'title'),
+                AdminFormElement::text('url', 'url')->required(),
+                AdminFormElement::text('title', 'title')->required(),
                 AdminFormElement::text('weight', 'weight'),
                 AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
             );

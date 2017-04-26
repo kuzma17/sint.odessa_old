@@ -67,9 +67,9 @@ class AdminUser extends Section
             ->addBody(
                 AdminFormElement::text('user.name', 'Username'),
                 AdminFormElement::image('avatar.avatar', 'image')->setUploadPath(function() {return 'images/avatars';}),
-                AdminFormElement::text('user.email', 'E-mail'),
+                AdminFormElement::text('user.email', 'E-mail')->required(),
                 AdminFormElement::password('user.password', 'Password')->hashWithBcrypt(),
-                AdminFormElement::select('role_id', trans('Role'))->setModelForOptions(new Role())->setDisplay('label')
+                AdminFormElement::select('role_id', trans('Role'))->setModelForOptions(new Role())->setDisplay('label')->required()
         );
     }
 
