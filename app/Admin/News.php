@@ -37,6 +37,11 @@ class News extends Section
      */
     protected $alias;
 
+
+   // public function initialize() {
+  //      $this->creating(function($config, Model $model){/*тело функции*/});
+   // }
+
     /**
      * @return DisplayInterface
      */
@@ -65,6 +70,7 @@ class News extends Section
     {
         return AdminForm::panel()
             ->addBody(
+                AdminFormElement::hidden('url')->setDefaultValue('news'),
                 AdminFormElement::text('title', 'Title')->required()->unique(),
                 AdminFormElement::wysiwyg('content', 'текс статьи'),
                 AdminFormElement::select('published', 'published',['0'=>'off', '1'=>'on'])->required(),
@@ -97,4 +103,5 @@ class News extends Section
     {
         // todo: remove if unused
     }
+
 }

@@ -6,33 +6,23 @@ use App\News;
 use App\Page;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class SearchController extends Controller
 {
-    public function search($query){
-        $page = json_decode(Page::search($query)->get());
+    public function search(Request $request){
+        if($request->isMethod('post')) {
 
-        $news = json_decode(News::search($query)->get());
-        //$url_hews = 'news/'.$news->id;
+            $this->validate($request, ['search' => 'required|min:4'] );
 
-        //echo $url_hews;
-        //$news['url'] = $url_hews;
+            $query = $request->input('search');
+            $page = json_decode(Page::search($query)->get());
+            $news = json_decode(News::search($query)->get());
+            $post = json_decode(Post::search($query)->get());
 
-        var_dump($news);
+            $results = array_merge($page, $news, $post);
 
-        //$post = json_decode(Post::search($query)->get());
-        //$url_post = 'news/'.$post->id;
-        //$post['url'] = $url_post;
-
-       // $res = array_merge($page_search, $news_search);
-        //$results = json_decode( $news_search);
-
-        $results = array_merge(
-            $page,
-            $news
-           // $post
-        );
-
-        return view('search', ['results'=>$results]);
+            return view('search', ['query' => $query, 'results' => $results]);
+        }
     }
 }

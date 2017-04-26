@@ -3,6 +3,7 @@
     <div class="col-sm-12 col-md-8 col-md-push-2 col-lg-8 col-lg-push-2">
         @yield('slider')
         @include('layouts.bannerTop')
+        @include('layouts.message')
         @yield('content')
     </div>
     <div class="col-sm-12 col-md-2 col-md-pull-8 col-lg-2 col-lg-pull-8 left_panel">

@@ -5,10 +5,8 @@
 //	return AdminSection::view($content, 'Dashboard');
 //}]);
 
-//Route::get('', ['as' => 'admin.dashboard', 'uses'=>'App\Admin\DashboardController@info']);
-
 Route::get('', ['as' => 'admin.dashboard', function () {
-	$content = view('admin.dashboard_info');
+	$content = view('admin.dashboard');
 	return AdminSection::view($content, 'Dashboard');
 }]);
 

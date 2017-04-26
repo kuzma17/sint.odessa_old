@@ -58,8 +58,9 @@ Route::post('/login_admin', ['as'=>'login.admin.auth', 'uses'=>'Auth\LoginContro
 Route::get('/admin', ['as'=>'admin.dashboard']);
 Route::get('/admin/logout', ['as'=>'admin.logout', 'uses'=>'Auth\LoginController@logout']);
 
-Route::get('/{url}', ['as'=>'page', 'uses'=>'PageController@page']);
-
 Route::post('upload-image', ['as'=>'upload_image', 'uses'=>'FileUploadController@uploader']);
 
-Route::get('/search/{query}', ['as'=>'search', 'uses'=>'SearchController@search']);
+Route::post('/search', ['as'=>'search', 'uses'=>'SearchController@search']);
+Route::get('/search', ['as'=>'search.home', function(){ return redirect(url('/'));}]);
+
+Route::get('/{url}', ['as'=>'page', 'uses'=>'PageController@page']);

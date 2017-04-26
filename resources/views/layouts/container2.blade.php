@@ -2,6 +2,7 @@
 @section('container')
     <div class="col-sm-12 col-md-10 col-lg-10">
         @include('layouts.bannerTop')
+        @include('layouts.message')
         @yield('content')
     </div>
     <div class="col-sm-12 col-md-2 col-lg-2 right_panel">
