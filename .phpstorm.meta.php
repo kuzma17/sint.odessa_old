@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-04-25.
+    * Generated on 2017-04-27.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -54,6 +54,9 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
             'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
+            'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
+            'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
+            'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -189,6 +192,9 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
             'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
+            'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
+            'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
+            'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -324,6 +330,9 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
             'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
+            'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
+            'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
+            'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -459,6 +468,9 @@ namespace PHPSTORM_META {
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
             'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
+            'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
+            'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
+            'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,

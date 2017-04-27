@@ -27,7 +27,7 @@
                             <?php
                             $metrika1 = \YandexMetrika::getVisitsViewsUsers()->adapt();
                             $chart1 = $metrika1->adaptData;
-                              //  var_dump($chart1);
+                                //var_dump($chart1);
 
                             $metrika2 = \YandexMetrika::getTopPageViews()->adapt();
                             $chart2 = $metrika2->adaptData;
@@ -59,7 +59,25 @@
                                 var ctx = document.getElementById("Chart1");
                                 var data1 = {
                                     labels: {!! $chart1['dateArray'] !!},
-                                    datasets: {!! $chart1['dataArray'] !!}
+                                    datasets: [{
+                                        label: "Визиты",
+                                        backgroundColor: "#00ff00",
+                                        borderColor: "#00ff00",
+                                        data: {!! $chart1['dataVisitArray'] !!},
+                                        fill: false,
+                                    },{
+                                        label: "Просмотры",
+                                        backgroundColor: "#36A2EB",
+                                        borderColor: "#36A2EB",
+                                        data: {!! $chart1['dataViewArray'] !!},
+                                        fill: false,
+                                    },{
+                                        label: "Посетители",
+                                        backgroundColor: "#FF6384",
+                                        borderColor: "#FF6384",
+                                        data: {!! $chart1['dataUserArray'] !!},
+                                        fill: false,
+                                    }]
                                 };
                                 var Chart1 = new Chart(ctx, {
                                     type: 'line',

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kuzma17/yandex-metrika.git",
-                "reference": "ff8534478605c3541c0752ba8117ac0f715b2458"
+                "reference": "121e4ed4a433350296944c5528e2a7d00c41d1f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kuzma17/yandex-metrika/zipball/ff8534478605c3541c0752ba8117ac0f715b2458",
-                "reference": "ff8534478605c3541c0752ba8117ac0f715b2458",
+                "url": "https://api.github.com/repos/kuzma17/yandex-metrika/zipball/121e4ed4a433350296944c5528e2a7d00c41d1f4",
+                "reference": "121e4ed4a433350296944c5528e2a7d00c41d1f4",
                 "shasum": ""
             },
             "require": {
@@ -50,7 +50,7 @@
             "support": {
                 "source": "https://github.com/kuzma17/yandex-metrika/tree/chart_js"
             },
-            "time": "2017-04-25T14:25:21+00:00"
+            "time": "2017-04-27T09:24:56+00:00"
         },
         {
             "name": "barryvdh/laravel-debugbar",
