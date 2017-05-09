@@ -163,4 +163,31 @@ class OrderController extends Controller
         Session::flash('ok_message', 'Ваш заказ успешно подтвержден и будет рассмотрен в ближайшее время.');
         return redirect('/user/order/'.$order_id);
     }
+
+    public static function count_orders(){
+        $this_date = date("Y-m-d", strtotime("-1 days"));
+        $orders = Order::where('created_at', '>=', $this_date)->count();
+        return $orders;
+    }
+
+    public static function count_day_orders(){
+
+        for($i=30; $i >= 0; $i--){
+            $min = $i + 1;
+            $max = $i - 1;
+            $date_min = date("Y-m-d", strtotime("-$min days"));
+            $date_max = date("Y-m-d", strtotime("-$max days"));
+
+            $oreders = Order::whereRaw("created_at > '$date_min' and created_at < '$date_max'")->count();
+
+            $array_order[] = $oreders;
+            $array_date[] = date("d.m", strtotime("-$i days"));
+        }
+
+        $adapt_data = [
+            'dataArray' => json_encode( $array_order, JSON_UNESCAPED_UNICODE),
+            'dateArray' => json_encode( $array_date, JSON_UNESCAPED_UNICODE),
+            ];
+        return $adapt_data;
+    }
 }

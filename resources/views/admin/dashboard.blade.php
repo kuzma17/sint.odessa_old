@@ -13,30 +13,30 @@
             <div class="col-md-9 col-sm-8">
                 <div class="pad">
                     <!-- Map will be created here -->
-                    <div id="world-map-markers" style="height: 1000px;">
+                    <div id="world-map-markers" style="height: 1500px;">
                         <div class="jvectormap-container" style="width: 100%; height: 100%; position: relative; overflow: hidden; background-color: transparent;">
 
-
-                            <p>Всего клиентов: {{ \App\UserProfile::count() }}</p>
-                            <p>Всего заказов: {{ \App\Order::count() }}</p>
-                            <?php $this_date = '2017-03-31 20:11:11'; ?>
-                            <p>Новых клиентов: {{ \App\UserProfile::where('created_at', '>', $this_date)->count() }}</p>
-                            <p>Новых заказов: {{ \App\Order::where('created_at', '>', $this_date)->count() }}</p>
-
+                            <p>Всего клиентов: <span class="badge alert-info">{{ \App\UserProfile::count() }}</span></p>
+                            <p>Всего заказов: <span class="badge alert-success">{{ \App\Order::count() }}</p>
+                            <p>Новых клиентов: <span class="badge alert-info">{{ \App\Http\Controllers\UserProfileController::count_users() }}</span></p>
+                            <p>Новых заказов: <span class="badge alert-success">{{ \App\Http\Controllers\OrderController::count_orders() }}</span></p>
 
                             <?php
                             $metrika1 = \YandexMetrika::getVisitsViewsUsers()->adapt();
                             $chart1 = $metrika1->adaptData;
-                                //var_dump($chart1);
 
                             $metrika2 = \YandexMetrika::getTopPageViews()->adapt();
                             $chart2 = $metrika2->adaptData;
-                           // var_dump($chart2);
 
                             $metrika3 = \YandexMetrika::getVisitsUsersSearchEngine()->adapt();
                             $chart3 = $metrika3->adaptData;
-                           // var_dump($chart3);
+
+                            $orders = \App\Http\Controllers\OrderController::count_day_orders();
+
                             ?>
+                            <div style="width:600px; float: left">
+                                <canvas id="Chart11" ></canvas>
+                            </div>
 
                             <hr>
                             <div style="width:600px; float: left">
@@ -168,6 +168,36 @@
                                         title: {
                                             display: true,
                                             text: 'Самые просматриваемые страницы'
+                                        },
+                                        scales: {
+                                            xAxes: [{
+                                                stacked: true
+                                            }],
+                                            yAxes: [{
+                                                stacked: true
+                                            }]
+                                        }
+                                    }
+                                });
+
+                                var ctx = document.getElementById("Chart11");
+                                var data11 = {
+                                    labels: {!! $orders['dateArray'] !!},
+                                    datasets: [{
+                                        label: "Заказыы",
+                                        backgroundColor: "#FF6384",
+                                        borderColor: "#FF6384",
+                                        data: {!! $orders['dataArray'] !!},
+                                        fill: false,
+                                    }]
+                                };
+                                var Chart11 = new Chart(ctx, {
+                                    type: 'line',
+                                    data: data11,
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: 'Количестао заказов за последние 30 дней'
                                         },
                                         scales: {
                                             xAxes: [{

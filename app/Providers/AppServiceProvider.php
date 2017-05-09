@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
         Validator::resolver(function($translator, $data, $rules, $messages){
             return new CustomValidator($translator, $data, $rules, $messages);
         });
+
+        if (file_exists($assetsFile = __DIR__ . '/../../resources/assets/admin/assets.php')) {
+            include $assetsFile;
+        }
     }
 
     /**

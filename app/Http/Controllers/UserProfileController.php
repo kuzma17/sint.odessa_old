@@ -185,4 +185,10 @@ class UserProfileController extends Controller
         }
     }
 
+    public static function count_users(){
+        $this_date = date("Y-m-d", strtotime("-1 days"));
+        $users = User::where('created_at', '>=', $this_date)->count();
+        return $users;
+    }
+
 }

@@ -64,3 +64,8 @@ Route::post('/search', ['as'=>'search', 'uses'=>'SearchController@search']);
 Route::get('/search', ['as'=>'search.home', function(){ return redirect(url('/'));}]);
 
 Route::get('/{url}', ['as'=>'page', 'uses'=>'PageController@page']);
+
+Route::post('storage/uploads', [
+    'as'   => 'upload.image.s3',
+    'uses' => "ImageController@storeAdmin"
+]);
