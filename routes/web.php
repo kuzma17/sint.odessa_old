@@ -20,11 +20,8 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index');
 
-//Route::get('/social_login', 'SocialController@index');
 Route::get('/social/{provider}', 'SocialController@login');
 Route::get('/social/callback/{provider}', 'SocialController@callback');
-
-//Route::get('/user', ['as'=>'user.profile', 'uses'=>'UserProfileController@profile']);
 
 Route::get('/user', ['as'=>'user.profile', 'middleware'=>'client', 'uses'=>'UserProfileController@profile']);
 
@@ -64,8 +61,3 @@ Route::post('/search', ['as'=>'search', 'uses'=>'SearchController@search']);
 Route::get('/search', ['as'=>'search.home', function(){ return redirect(url('/'));}]);
 
 Route::get('/{url}', ['as'=>'page', 'uses'=>'PageController@page']);
-
-Route::post('storage/uploads', [
-    'as'   => 'upload.image.s3',
-    'uses' => "ImageController@storeAdmin"
-]);

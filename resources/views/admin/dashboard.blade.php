@@ -37,6 +37,7 @@
                             <div style="width:600px; float: left">
                                 <canvas id="Chart11" ></canvas>
                             </div>
+                            <div style="clear: both"></div>
 
                             <hr>
                             <div style="width:600px; float: left">
@@ -184,7 +185,7 @@
                                 var data11 = {
                                     labels: {!! $orders['dateArray'] !!},
                                     datasets: [{
-                                        label: "Заказыы",
+                                        label: "Заказы",
                                         backgroundColor: "#FF6384",
                                         borderColor: "#FF6384",
                                         data: {!! $orders['dataArray'] !!},
