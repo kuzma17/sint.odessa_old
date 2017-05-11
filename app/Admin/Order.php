@@ -6,6 +6,9 @@ use AdminColumn;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Notifications\CreatedOrder;
+use App\User;
+use App\UserProfile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
 use SleepingOwl\Admin\Section;
@@ -35,6 +38,16 @@ class Order extends Section
      * @var string
      */
     protected $alias;
+
+    public function initialize(){
+        //$this->creating(function($config, Model $model){/*тело функции*/});
+        $this->created(function($config, UserProfile $userProfile){
+            //$user = $userProfile->where('user_id', "$this->model->user_id");
+           // $user->notify(new CreatedOrder());
+            //echo '54354354354354';
+        });
+    }
+
 
     /**
      * @return DisplayInterface
