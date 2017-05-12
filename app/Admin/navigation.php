@@ -23,16 +23,16 @@ use SleepingOwl\Admin\Navigation\Page;
 
 return [
     [
-        'title' => 'Dashboard',
+        'title' => 'Главная',
         'icon'  => 'fa fa-dashboard',
         'url'   => route('admin.dashboard'),
     ],
 
-    [
-        'title' => 'Information',
-        'icon'  => 'fa fa-exclamation-circle',
-        'url'   => route('admin.information'),
-    ],
+    //[
+     //   'title' => 'Information',
+     //   'icon'  => 'fa fa-exclamation-circle',
+     //   'url'   => route('admin.information'),
+    //],
 
     [
         'title'=>'Меню',
@@ -131,31 +131,7 @@ return [
         'url'   => '/admin/logout',
         'priority' => 2000,
 
-    ],
-
-    [
-        'title' => '= testing menu =',
-        'icon' => 'fa fa-group',
-        'priority' =>'10000',
-        'pages' => [
-            (new Page(\App\AdminUser::class))
-                ->setIcon('fa fa-user-circle')
-                ->setPriority(10),
-            (new Page(\App\UserProfile::class))
-                ->setIcon('fa fa-user-o')
-                ->setPriority(10),
-            (new Page(\App\Order::class))
-                ->setIcon('fa fa-cart-plus')
-                ->setPriority(20),
-            (new Page(\App\Status::class))
-                ->setIcon('fa fa-group')
-                ->setPriority(100),
-            (new Page(\App\StatusRepair::class))
-                ->setIcon('fa fa-group')
-                ->setPriority(200)
-        ]
     ]
-
 
     // Examples
     // [

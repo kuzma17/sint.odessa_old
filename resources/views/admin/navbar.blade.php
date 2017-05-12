@@ -1,16 +1,16 @@
 @if($user)
     <li style="padding: 15px"><div>
-            <i class="fa fa-newspaper-o" aria-hidden="true" style="font-size: 16px; color: white"></i>
+            <i class="fa fa-newspaper-o" aria-hidden="true" style="color: white"></i>
             <span class="badge alert-info"><?php echo \App\News::count(); ?>
         </div>
     </li>
     <li style="padding: 15px"><div>
-            <i class="fa fa-user-o" aria-hidden="true" style="font-size: 16px; color: white"></i>
+            <i class="fa fa-user-o" aria-hidden="true" style="color: white"></i>
             <span class="badge alert-danger"><?php echo \App\UserProfile::count(); ?>
         </div>
     </li>
     <li style="padding: 15px"><div>
-        <i class="fa fa-cart-plus" aria-hidden="true" style="font-size: 16px; color: white"></i>
+        <i class="fa fa-cart-plus" aria-hidden="true" style="color: white"></i>
         <span class="badge alert-success"><?php echo \App\Order::count(); ?>
         </div>
     </li>
