@@ -7,18 +7,20 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class CreatedOrder extends Notification
+class StatusOrder extends Notification
 {
     use Queueable;
+
+    private $status;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($status)
     {
-        //
+        $this->status = $status;
     }
 
     /**
@@ -41,9 +43,9 @@ class CreatedOrder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('У Вас новый заказ!')
+            ->subject('У Вас изменился статус заказа!')
             ->greeting('Здравствуйте!')
-            ->line('Вы получили это письмо, потому что для вашей учетной записи был сформирован новый заказ.')
+            ->line('Вы получили это письмо, потому что в вашем ранее созданном заказе изменился статус на "'.$this->status.'"')
             ->action('Перейти на сайт', url('/'))
             ->line('Если вы не создавали новый заказ то можете проигнорировать это письмо.');
     }

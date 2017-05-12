@@ -9,6 +9,7 @@ use AdminForm;
 use AdminFormElement;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
 /**
@@ -18,7 +19,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class News extends Section
+class News extends Section implements Initializable
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -38,9 +39,14 @@ class News extends Section
     protected $alias;
 
 
-   // public function initialize() {
-  //      $this->creating(function($config, Model $model){/*тело функции*/});
-   // }
+    public function initialize() {
+        $this->addToNavigation()
+            ->setIcon('fa fa-newspaper-o')
+            ->setPriority(400)
+            ->addBadge(function() {
+                return \App\News::count();
+            }, ['class' => 'label-info']);
+    }
 
     /**
      * @return DisplayInterface

@@ -4,12 +4,9 @@ namespace App;
 
 use Auth;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
 
 class UserProfile extends Model
 {
-    use Notifiable;
-
     protected $table = 'user_profiles';
 
     protected $fillable = [
@@ -42,12 +39,6 @@ class UserProfile extends Model
    // }
 
     public function avatar1(){
-    // return $this->hasManyThrough('App\UserAvatar', 'App\User', 'id', 'user_id');
         return $this->user->avatar();
      }
-
-    public function routeNotificationForMail(){
-         return $this->user->email;
-     }
-
 }

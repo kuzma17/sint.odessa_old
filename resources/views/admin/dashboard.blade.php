@@ -44,7 +44,7 @@
                                 <canvas id="Chart1" ></canvas>
                             </div>
 
-                            <div style="width:270px;float: left">
+                            <div style="width:350px;float: left">
                                 <canvas id="Chart2" ></canvas>
                             </div>
                             <div style="clear: both"></div>
@@ -57,25 +57,35 @@
 
                             <script>
 
+                                var chartColors = {
+                                    red: 'rgb(255, 99, 132)',
+                                    orange: 'rgb(255, 159, 64)',
+                                    yellow: 'rgb(255, 205, 86)',
+                                    green: 'rgb(75, 192, 192)',
+                                    blue: 'rgb(54, 162, 235)',
+                                    purple: 'rgb(153, 102, 255)',
+                                    grey: 'rgb(231,233,237)'
+                                };
+
+                                var color = Chart.helpers.color;
                                 var ctx = document.getElementById("Chart1");
                                 var data1 = {
                                     labels: {!! $chart1['dateArray'] !!},
                                     datasets: [{
                                         label: "Визиты",
-                                        backgroundColor: "#00ff00",
-                                        borderColor: "#00ff00",
+                                        borderColor: chartColors.green,
+                                        backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
                                         data: {!! $chart1['dataVisitArray'] !!},
-                                        fill: false,
+
                                     },{
                                         label: "Просмотры",
-                                        backgroundColor: "#36A2EB",
-                                        borderColor: "#36A2EB",
+                                        borderColor: chartColors.blue,
+                                        backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
                                         data: {!! $chart1['dataViewArray'] !!},
-                                        fill: false,
                                     },{
                                         label: "Посетители",
-                                        backgroundColor: "#FF6384",
-                                        borderColor: "#FF6384",
+                                        borderColor: chartColors.red,
+                                        backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
                                         data: {!! $chart1['dataUserArray'] !!},
                                         fill: false,
                                     }]
@@ -106,21 +116,13 @@
                                         {
                                             data: {!! $chart3['dataArray'] !!},
                                             backgroundColor: [
-                                                "#FF6384",
-                                                "#36A2EB",
-                                                "#FFCE56",
-                                                "#ff9933",
-                                                    "#0000ff",
-                                                    "#00ff00",
-                                                    "#ffff00",
-                                                    "#00ccff",
-                                                    "#ff0000",
-                                                    "#ffbf00"
-                                            ],
-                                            hoverBackgroundColor: [
-                                                "#FF6384",
-                                                "#36A2EB",
-                                                "#FFCE56"
+                                                chartColors.red,
+                                                chartColors.orange,
+                                                chartColors.yellow,
+                                                chartColors.green,
+                                                chartColors.blue,
+                                                chartColors.purple,
+                                                chartColors.grey,
                                             ]
                                         }]
                                 };
@@ -128,6 +130,9 @@
                                     type: 'pie',
                                     data: data2,
                                     options: {
+                                        //legend: {
+                                        //    position: 'right',
+                                      //  },
                                         title: {
                                             display: true,
                                             text: 'Количество визитов с учетом поисковых систем'
@@ -144,21 +149,20 @@
                                             label:'home',
                                             data: {!! $chart2['dataArray'] !!},
                                             backgroundColor: [
-                                                "#FF6384",
-                                                "#36A2EB",
-                                                "#FFCE56",
-                                                "#ff9933",
-                                                "#0000ff",
-                                                "#00ff00",
-                                                "#ffff00",
-                                                "#00ccff",
-                                                "#ff0000",
-                                                "#ffbf00"
-                                            ],
-                                            hoverBackgroundColor: [
-                                                "#FF6384",
-                                                "#36A2EB",
-                                                "#FFCE56"
+                                                chartColors.red,
+                                                chartColors.orange,
+                                                chartColors.yellow,
+                                                chartColors.green,
+                                                chartColors.blue,
+                                                chartColors.purple,
+                                                chartColors.grey,
+                                                chartColors.red,
+                                                chartColors.orange,
+                                                chartColors.yellow,
+                                                chartColors.green,
+                                                chartColors.blue,
+                                                chartColors.purple,
+                                                chartColors.grey,
                                             ]
                                         }]
                                 };
@@ -186,10 +190,10 @@
                                     labels: {!! $orders['dateArray'] !!},
                                     datasets: [{
                                         label: "Заказы",
-                                        backgroundColor: "#FF6384",
-                                        borderColor: "#FF6384",
+                                        borderColor: chartColors.red,
+                                        backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
                                         data: {!! $orders['dataArray'] !!},
-                                        fill: false,
+                                        //fill: false,
                                     }]
                                 };
                                 var Chart11 = new Chart(ctx, {
@@ -210,6 +214,7 @@
                                         }
                                     }
                                 });
+
                             </script>
                         </div>
                     </div>

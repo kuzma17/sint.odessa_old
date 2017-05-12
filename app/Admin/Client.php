@@ -7,8 +7,10 @@ use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
 use App\User;
+use App\UserProfile;
 use SleepingOwl\Admin\Contracts\Display\DisplayInterface;
 use SleepingOwl\Admin\Contracts\Form\FormInterface;
+use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Form\FormElements;
 use SleepingOwl\Admin\Section;
 
@@ -19,7 +21,7 @@ use SleepingOwl\Admin\Section;
  *
  * @see http://sleepingowladmin.ru/docs/model_configuration_section
  */
-class Client extends Section
+class Client extends Section implements Initializable
 {
     /**
      * @see http://sleepingowladmin.ru/docs/model_configuration#ограничение-прав-доступа
@@ -37,6 +39,15 @@ class Client extends Section
      * @var string
      */
     protected $alias;
+
+    public function initialize(){
+        $this->addToNavigation()
+            ->setIcon('fa fa-user-o')
+            ->setPriority(1200)
+            ->addBadge(function() {
+                return UserProfile::count();
+            }, ['class' => 'label-danger']);
+    }
 
     /**
      * @return DisplayInterface
@@ -153,7 +164,8 @@ class Client extends Section
      */
     public function onDelete($id)
     {
-        // todo: remove if unused
+        $user_id = $this->model->find($id)->user_id;
+        User::destroy($user_id);
     }
 
     /**

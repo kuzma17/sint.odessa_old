@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Order extends Model
 {
+    use Notifiable;
+
     public function type_order(){
         return $this->belongsTo('App\TypeOrder');
     }
@@ -24,5 +27,13 @@ class Order extends Model
 
     public function act_repair(){
         return $this->hasOne('App\ActRepair');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function routeNotificationForMail(){
+        return $this->user->email;
     }
 }

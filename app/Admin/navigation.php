@@ -41,13 +41,13 @@ return [
         'priority' => 300,
     ],
 
-    [
-        'title'=>'Новости',
-        'icon'=>'fa fa-newspaper-o',
-        'model'   => \App\News::class,
-        'priority' => 400,
+   // [
+     //   'title'=>'Новости <span class="badge alert-info">'.\App\News::count().'</span>',
+     //   'icon'=>'fa fa-newspaper-o',
+     //   'model'   => \App\News::class,
+     //   'priority' => 400,
 
-    ],
+    //],
 
     [
         'title'=>'Страници',
@@ -93,21 +93,21 @@ return [
         'priority' => 1100,
     ],
 
-    [
-        'title'=>'Клиенты',
-        'icon'=>'fa fa-user-o',
-        'model'   => \App\UserProfile::class,
-        'priority' => 1200,
+   // [
+   //     'title'=>'Клиенты <span class="badge alert-info" style="margin-left: 20px">'.\App\UserProfile::count().'</span>',
+   //     'icon'=>'fa fa-user-o',
+   //     'model'   => \App\UserProfile::class,
+    //    'priority' => 1200,
 
-    ],
+   // ],
 
-    [
-        'title'=>'Заказы',
-        'icon'=>'fa fa-cart-plus',
-        'model'   => \App\Order::class,
-        'priority' => 1300,
+   // [
+    //    'title'=>'Заказы <span class="badge alert-success">'.\App\Order::count().'</span>',
+   //     'icon'=>'fa fa-cart-plus',
+    //    'model'   => \App\Order::class,
+    //    'priority' => 1300,
 
-    ],
+    //],
 
     [
         'title'=>'Статусы заказа',
