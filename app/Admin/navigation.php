@@ -23,7 +23,7 @@ use SleepingOwl\Admin\Navigation\Page;
 
 return [
     [
-        'title' => 'Главная',
+        'title' => 'Dashboard',
         'icon'  => 'fa fa-dashboard',
         'url'   => route('admin.dashboard'),
     ],

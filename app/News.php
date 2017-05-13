@@ -11,4 +11,8 @@ class News extends Model
     protected $table = 'news';
     protected $searchableColumns = ['title', 'content'];
 
+    public static function count(){
+        return Settings::find(1)->count_news;
+    }
+
 }

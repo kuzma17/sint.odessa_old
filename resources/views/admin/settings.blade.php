@@ -25,5 +25,8 @@
     <tr>
         <th class="row-header">Количество выводимых новостей на странице</th><td class="row-link">{{ $settings->count_news }}</td>
     </tr>
+    <tr>
+        <th class="row-header">Обмен 1С</th><td class="row-link">@if($settings->exchange == 1) вкл. @else откл. @endif </td>
+    </tr>
 
      </table>

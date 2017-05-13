@@ -6,6 +6,7 @@ use AdminColumn;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\Http\Controllers\OrderController;
 use App\Notifications\StatusOrder;
 use App\Status;
 use App\User;
@@ -51,8 +52,11 @@ class Order extends Section implements Initializable
             ->setIcon('fa fa-cart-plus')
             ->setPriority(1300)
             ->addBadge(function() {
+                return OrderController::count_new_orders();
+            }, ['class' => 'label-danger',  'title'=>'Не обработанных заказов'])
+            ->addBadge(function() {
             return \App\Order::count();
-        }, ['class' => 'label-success']);
+        }, ['class' => 'label-success', 'title'=>'Всего заказов']);
 
         $this->updated(function($config, Model $model){
             $status = $model->status_id;

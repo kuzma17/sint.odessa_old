@@ -1,17 +1,17 @@
 @if($user)
-    <li style="padding: 15px"><div>
-            <i class="fa fa-newspaper-o" aria-hidden="true" style="color: white"></i>
-            <span class="badge alert-info"><?php echo \App\News::count(); ?>
+    <li style="padding: 15px; color: white; cursor: pointer"><div>
+            обмен 1С
+             @if(\App\Settings::find(1)->exchange == 1)
+                <span class="badge alert-success" title="Обмен 1С включен">
+                    @else
+                        <span class="badge alert-danger" title="Обмен 1С отключен">
+                @endif
+                <i class="fa fa-exchange" aria-hidden="true" style="color: white"></i>
+            </span>
         </div>
     </li>
-    <li style="padding: 15px"><div>
-            <i class="fa fa-user-o" aria-hidden="true" style="color: white"></i>
-            <span class="badge alert-danger"><?php echo \App\UserProfile::count(); ?>
-        </div>
-    </li>
-    <li style="padding: 15px"><div>
-        <i class="fa fa-cart-plus" aria-hidden="true" style="color: white"></i>
-        <span class="badge alert-success"><?php echo \App\Order::count(); ?>
+    <li style="padding: 15px; cursor: pointer" title="Время последненго обмена"><div>
+            <span class="badge alert-info"><i class="fa fa-clock-o" aria-hidden="true" style="color: white"></i> {{ \App\Http\Controllers\ExchangeController::show() }}</span>
         </div>
     </li>
     <li>

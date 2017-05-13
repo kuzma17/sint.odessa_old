@@ -167,9 +167,9 @@ class OrderController extends Controller
         return redirect('/user/order/'.$order_id);
     }
 
-    public static function count_orders(){
-        $this_date = date("Y-m-d", strtotime("-1 days"));
-        $orders = Order::where('created_at', '>=', $this_date)->count();
+    public static function count_new_orders(){
+        //$this_date = date("Y-m-d", strtotime("-1 days"));
+        $orders = Order::where('status_id', 1)->count();
         return $orders;
     }
 

@@ -55,7 +55,8 @@ class Settings extends Section
                 AdminFormElement::text('title', 'title'),
                 AdminFormElement::text('description', 'description'),
                 AdminFormElement::text('keywords', 'keywords'),
-                AdminFormElement::text('count_news', 'количество новостей на странице')
+                AdminFormElement::text('count_news', 'количество новостей на странице'),
+                AdminFormElement::select('exchange', 'обмен 1С', ['0'=>'отключен', '1'=>'включен'])
             );
     }
 

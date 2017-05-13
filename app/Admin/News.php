@@ -45,7 +45,7 @@ class News extends Section implements Initializable
             ->setPriority(400)
             ->addBadge(function() {
                 return \App\News::count();
-            }, ['class' => 'label-info']);
+            }, ['class' => 'label-info', 'title'=>'Всего новостей']);
     }
 
     /**

@@ -46,7 +46,7 @@ class Client extends Section implements Initializable
             ->setPriority(1200)
             ->addBadge(function() {
                 return UserProfile::count();
-            }, ['class' => 'label-danger']);
+            }, ['class' => 'label-info', 'title'=>'Всего клиентов']);
     }
 
     /**
