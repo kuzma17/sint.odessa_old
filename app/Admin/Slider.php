@@ -63,9 +63,9 @@ class Slider extends Section
             ->setHtmlAttribute('enctype', 'multipart/form-data')
             ->addBody(
                 AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required(),
-                AdminFormElement::text('weight', 'weight'),
+                AdminFormElement::text('weight', 'вес'),
                 AdminFormElement::image('image', 'image')->setUploadPath(function() {return 'images/slider';}),
-                AdminFormElement::text('slogan', 'slogan')
+                AdminFormElement::text('slogan', 'слоган')
             );
     }
 

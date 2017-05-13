@@ -14,7 +14,9 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
 ?>
 <div class="col-md-3 col-sm-6 col-xs-12">
     <div class="info-box">
-        <span class="info-box-icon bg-green"><i class="fa fa-cart-plus" aria-hidden="true" style="color: white"></i></span>
+        <span class="info-box-icon bg-green">
+            <i class="fa fa-cart-plus" aria-hidden="true" ></i>
+        </span>
         <div class="info-box-content">
             <span class="info-box-text">Всего заказов</span>
             <span class="info-box-number">{{ \App\Order::count() }}</span>
@@ -23,16 +25,20 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
     </div>
 <div class="col-md-3 col-sm-6 col-xs-12">
 <div class="info-box">
-    <span class="info-box-icon bg-red"><i class="fa fa-cart-plus" aria-hidden="true" style="color: white"></i></span>
+    <span class="info-box-icon bg-red">
+        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    </span>
     <div class="info-box-content">
-        <span class="info-box-text">Новых (не обработанных) заказов</span>
+        <span class="info-box-text">Новых заказов<br>(не обработанных)</span>
         <span class="info-box-number">{{ \App\Http\Controllers\OrderController::count_new_orders() }}</span>
     </div>
 </div>
     </div>
 <div class="col-md-3 col-sm-6 col-xs-12">
 <div class="info-box">
-    <span class="info-box-icon bg-aqua"><i class="fa fa-user-o" aria-hidden="true" style="color: white"></i></span>
+    <span class="info-box-icon bg-aqua">
+        <i class="fa fa-user-o" aria-hidden="true"></i>
+    </span>
     <div class="info-box-content">
         <span class="info-box-text">Всего клиентов</span>
         <span class="info-box-number">{{ \App\UserProfile::count() }}</span>
@@ -41,7 +47,9 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
     </div>
 <div class="col-md-3 col-sm-6 col-xs-12">
 <div class="info-box">
-    <span class="info-box-icon bg-yellow"><i class="fa fa-user-o" aria-hidden="true" style="color: white"></i></span>
+    <span class="info-box-icon bg-yellow">
+        <i class="fa fa-user-o" aria-hidden="true"></i>
+    </span>
     <div class="info-box-content">
         <span class="info-box-text">Новых клинтов</span>
         <span class="info-box-number">{{ \App\Http\Controllers\UserProfileController::count_users() }}</span>
@@ -65,10 +73,10 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         <!-- /.box-header -->
         <div class="box-body no-padding">
             <div class="row">
-                <div class="col-md-10 col-sm-10">
+                <div class="col-sm-12 col-md-12 ">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px; padding: 10px">
+                        <div id="world-map-markers" style="height: 325px;">
                                 <canvas id="Chart11" ></canvas>
                         </div>
                     </div>
@@ -83,7 +91,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
 <div class="col-md-12 col-lg-6">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Количество визитов с учетом поисковых систем</h3>
+            <h3 class="box-title">Визиты с учетом поисковых систем</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -116,7 +124,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
 <div class="col-md-12 col-lg-6">
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title">Активность посетителей за последние 30 дней</h3>
+            <h3 class="box-title">Посетителей за последние 30 дней</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -127,10 +135,10 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         <!-- /.box-header -->
         <div class="box-body no-padding">
             <div class="row">
-                <div class="col-md-10 col-sm-10">
+                <div class="col-md-12 col-sm-12">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px; padding: 10px">
+                        <div id="world-map-markers" style="height: 325px;">
                                 <canvas id="Chart1" ></canvas>
                         </div>
                     </div>
@@ -157,10 +165,10 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         <!-- /.box-header -->
         <div class="box-body no-padding">
             <div class="row">
-                <div class="col-md-10 col-sm-10">
+                <div class="col-md-12 col-sm-12">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px; padding: 10px">
+                        <div id="world-map-markers" style="height: 325px;">
                                 <canvas id="Chart3" ></canvas>
                         </div>
                     </div>

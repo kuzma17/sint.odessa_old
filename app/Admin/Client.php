@@ -60,13 +60,13 @@ class Client extends Section implements Initializable
             ->setOrder([[6, 'desc']]) // сортировка по номеру столбца отображаемого в админке
             ->setHtmlAttribute('class', 'table-info')
             ->setColumns([
-                AdminColumn::link('user.name', 'Nic'),
-                AdminColumn::link('client_name', 'Name client'),
+                AdminColumn::link('user.name', 'ник'),
+                AdminColumn::link('client_name', 'имя'),
                 AdminColumn::email('user.email', 'Email')->setWidth('150px'),
-                AdminColumn::image('avatar1.avatar', 'avatar'),
-                AdminColumn::link('type_client.name', 'type client'),
-                AdminColumn::link('type_payment.name', 'type payment'),
-                AdminColumn::link('phone', 'Phone'),
+                AdminColumn::image('avatar1.avatar', 'аватар'),
+                AdminColumn::link('type_client.name', 'тип клиента'),
+                AdminColumn::link('type_payment.name', 'тип оплаты'),
+                AdminColumn::link('phone', 'телефон'),
                 AdminColumn::datetime("created_at", "Дата")->setFormat('d.m.Y'),
             ])->paginate(20);
     }
@@ -109,19 +109,19 @@ class Client extends Section implements Initializable
 
         $formPrimary = AdminForm::form()->addElement(
             new FormElements([
-                AdminFormElement::text('user.name', 'Nic'),
-                AdminFormElement::text('client_name', 'Name client')->required(),
+                AdminFormElement::text('user.name', 'ник'),
+                AdminFormElement::text('client_name', 'имя клиента/название компании')->required(),
                 AdminFormElement::text('user.email', 'Email')->required(),
                 AdminFormElement::password('user.password', 'Пароль')->hashWithBcrypt(),
-                AdminFormElement::image('avatar1.avatar', 'image')->setUploadPath(function() {return 'images/avatars';}),
-                AdminFormElement::select('type_client_id', trans('type client'))->setModelForOptions(new \App\TypeClient())->setDisplay('name'),
+                AdminFormElement::image('avatar1.avatar', 'avatar')->setUploadPath(function() {return 'images/avatars';}),
+                AdminFormElement::select('type_client_id', trans('тип клиента'))->setModelForOptions(new \App\TypeClient())->setDisplay('name'),
                 AdminFormElement::text('phone', 'Телефон')->required(),
                 AdminFormElement::text('address', 'Адрес доставки'),
             ])
         );
         $formCompany = AdminForm::form()->addElement(
             new FormElements([
-                AdminFormElement::text('user_company', 'user_company'),
+                AdminFormElement::text('user_company', 'представитель компании'),
                 AdminFormElement::text('company_full', 'Полное наименование организации'),
                 AdminFormElement::select('type_payment_id', trans('type client'))->setModelForOptions(new \App\TypePayment())->setDisplay('name'),
                 AdminFormElement::text('edrpou', 'код ЕДРПОУ'),

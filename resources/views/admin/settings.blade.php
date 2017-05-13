@@ -7,6 +7,7 @@
     <div class="pull-right">
     </div>
 </div>
+<div style="background-color: #ffffff">
 <table  class="table table-striped">
     <colgroup>
         <col width="350px" />
@@ -30,3 +31,5 @@
     </tr>
 
      </table>
+
+</div>

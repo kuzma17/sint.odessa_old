@@ -58,32 +58,8 @@ class Banner extends Section
     {
         return AdminForm::panel()
             ->addBody(
-            AdminFormElement::text('title', 'title'),
             AdminFormElement::textarea('banner', 'banner')
         );
     }
 
-    /**
-     * @return FormInterface
-     */
-    public function onCreate()
-    {
-        return $this->onEdit(null);
-    }
-
-    /**
-     * @return void
-     */
-    public function onDelete($id)
-    {
-        // todo: remove if unused
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-        // todo: remove if unused
-    }
 }

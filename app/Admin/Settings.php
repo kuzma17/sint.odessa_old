@@ -52,35 +52,12 @@ class Settings extends Section
     {
         return AdminForm::panel()
             ->addBody(
-                AdminFormElement::text('title', 'title'),
-                AdminFormElement::text('description', 'description'),
-                AdminFormElement::text('keywords', 'keywords'),
+                AdminFormElement::text('title', 'название сайта'),
+                AdminFormElement::text('description', 'краткое опмсание сайта'),
+                AdminFormElement::text('keywords', 'ключевые слова'),
                 AdminFormElement::text('count_news', 'количество новостей на странице'),
                 AdminFormElement::select('exchange', 'обмен 1С', ['0'=>'отключен', '1'=>'включен'])
             );
     }
 
-    /**
-     * @return FormInterface
-     */
-    public function onCreate()
-    {
-        return $this->onEdit(null);
-    }
-
-    /**
-     * @return void
-     */
-    public function onDelete($id)
-    {
-        // todo: remove if unused
-    }
-
-    /**
-     * @return void
-     */
-    public function onRestore($id)
-    {
-        // todo: remove if unused
-    }
 }

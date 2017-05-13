@@ -48,7 +48,7 @@ class Menu extends Section
                 AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
                 AdminColumn::link('url', 'url'),
                 AdminColumn::link('title', 'title'),
-                AdminColumn::link('weight')->setLabel('weight'),
+                AdminColumn::link('weight', 'вес'),
                 AdminColumnEditable::checkbox('active')->setLabel('active')
             );
     }
@@ -64,7 +64,7 @@ class Menu extends Section
             ->addBody(
                 AdminFormElement::text('url', 'url')->required(),
                 AdminFormElement::text('title', 'title')->required(),
-                AdminFormElement::text('weight', 'weight'),
+                AdminFormElement::text('weight', 'вес'),
                 AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
             );
     }
