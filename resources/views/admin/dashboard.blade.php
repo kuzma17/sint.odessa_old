@@ -76,7 +76,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                 <div class="col-sm-12 col-md-12 ">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px;">
+                        <div id="world-map-markers" style="">
                                 <canvas id="Chart11" ></canvas>
                         </div>
                     </div>
@@ -105,10 +105,8 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                 <div class="col-md-10 col-sm-10">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px; padding: 10px">
-                            <div style="width:440px">
-                                <canvas id="Chart2" ></canvas>
-                            </div>
+                        <div id="world-map-markers" style="padding: 11%">
+                                <canvas id="Chart2" style="height: 300px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -118,8 +116,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         <!-- /.box-body -->
     </div>
 </div>
-
-
+<div style="clear: both"></div>
 
 <div class="col-md-12 col-lg-6">
     <div class="box box-info">
@@ -138,7 +135,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                 <div class="col-md-12 col-sm-12">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px;">
+                        <div id="world-map-markers">
                                 <canvas id="Chart1" ></canvas>
                         </div>
                     </div>
@@ -149,7 +146,6 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         <!-- /.box-body -->
     </div>
 </div>
-
 
 <div class="col-md-12 col-lg-6">
     <div class="box box-warning">
@@ -168,7 +164,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                 <div class="col-md-12 col-sm-12">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="height: 325px;">
+                        <div id="world-map-markers" >
                                 <canvas id="Chart3" ></canvas>
                         </div>
                     </div>
