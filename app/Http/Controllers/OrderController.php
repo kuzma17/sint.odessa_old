@@ -26,7 +26,7 @@ class OrderController extends Controller
 
     public function order($id){
         $user = Auth::user();
-        $order = Order::where('id', $id)->first();
+        $order = Order::find($id);
         return view('user.order', ['user'=>$user, 'order'=>$order]);
     }
 
@@ -37,8 +37,6 @@ class OrderController extends Controller
         if($request->isMethod('post')){
 
             if($request->input('all_order')){
-                //$user = Auth::user();
-                //$type_order = TypeOrder::all();
                 return view('order.order', ['order'=>$request, 'user' => $user, 'type_order' => $type_order]);
             }
 
@@ -76,8 +74,10 @@ class OrderController extends Controller
                 $profile = new UserProfile();
             }
 
-            $order->user_id = $user->id;
-            $profile->user_id = $user->id;
+            //$order->user_id = $user->id;
+            $order->user()->associate($user);
+            //$profile->user_id = $user->id;
+            $profile->user()->associate($user);
 
             $order->type_order_id = $request->input('type_order');
 
@@ -151,8 +151,6 @@ class OrderController extends Controller
             Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрен в ближайшее время.');
             return redirect('/user/order/'.$order->id);
         }else {
-            //$user = Auth::user();
-            //$type_order = TypeOrder::all();
             return view('order.order', ['user' => $user, 'type_order' => $type_order]);
         }
     }

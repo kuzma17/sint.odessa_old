@@ -105,7 +105,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                 <div class="col-md-10 col-sm-10">
                     <div class="pad">
                         <!-- Map will be created here -->
-                        <div id="world-map-markers" style="padding: 11%">
+                        <div id="world-map-markers" style="padding-top: 11%">
                                 <canvas id="Chart2" style="height: 300px;"></canvas>
                         </div>
                     </div>

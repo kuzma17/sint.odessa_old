@@ -67,7 +67,8 @@ class UserProfileController extends Controller
                 $profile = new UserProfile();
             }
 
-            $profile->user_id = $user->id;
+            //$profile->user_id = $user->id;
+            $profile->user()->associate($user);
             $profile->client_name = $request->input('client_name');
             //$user->email = $request->input('email');
             $profile->type_client_id = $request->input('type_client');
@@ -125,7 +126,8 @@ class UserProfileController extends Controller
 
             $image->move('images/avatars', $saveImageName);
 
-            $avatar->user_id = $user->id;
+            //$avatar->user_id = $user->id;
+            $avatar->user()->associate($user);
             $avatar->avatar = '/images/avatars/'.$saveImageName;
             $avatar->save();
             Session::flash('ok_message', 'Ваш аватар успешно соxранен.');
