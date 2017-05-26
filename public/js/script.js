@@ -18,12 +18,14 @@ $('#avatar').on('change', function(){
 
 $('#client_company').click(function () {
     $('#name_account').html('Компания <span class="red">*</span>');
-    $('#info_account').html('Краткое наименование организации.');
+   // $('#info_account').html('Краткое наименование организации.');
+    $('input[name="client_name"]').attr('placeholder', 'Краткое наименование организации.');
     $('.client_company').animate({height: "show"}, 500);
 });
 $('#client_user').click(function () {
     $('#name_account').html('ФИО <span class="red">*</span>');
-    $('#info_account').html('Фамилия Имя Отчество.');
+    //$('#info_account').html('Фамилия Имя Отчество.');
+    $('input[name="client_name"]').attr('placeholder', 'Фамилия Имя Отчество.');
     $('.client_company').animate({height: "hide"}, 500);
 });
 
@@ -43,13 +45,15 @@ $('#payment_nal').click(function () {
 
 $('.type_company').click(function () {
     $('.name_account').html('Компания <span class="red">*</span>');
-    $('.info_account').html('Краткое наименование организации.');
+    //$('.info_account').html('Краткое наименование организации.');
+    $('input[name="order_client_name"]').attr('placeholder', 'Краткое наименование организации.');
     $('#all_order').show();
     $('.client_company_order').animate({height: "show"}, 500);
 });
 $('.type_user').click(function () {
     $('.name_account').html('ФИО <span class="red">*</span>');
-    $('.info_account').html('Фамилия Имя Отчество.');
+   // $('.info_account').html('Фамилия Имя Отчество.');
+    $('input[name="order_client_name"]').attr('placeholder', 'Фамилия Имя Отчество.');
     $('#all_order').hide();
     $('.client_company_order').animate({height: "hide"}, 500);
 });

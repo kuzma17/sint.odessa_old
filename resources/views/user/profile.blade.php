@@ -18,7 +18,7 @@
                 <tr><td >Предпочтительная форма оплаты:</td><td>{{ $user->profile->type_payment->name or '' }}</td></tr>
                 @if(isset($user->profile) && $user->profile->type_payment_id == 2 ||  $user->profile->type_payment_id == 3)
                     <tr><td>Полное наименование организации:</td><td>{{ $user->profile->company_full }}</td></tr>
-                    <tr><td>Код ЕДРПОУ:</td><td>{{ $user->profile->edrpou or '' }}</td></tr>
+                    <tr><td>Код ЕГРПОУ:</td><td>{{ $user->profile->edrpou or '' }}</td></tr>
                     @if(isset($user->profile) && $user->profile->type_payment_id == 3)
                         <tr><td>ИНН:</td><td>{{ $user->profile->inn or '' }}</td></tr>
                     @endif

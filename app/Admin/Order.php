@@ -41,7 +41,7 @@ class Order extends Section implements Initializable
     /**
      * @var string
      */
-    protected $title = 'Закакзы';
+    protected $title = 'Заказы';
 
     /**
      * @var string

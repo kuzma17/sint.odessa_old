@@ -22,41 +22,41 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
             <span class="info-box-number">{{ \App\Order::count() }}</span>
         </div>
     </div>
-    </div>
+</div>
 <div class="col-md-3 col-sm-6 col-xs-12">
-<div class="info-box">
+    <div class="info-box">
     <span class="info-box-icon bg-red">
         <i class="fa fa-cart-plus" aria-hidden="true"></i>
     </span>
-    <div class="info-box-content">
-        <span class="info-box-text">Новых заказов<br>(не обработанных)</span>
-        <span class="info-box-number">{{ \App\Http\Controllers\OrderController::count_new_orders() }}</span>
+        <div class="info-box-content">
+            <span class="info-box-text">Новых заказов<br>(не обработанных)</span>
+            <span class="info-box-number">{{ \App\Http\Controllers\OrderController::count_new_orders() }}</span>
+        </div>
     </div>
 </div>
-    </div>
 <div class="col-md-3 col-sm-6 col-xs-12">
-<div class="info-box">
+    <div class="info-box">
     <span class="info-box-icon bg-aqua">
         <i class="fa fa-user-o" aria-hidden="true"></i>
     </span>
-    <div class="info-box-content">
-        <span class="info-box-text">Всего клиентов</span>
-        <span class="info-box-number">{{ \App\UserProfile::count() }}</span>
+        <div class="info-box-content">
+            <span class="info-box-text">Всего клиентов</span>
+            <span class="info-box-number">{{ \App\UserProfile::count() }}</span>
+        </div>
     </div>
 </div>
-    </div>
 <div class="col-md-3 col-sm-6 col-xs-12">
-<div class="info-box">
+    <div class="info-box">
     <span class="info-box-icon bg-yellow">
         <i class="fa fa-user-o" aria-hidden="true"></i>
     </span>
-    <div class="info-box-content">
-        <span class="info-box-text">Новых клинтов</span>
-        <span class="info-box-number">{{ \App\Http\Controllers\UserProfileController::count_users() }}</span>
+        <div class="info-box-content">
+            <span class="info-box-text">Новых клинтов</span>
+            <span class="info-box-number">{{ \App\Http\Controllers\UserProfileController::count_users() }}</span>
+        </div>
     </div>
 </div>
-    </div>
-    <!-- /.info-box -->
+<!-- /.info-box -->
 <div style="clear: both"></div>
 
 <div class="col-md-12 col-lg-6">
@@ -77,7 +77,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                     <div class="pad">
                         <!-- Map will be created here -->
                         <div id="world-map-markers" style="">
-                                <canvas id="Chart11" ></canvas>
+                            <canvas id="Chart11" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                     <div class="pad">
                         <!-- Map will be created here -->
                         <div id="world-map-markers" style="padding-top: 11%">
-                                <canvas id="Chart2" style="height: 300px;"></canvas>
+                            <canvas id="Chart2" style="height: 300px;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                     <div class="pad">
                         <!-- Map will be created here -->
                         <div id="world-map-markers">
-                                <canvas id="Chart1" ></canvas>
+                            <canvas id="Chart1" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
                     <div class="pad">
                         <!-- Map will be created here -->
                         <div id="world-map-markers" >
-                                <canvas id="Chart3" ></canvas>
+                            <canvas id="Chart3" ></canvas>
                         </div>
                     </div>
                 </div>
@@ -189,7 +189,118 @@ $orders = \App\Http\Controllers\OrderController::count_day_orders();
         grey: 'rgb(231,233,237)'
     };
 
+    var color = Chart.helpers.color;
+    var ctx = document.getElementById("Chart1");
+    var data1 = {
+        labels: {!! $chart1['dateArray'] !!},
+        datasets: [{
+            label: "Визиты",
+            borderColor: chartColors.green,
+            backgroundColor: color(chartColors.green).alpha(0.5).rgbString(),
+            data: {!! $chart1['dataVisitArray'] !!},
 
+        },{
+            label: "Просмотры",
+            borderColor: chartColors.blue,
+            backgroundColor: color(chartColors.blue).alpha(0.2).rgbString(),
+            data: {!! $chart1['dataViewArray'] !!},
+        },{
+            label: "Посетители",
+            borderColor: chartColors.red,
+            backgroundColor: color(chartColors.red).alpha(0.5).rgbString(),
+            data: {!! $chart1['dataUserArray'] !!},
+            fill: false,
+        }]
+    };
+    var Chart1 = new Chart(ctx, {
+        type: 'line',
+        data: data1,
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById("Chart2");
+    var data2 = {
+        labels: {!! $chart3['labelArray'] !!},
+        datasets: [
+            {
+                data: {!! $chart3['dataArray'] !!},
+                backgroundColor: [
+                    chartColors.red,
+                    chartColors.orange,
+                    chartColors.yellow,
+                    chartColors.green,
+                    chartColors.blue,
+                    chartColors.purple,
+                    chartColors.grey,
+                    chartColors.red,
+                    chartColors.orange,
+                    chartColors.yellow,
+                    chartColors.green,
+                    chartColors.blue,
+                    chartColors.purple,
+                    chartColors.grey,
+                ]
+            }]
+    };
+    var Chart2 = new Chart(ctx2, {
+        type: 'pie',
+        data: data2,
+        options: {
+            legend: {
+                position: 'left'
+            },
+
+        }
+    });
+
+    var ctx3 = document.getElementById("Chart3");
+    var data3 = {
+        labels: {!! $chart2['labelArray'] !!},
+        datasets: [
+            {
+                label:'home',
+                data: {!! $chart2['dataArray'] !!},
+                backgroundColor: [
+                    chartColors.red,
+                    chartColors.orange,
+                    chartColors.yellow,
+                    chartColors.green,
+                    chartColors.blue,
+                    chartColors.purple,
+                    chartColors.grey,
+                    chartColors.red,
+                    chartColors.orange,
+                    chartColors.yellow,
+                    chartColors.green,
+                    chartColors.blue,
+                    chartColors.purple,
+                    chartColors.grey,
+                ]
+            }]
+    };
+    var Chart3 = new Chart(ctx3, {
+        type: 'bar',
+        data: data3,
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            }
+        }
+    });
 
     var ctx = document.getElementById("Chart11");
     var data11 = {

@@ -28,7 +28,7 @@
                         <tr><td >Форма оплаты</td><td>{{ $order->type_payment->name }}</td></tr>
                         @if( $order->type_payment_id == 2 ||  $order->type_payment_id == 3)
                             <tr><td>Полное наименование организации:</td><td>{{ $order->company_full }}</td></tr>
-                            <tr><td>Код ЕДРПОУ:</td><td>{{ $order->edrpou }}</td></tr>
+                            <tr><td>Код ЕГРПОУ:</td><td>{{ $order->edrpou }}</td></tr>
                             @if($order->type_payment_id == 3)
                                 <tr><td>ИНН:</td><td>{{ $order->inn }}</td></tr>
                             @endif

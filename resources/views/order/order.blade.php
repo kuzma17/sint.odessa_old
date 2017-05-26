@@ -42,7 +42,7 @@
                 <label class="col-md-3 control-label name_account">@if((old() && old('order_type_client') == 2) || (!old() && isset($order) && $order->order_type_client == 2)) Компания @else ФИО @endif<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input placeholder="@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif" type="text" class="form-control" name="order_client_name" value="@if(old()){{ old('order_client_name') }}@else{{ $order->order_client_name or ''}}@endif" @if(isset($user->profile->client_name)) readonly @endif autofocus>
+                    <input placeholder="Фамилия Имя Отчество" type="text" class="form-control" name="order_client_name" value="@if(old()){{ old('order_client_name') }}@else{{ $order->order_client_name or ''}}@endif" @if(isset($user->profile->client_name)) readonly @endif autofocus>
 
                     @if ($errors->has('order_client_name'))
                         <span class="help-block">
@@ -112,15 +112,16 @@
                         <input type="radio" id="payment_nal" class="form-control" name="order_type_payment" value="1" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) checked @endif> наличный расчет
                         <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if((old() && old('order_type_payment') == 2) || (!old() && isset($order) && $order->order_type_payment == 2)) checked @endif> безналичный расчет
                         <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if((old() && old('order_type_payment') == 3) || (!old() && isset($order) && $order->order_type_payment == 3)) checked @endif> безналичный с НДС
-                        <p class="order_info">Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа. Обращаем Ваше внимание, что после заполнения всех
-                            реквизитов редактирование будет доступно только через администратора на сайте или по телефону офиса, который Вас обслуживает.</p>
+                        <p class="order_info">Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа. Обращаем Ваше внимание, что формирование счёта за услуги возможно только при наличии документов, подтверждающих государственную регистрацию компании.
+                            После заполнения всех реквизитов редактирование будет доступно только через администратора на сайте или по телефону офиса, который Вас обслуживает.
+                        </p>
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_company_full') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
                     <label  class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input placeholder="Полное наименование организации (согласно выписке из госреестра)" type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
+                        <input placeholder="Полное наименование (согласно выписке из государственного реестра)" type="text" class="form-control" name="order_company_full" value="@if(old()){{ old('order_company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
 
                         @if ($errors->has('order_company_full'))
                             <span class="help-block">
@@ -130,7 +131,7 @@
                     </div>
                 </div>
                 <div class="form-group payment_b_nal{{ $errors->has('order_edrpou') ? ' has-error' : '' }}" @if((old() && old('order_type_payment') == 1) || (!old() && isset($order) && $order->order_type_payment == 1)) style="display: none" @endif>
-                    <label class="col-md-3 control-label">Код ЕДРПОУ<span class="red">*</span></label>
+                    <label class="col-md-3 control-label">Код ЕГРПОУ<span class="red">*</span></label>
 
                     <div class="col-md-9">
                         <input placeholder="Должен содержать 8 - 10 знаков" type="text" class="form-control" name="order_edrpou" value="@if(old()){{ old('order_edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif>
@@ -267,7 +268,7 @@
                 <label  class="col-md-3 control-label">Комментарий</label>
 
                 <div class="col-md-9">
-                    <textarea class="form-control" name="order_comment" placeholder="Оставьте, пожалуйста, комментарий к заказу (например, “забрать картридж - 1 шт” или “забрать принтер” и описание неисправности)">@if(old()){{ old('order_comment') }}@else{{ $order->order_comment or ''}}@endif</textarea>
+                    <textarea class="form-control" name="order_comment" placeholder="Например, укажите количество картриджей или описание неисправности техники).">@if(old()){{ old('order_comment') }}@else{{ $order->order_comment or ''}}@endif</textarea>
 
                     @if ($errors->has('order_comment'))
                         <span class="help-block">

@@ -50,7 +50,7 @@ return [
     //],
 
     [
-        'title'=>'Страници',
+        'title'=>'Страницы',
         'icon'=>'fa fa-file-text-o',
         'model' => \App\Page::class,
         'priority' => 500,

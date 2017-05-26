@@ -24,8 +24,7 @@
                     <label id="name_account" for="phone" class="col-md-3 control-label">@if($user->is_company(old('type_client'))) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif>
-                        <p id="info_account">Фамилия Имя Отчество</p>
+                        <input id="phone" type="text" class="form-control" name="client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && $user->is_company(old('type_client'))) Краткое наименование организации @else  Фамилия Имя Отчество @endif">
 
                         @if ($errors->has('client_name'))
                             <span class="help-block">
@@ -38,8 +37,7 @@
                     <label for="phone" class="col-md-3 control-label">Имя</label>
 
                     <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="user_company" value="@if(old()){{ old('user_company') }}@else{{ $user->profile->user_company or '' }}@endif" >
-                        <p class="order_info">Фамилия Имя Отчество контактного лица компании.</p>
+                        <input id="phone" type="text" class="form-control" name="user_company" value="@if(old()){{ old('user_company') }}@else{{ $user->profile->user_company or '' }}@endif" placeholder="Фамилия Имя Отчество контактного лица компании.">
 
                         @if ($errors->has('user_company'))
                             <span class="help-block">
@@ -93,19 +91,20 @@
 
                         <div class="col-md-9 form-inline">
                             <input type="radio" id="payment_nal" class="form-control" name="type_payment" value="1" @if($user->is_payment_nal(old('type_payment'))) checked @endif> наличный расчет
-                            <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="2" @if($user->is_payment_b_nal(old('type_payment'))) checked @endif> безналичны расчет
+                            <input type="radio" id="payment_b_nal" class="form-control" name="type_payment" value="2" @if($user->is_payment_b_nal(old('type_payment'))) checked @endif> безналичный расчет
                             <input type="radio" id="payment_nds" class="form-control" name="type_payment" value="3" @if($user->is_payment_nds(old('type_payment'))) checked @endif> безналичный с НДС
-                            <p class="order_info">Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа. Обращаем Ваше внимание, что после заполнения всех
-                                реквизитов редактирование будет доступно только через администратора на сайте или по телефону офиса, который Вас обслуживает.</p>
+                            <p class="order_info">Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа.
+                                Обращаем Ваше внимание, что формирование счёта за услуги возможно только при наличии документов, подтверждающих государственную
+                                регистрацию компании. После заполнения всех реквизитов редактирование будет доступно только через администратора на сайте или по
+                                телефону офиса, который Вас обслуживает.”
+                            </p>
                         </div>
                     </div>
                     <div class="form-group payment_b_nal{{ $errors->has('company_full') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
                         <label for="phone" class="col-md-3 control-label">Компания<span class="red">*</span></label>
 
                         <div class="col-md-9">
-                            <input id="phone" type="text" class="form-control" name="company_full" value="@if(old()){{ old('company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif>
-                            <p class="order_info">Полное наименование организации (согласно выписке из госреестра) </p>
-
+                            <input id="phone" type="text" class="form-control" name="company_full" value="@if(old()){{ old('company_full') }}@else{{ $user->profile->company_full or '' }}@endif" @if(isset($user->profile->company_full)) readonly @endif placeholder="Полное наименование организации (согласно выписке из госреестра)">
                             @if ($errors->has('company_full'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('company_full') }}</strong>
@@ -114,11 +113,10 @@
                         </div>
                     </div>
                     <div class="form-group payment_b_nal{{ $errors->has('edrpou') ? ' has-error' : '' }}" @if($user->is_payment_nal(old('type_payment'))) style="display: none" @endif>
-                        <label for="icq" class="col-md-3 control-label">Код ЕДРПОУ<span class="red">*</span></label>
+                        <label for="icq" class="col-md-3 control-label">Код ЕГРПОУ<span class="red">*</span></label>
 
                         <div class="col-md-9">
-                            <input id="icq" type="text" class="form-control" name="edrpou" value="@if(old()){{ old('edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif>
-                            <p class="order_info">Должен содержать 8 - 10 знаков</p>
+                            <input id="icq" type="text" class="form-control" name="edrpou" value="@if(old()){{ old('edrpou') }}@else{{ $user->profile->edrpou or '' }}@endif" @if(isset($user->profile->edrpou)) readonly @endif placeholder="Должен содержать 8 - 10 знаков">
 
                             @if ($errors->has('edrpou'))
                                 <span class="help-block">
@@ -131,8 +129,7 @@
                         <label for="address" class="col-md-3 control-label">ИНН<span class="red">*</span></label>
 
                         <div class="col-md-9">
-                            <input id="address" type="text" class="form-control" name="inn" value="@if(old()){{ old('inn') }}@else{{ $user->profile->inn or '' }}@endif" @if(isset($user->profile->inn)) readonly @endif>
-                            <p class="order_info">Индивидуальный налоговый номер, должен содержать 10 знаков</p>
+                            <input id="address" type="text" class="form-control" name="inn" value="@if(old()){{ old('inn') }}@else{{ $user->profile->inn or '' }}@endif" @if(isset($user->profile->inn)) readonly @endif placeholder="Индивидуальный налоговый номер, должен содержать 10 знаков">
 
                             @if ($errors->has('inn'))
                                 <span class="help-block">
@@ -145,8 +142,7 @@
                         <label for="address" class="col-md-3 control-label">Индекс<span class="red">*</span></label>
 
                         <div class="col-md-9">
-                            <input id="address" type="text" class="form-control" name="code_index" value="@if(old()){{ old('code_index') }}@else{{ $user->profile->code_index or '' }}@endif" @if(isset($user->profile->code_index)) readonly @endif>
-                            <p class="order_info">Почтовый индекс, должен содержать 5 знаков</p>
+                            <input id="address" type="text" class="form-control" name="code_index" value="@if(old()){{ old('code_index') }}@else{{ $user->profile->code_index or '' }}@endif" @if(isset($user->profile->code_index)) readonly @endif placeholder="Почтовый индекс, должен содержать 5 знаков">
 
                             @if ($errors->has('code_index'))
                                 <span class="help-block">

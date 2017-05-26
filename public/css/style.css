@@ -574,7 +574,9 @@ h5{
 .order_info{
     font-family: Arial;
     size: 10px;
-    font-style: italic
+    font-style: italic;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .search_list img{

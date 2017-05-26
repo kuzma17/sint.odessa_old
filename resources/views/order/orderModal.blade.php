@@ -57,7 +57,7 @@ $type_order = \App\TypeOrder::all();
 </div>
 </div>
 <div class="form-group client_company_order{{ $errors->has('order_user_company') ? ' has-error' : '' }}" @if((isset($user->profile) && $user->profile->type_client_id == 1 ) || !isset($user->profile)) style="display: none" @endif>
-<label for="phone" class="col-md-3 control-label">Имя</label>
+<label for="phone" class="col-md-3 control-label">Контактное лицо</label>
 
 <div class="col-md-9">
 <input type="text" class="form-control" name="order_user_company" value="{{ $user->profile->user_company or '' }}" placeholder="Фамилия Имя Отчество контактного лица компании.">
@@ -117,16 +117,17 @@ $type_order = \App\TypeOrder::all();
     <input type="radio" id="payment_b_nal" class="form-control" name="order_type_payment" value="2" @if(isset($user->profile) && $user->profile->type_payment_id == 2) checked @endif> безналичный расчет
     <input type="radio" id="payment_nds" class="form-control" name="order_type_payment" value="3" @if(isset($user->profile) && $user->profile->type_payment_id == 3) checked @endif> безналичный с НДС
 </div>
-<p class="order_info" style="margin-left: 20px">При оформлении заказа за безналичны расчет и безналичный с НДС необходимо внести дополнительную информацию.
-Наш менеджер свяжется с Вами и возьмет всю небходимую информацию.
-Также Вы можете сами внести все недостающие данные, воспользовавшись расширенным заказом</a>.</p>
+<p class="order_info" >Для безналичного расчета укажите, пожалуйста, реквизиты организации в расширенной форме заказа. Обращаем Ваше внимание,
+    что формирование счёта за услуги возможно только при наличии документов, подтверждающих государственную регистрацию компании.
+    После заполнения всех реквизитов редактирование будет доступно только через администратора на сайте или по телефону офиса, который Вас обслуживает.
+</p>
 </div>
 </div>
 <div class="form-group{{ $errors->has('order_comment') ? ' has-error' : '' }}">
 <label class="col-md-3 control-label">Комментарий</label>
 
 <div class="col-md-9">
-<textarea class="form-control" name="order_comment" placeholder="Оставьте, пожалуйста, комментарий к заказу (например, “забрать картридж - 1 шт” или “забрать принтер” и описание неисправности)"></textarea>
+<textarea class="form-control" name="order_comment" placeholder="Например, укажите количество картриджей или описание неисправности техники"></textarea>
 
 @if ($errors->has('order_comment'))
     <span class="help-block">

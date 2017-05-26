@@ -187,63 +187,6 @@
                 </script>
                 <!--/Openstat-->
 
-            <!-- Rating@Mail.ru counter -->
-                <script type="text/javascript">
-                    var _tmr = window._tmr || (window._tmr = []);
-                    _tmr.push({id: "2711518", type: "pageView", start: (new Date()).getTime()});
-                    (function (d, w, id) {
-                        if (d.getElementById(id)) return;
-                        var ts = d.createElement("script"); ts.type = "text/javascript"; ts.async = true; ts.id = id;
-                        ts.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//top-fwz1.mail.ru/js/code.js";
-                        var f = function () {var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ts, s);};
-                        if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); }
-                    })(document, window, "topmailru-code");
-                </script><noscript><div style="position:absolute;left:-10000px;">
-                        <img src="//top-fwz1.mail.ru/counter?id=2711518;js=na" style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" />
-                    </div></noscript>
-            <!-- //Rating@Mail.ru counter -->
-
-            <!-- Rating@Mail.ru logo -->
-                <a target="_blank" href="http://top.mail.ru/jump?from=2711518">
-                    <img src="//top-fwz1.mail.ru/counter?id=2711518;t=479;l=1"
-                         border="0" height="31" width="88" alt="Рейтинг@Mail.ru"></a>
-            <!-- //Rating@Mail.ru logo -->
-
-
-                <!-- Yandex.Metrika informer -->
-                <a href="https://metrika.yandex.ru/stat/?id=44403004&amp;from=informer"
-                   target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/44403004/2_1_FFFFFFFF_EFEFEFFF_0_pageviews"
-                                                       style="width:80px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры)" class="ym-advanced-informer" data-cid="44403004" data-lang="ru" /></a>
-                <!-- /Yandex.Metrika informer -->
-
-                <!-- Yandex.Metrika counter -->
-                <script type="text/javascript">
-                    (function (d, w, c) {
-                        (w[c] = w[c] || []).push(function() {
-                            try {
-                                w.yaCounter44403004 = new Ya.Metrika({
-                                    id:44403004,
-                                    clickmap:true,
-                                    trackLinks:true,
-                                    accurateTrackBounce:true
-                                });
-                            } catch(e) { }
-                        });
-
-                        var n = d.getElementsByTagName("script")[0],
-                                s = d.createElement("script"),
-                                f = function () { n.parentNode.insertBefore(s, n); };
-                        s.type = "text/javascript";
-                        s.async = true;
-                        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-                        if (w.opera == "[object Opera]") {
-                            d.addEventListener("DOMContentLoaded", f, false);
-                        } else { f(); }
-                    })(document, window, "yandex_metrika_callbacks");
-                </script>
-                <noscript><div><img src="https://mc.yandex.ru/watch/44403004" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-                <!-- /Yandex.Metrika counter -->
             </div>
         </div>
     </div>
