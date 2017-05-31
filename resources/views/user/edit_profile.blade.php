@@ -63,7 +63,7 @@
                     <label for="phone" class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="phone" value="@if(old()){{ old('phone') }}@else{{ $user->profile->phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif>
+                        <input id="phone" type="text" class="form-control" name="phone" value="@if(old()){{ old('phone') }}@else{{ $user->profile->phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="номер мобильного телефона(050xxxxxxx)">
 
                         @if ($errors->has('phone'))
                             <span class="help-block">

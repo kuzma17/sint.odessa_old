@@ -21,9 +21,9 @@
                                     <div class="social-buttons">
 					                    <a href="{{ url('/social/facebook') }}" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                                         <a href="{{ url('/social/twitter') }}" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-                                        <a href="{{ url('/social/odnoklassniki') }}" class="btn btn-od"><i class="fa fa-odnoklassniki"></i> Odniklassniki</a>
+                                        <!-- <a href="{{ url('/social/odnoklassniki') }}" class="btn btn-od"><i class="fa fa-odnoklassniki"></i> Odniklassniki</a>
                                         <a href="{{ url('/social/vkontakte') }}" class="btn btn-vk"><i class="fa fa-vk"></i> Vkontakte</a>
-                                        <a href="{{ url('/social/mailru') }}" class="btn btn-mr"><i class="fa fa-at"></i> Mail.ru</a>
+                                        <a href="{{ url('/social/mailru') }}" class="btn btn-mr"><i class="fa fa-at"></i> Mail.ru</a> -->
                                         <a href="{{ url('/social/google') }}" class="btn btn-go"><i class="fa fa-google"></i> Google</a>
                                         <a href="{{ url('/social/github') }}" class="btn btn-git"><i class="fa fa-github" aria-hidden="true"></i> Github</a>
                                     </div>
@@ -60,7 +60,8 @@
                                     </form>
                                 </div>
                                 <div class="bottom text-center">
-                                    Впервые здесь ? <a href="{{ url('/register') }}"><b>Регистрация</b></a>
+                                    <!--Впервые здесь ? <a href="{{ url('/register') }}"><b>Регистрация</b></a>-->
+                                    <a href="{{ url('/register') }}" class="btn btn-od" style=""><i class="fa fa-at"></i> <b>Регистрация</b></a>
                                 </div>
                             </div>
                         </li>

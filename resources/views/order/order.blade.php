@@ -82,7 +82,7 @@
                 <label  class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="placeholder="номер мобильного телефона(+38xxxxxxxxxx)">
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="placeholder="номер мобильного телефона (050xxxxxxx)">
 
                     @if ($errors->has('order_phone'))
                         <span class="help-block">

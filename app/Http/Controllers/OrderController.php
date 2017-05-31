@@ -43,7 +43,7 @@ class OrderController extends Controller
             $list_validate = [
                 'order_client_name' => 'required',
                 'order_email' => 'required',
-                'order_phone' => 'required',
+                'order_phone' => 'required|max:10',
                 'order_address' => 'required'
             ];
 
@@ -148,7 +148,7 @@ class OrderController extends Controller
 
             $order->notify(new CreatedOrder()); // Send message to mail
 
-            Session::flash('ok_message', 'Ваш заказ успешно создан и будет рассмотрен в ближайшее время.');
+            Session::flash('ok_message', 'Ваш заказ успешно создан и будет обработан в ближайшее время.');
             return redirect('/user/order/'.$order->id);
         }else {
             return view('order.order', ['user' => $user, 'type_order' => $type_order]);
@@ -161,7 +161,7 @@ class OrderController extends Controller
         $repair->user_consent_id = $request->input('user_consent');
         $repair->comment = $request->input('comment');
         $repair->save();
-        Session::flash('ok_message', 'Ваш заказ успешно подтвержден и будет рассмотрен в ближайшее время.');
+        Session::flash('ok_message', 'Ваш заказ успешно подтвержден и будет обработан в ближайшее время.');
         return redirect('/user/order/'.$order_id);
     }
 

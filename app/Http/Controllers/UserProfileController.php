@@ -32,7 +32,7 @@ class UserProfileController extends Controller
             $list_validate = [
                 'client_name' => 'required|max:200',
                 'email' => 'required|email',
-                'phone' => 'required|max:20'
+                'phone' => 'required|max:10'
                 //'address' => 'required'
             ];
 

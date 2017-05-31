@@ -47,7 +47,7 @@ $type_order = \App\TypeOrder::all();
 <label class="col-md-3 control-label name_account">@if((isset($user->profile) && $user->profile->type_client_id == 2 )) Компания @else ФИО @endif<span class="red">*</span></label>
 
 <div class="col-md-9">
-<input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && isset($order) && $order->order_type_client == 1) Фамилия Имя Отчество @else Краткое наименование организации @endif" required autofocus>
+<input type="text" class="form-control" name="order_client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && isset($order) && $order->order_type_client == 2) Краткое наименование организации @else Фамилия Имя Отчество @endif" required autofocus>
 
 @if ($errors->has('order_name'))
     <span class="help-block">
@@ -86,7 +86,7 @@ $type_order = \App\TypeOrder::all();
 <label class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
 <div class="col-md-9">
-<input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if((isset($user->profile) && $user->profile->type_client_id== 1) && isset($user->profile->phone)) readonly @endif placeholder="номер мобильного телефона(+38xxxxxxxxxx)" required>
+<input type="text" class="form-control" name="order_phone" value="{{ $user->profile->phone or '' }}" @if((isset($user->profile) && $user->profile->type_client_id== 1) && isset($user->profile->phone)) readonly @endif placeholder="номер мобильного телефона (050xxxxxxx)" required>
 
 @if ($errors->has('order_phone'))
     <span class="help-block">

@@ -45,7 +45,8 @@ class Banner extends Section
             ->setHtmlAttribute('class', 'table-primary')
             ->setColumns(
             AdminColumn::link('id')->setLabel('id')->setWidth('50px'),
-            AdminColumn::link('title')->setLabel('title')
+            AdminColumn::link('title')->setLabel('title'),
+                AdminColumn::link('active')->setLabel('статус')
         );
     }
 
@@ -58,7 +59,8 @@ class Banner extends Section
     {
         return AdminForm::panel()
             ->addBody(
-            AdminFormElement::textarea('banner', 'banner')
+            AdminFormElement::textarea('banner', 'banner'),
+                AdminFormElement::select('active', 'active',['0'=>'off', '1'=>'on'])->required()
         );
     }
 
