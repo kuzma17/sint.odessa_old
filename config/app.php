@@ -246,7 +246,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
 
         //'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
-
     ],
 
 ];
