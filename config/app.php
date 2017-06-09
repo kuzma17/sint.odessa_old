@@ -170,16 +170,6 @@ return [
         SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
         App\Providers\AdminSectionsServiceProvider::class,
 
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
-
         // Develop
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
@@ -189,9 +179,19 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
         // Yandex
-        Alexusmai\YandexMetrika\YandexMetrikaServiceProvider::class,
+        //Alexusmai\YandexMetrika\YandexMetrikaServiceProvider::class,
         // Search
         Sofa\Eloquence\ServiceProvider::class,
+
+
+        /*
+         * Application Service Providers...
+         */
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 
@@ -245,7 +245,7 @@ return [
 
         'Image' => Intervention\Image\Facades\Image::class,
 
-        'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
+        //'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
 
     ],
 

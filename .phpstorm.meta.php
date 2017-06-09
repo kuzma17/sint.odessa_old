@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-05-17.
+    * Generated on 2017-06-09.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -53,7 +53,6 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
-            'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
@@ -191,7 +190,6 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
-            'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
@@ -329,7 +327,6 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
-            'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
@@ -467,7 +464,6 @@ namespace PHPSTORM_META {
             'debugbar' instanceof \Barryvdh\Debugbar\LaravelDebugbar,
             'command.debugbar.clear' instanceof \Barryvdh\Debugbar\Console\ClearCommand,
             'image' instanceof \Intervention\Image\ImageManager,
-            'yandexMetrika' instanceof \Alexusmai\YandexMetrika\YandexMetrika,
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,

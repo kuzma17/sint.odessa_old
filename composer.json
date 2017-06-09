@@ -15,7 +15,6 @@
         "jhaoda/socialite-odnoklassniki": "^2.0",
         "jhaoda/socialite-mailru": "^2.0",
         "intervention/image": "^2.3",
-        "alexusmai/yandex-metrika": "dev-chart_js",
         "sofa/eloquence": "~5.3"
     },
     "require-dev": {
@@ -58,11 +57,5 @@
     },
     "config": {
         "preferred-install": "dist"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/kuzma17/yandex-metrika.git"
-        }
-    ]
+    }
 }

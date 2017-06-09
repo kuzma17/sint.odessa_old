@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-05-17.
+ * Generated for Laravel 5.3.31 on 2017-06-09.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11077,6 +11077,22 @@ namespace Barryvdh\Debugbar {
         }
         
         /**
+         * Handle silenced errors
+         *
+         * @param $level
+         * @param $message
+         * @param string $file
+         * @param int $line
+         * @param array $context
+         * @throws \ErrorException
+         * @static 
+         */
+        public static function handleError($level, $message, $file = '', $line = 0, $context = array())
+        {
+            return \Barryvdh\Debugbar\LaravelDebugbar::handleError($level, $message, $file, $line, $context);
+        }
+        
+        /**
          * Starts a measure
          *
          * @param string $name Internal name, used to stop the measure
@@ -11628,34 +11644,6 @@ namespace Intervention\Image\Facades {
         public static function cache($callback, $lifetime = null, $returnObj = false)
         {
             return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
-        }
-        
-    }         
-}
-    
-namespace Alexusmai\YandexMetrika {
-
-    class YandexMetrikaFacade {
-        
-        /**
-         * Приводим полученные данные в удобочитаемый вид
-         *
-         * @return $this 
-         * @static 
-         */
-        public static function adapt()
-        {
-            return \Alexusmai\YandexMetrika\YandexMetrika::adapt();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */
-        public static function getRequestToApi($urlParams, $urlApi)
-        {
-            return \Alexusmai\YandexMetrika\YandexMetrika::getRequestToApi($urlParams, $urlApi);
         }
         
     }         
@@ -13596,18 +13584,6 @@ namespace Collective\Html {
         }
         
         /**
-         * Convert all applicable characters to HTML entities.
-         *
-         * @param string $value
-         * @return string 
-         * @static 
-         */
-        public static function escapeAll($value)
-        {
-            return \Collective\Html\HtmlBuilder::escapeAll($value);
-        }
-        
-        /**
          * Convert entities to HTML characters.
          *
          * @param string $value
@@ -14539,6 +14515,28 @@ namespace SleepingOwl\Admin\Facades {
     class Navigation {
         
         /**
+         * Overload current page
+         *
+         * @return \KodiComponents\Navigation\Contracts\PageInterface|null 
+         * @static 
+         */
+        public static function getCurrentPage()
+        {
+            return \SleepingOwl\Admin\Navigation::getCurrentPage();
+        }
+        
+        /**
+         * Set Alias Id to Page
+         *
+         * @param \SleepingOwl\Admin\Collection $pages
+         * @static 
+         */
+        public static function setAliasesId($pages)
+        {
+            return \SleepingOwl\Admin\Navigation::setAliasesId($pages);
+        }
+        
+        /**
          * 
          *
          * @param array $data
@@ -14697,18 +14695,6 @@ namespace SleepingOwl\Admin\Facades {
         {
             //Method inherited from \KodiComponents\Navigation\Navigation            
             return \SleepingOwl\Admin\Navigation::hasChild();
-        }
-        
-        /**
-         * 
-         *
-         * @return \KodiComponents\Navigation\PageInterface|null 
-         * @static 
-         */
-        public static function getCurrentPage()
-        {
-            //Method inherited from \KodiComponents\Navigation\Navigation            
-            return \SleepingOwl\Admin\Navigation::getCurrentPage();
         }
         
         /**
@@ -17419,8 +17405,6 @@ namespace {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
     
     class Image extends \Intervention\Image\Facades\Image {}
-    
-    class YandexMetrika extends \Alexusmai\YandexMetrika\YandexMetrikaFacade {}
     
     class PackageManager extends \KodiCMS\Assets\Facades\PackageManager {}
     
