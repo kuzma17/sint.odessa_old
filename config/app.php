@@ -183,7 +183,6 @@ return [
         // Search
         Sofa\Eloquence\ServiceProvider::class,
 
-
         /*
          * Application Service Providers...
          */
