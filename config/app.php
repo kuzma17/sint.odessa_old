@@ -183,6 +183,8 @@ return [
         // Search
         Sofa\Eloquence\ServiceProvider::class,
 
+        Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -245,6 +247,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
 
         //'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
+
+        'LaravelAnalytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
     ],
 
 ];
