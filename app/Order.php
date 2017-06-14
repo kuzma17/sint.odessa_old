@@ -36,4 +36,8 @@ class Order extends Model
     public function routeNotificationForMail(){
         return $this->user->email;
     }
+
+    public function history(){
+        return $this->hasOne(History::class);
+    }
 }

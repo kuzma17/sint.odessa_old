@@ -7,6 +7,7 @@ use AdminColumnEditable;
 use AdminDisplay;
 use AdminForm;
 use AdminFormElement;
+use App\History;
 use App\Http\Controllers\OrderController;
 use App\Notifications\StatusOrder;
 use App\Status;
@@ -49,6 +50,7 @@ class Order extends Section implements Initializable
     protected $alias;
 
     protected $status; // status order
+    protected $status_repair;
 
     protected $status_class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
 
@@ -66,9 +68,37 @@ class Order extends Section implements Initializable
 
         $this->updated(function($config, Model $model){
             $status = $model->status_id;
+            $status_repair = $model->act_repair->status_repair_id;
             if($status != $this->status) {
                 $status_name = Status::find($status)->name;
                 $model->notify(new StatusOrder($status_name));
+
+               if($model->history){
+                    $history = History::where('order_id', $model->id)->first();
+                }else{
+                   $history = new History();
+                   $history->order_id = $model->id;
+               }
+
+                $history->status_info = 'Статус изменен c "'.Status::find($this->status)->name.'" на "'.Status::find($status)->name.'"';
+                //$history->status_repair_info = 'Статус изменен c "'.StatusRepair::find($this->status_repair)->name.'" на "'.StatusRepair::find($status_repair)->name.'"';
+                $history->save();
+            }
+
+            if($status_repair != $this->status_repair) {
+                $status_repair_name = StatusRepair::find($status_repair)->name;
+                $model->notify(new StatusOrder($status_repair_name));
+
+                if($model->history){
+                    $history = History::where('order_id', $model->id)->first();
+                }else{
+                    $history = new History();
+                    $history->order_id = $model->id;
+                }
+
+                //$history->status_info = 'Статус изменен c "'.Status::find($this->status)->name.'" на "'.Status::find($status)->name.'"';
+                $history->status_repair_info = 'Статус изменен c "'.StatusRepair::find($this->status_repair)->name.'" на "'.StatusRepair::find($status_repair)->name.'"';
+                $history->save();
             }
         });
     }
@@ -102,14 +132,16 @@ class Order extends Section implements Initializable
      */
     public function onEdit($id)
     {
-        $model_id = $this->model->find($id);
+        $model = $this->model->find($id);
 
-        $this->status = $model_id->status_id; // old status
+        $this->status = $model->status_id; // old status
 
-        $tabs = AdminDisplay::tabbed();
+        if($model->act_repair) {
+            $this->status_repair = $model->act_repair->status_repair_id; // old status_repair
+        }
 
         $formPrimary = AdminForm::form()->addElement(
-         new FormElements([
+            new \SleepingOwl\Admin\Form\FormElements([
                 AdminFormElement::text('user.name', 'ник заказчика'),
                 AdminFormElement::text('type_order.name', 'тип заказа'),
                 AdminFormElement::text('type_client.name', 'тип клиента'),
@@ -120,54 +152,48 @@ class Order extends Section implements Initializable
                 AdminFormElement::select('status_id', trans('Статус'))->setModelForOptions(new \App\Status())->setDisplay('name')
             ])
         );
-        $tabs->appendTab($formPrimary, 'Параметры заказа','style:red');
-
         $formCompany = AdminForm::form()->addElement(
-        new FormElements([
-
+            new \SleepingOwl\Admin\Form\FormElements([
                 AdminFormElement::select('type_payment_id', trans('тип расчета'))->setModelForOptions(new TypePayment())->setDisplay('name'),
                 AdminFormElement::text('company_full', 'Полное наименование компании'),
                 AdminFormElement::text('edrpou', 'код ЕДРПОУ'),
                 AdminFormElement::text('inn', 'код ИНН'),
 
-
-               // AdminFormElement::columns()
-                   // ->addColumn([
                 AdminFormElement::text('code_index', 'почтовый индекс'),
                 AdminFormElement::text('region', 'область'),
                 AdminFormElement::text('area', 'район'),
                 AdminFormElement::text('city', 'город'),
-                  //  ], 3)
-                   // ->addColumn([
+
                 AdminFormElement::text('street', 'улица'),
                 AdminFormElement::text('house', 'дом'),
                 AdminFormElement::text('house_block', 'корпус'),
                 AdminFormElement::text('office', 'номер офиса, квартиры')
-                    //],3)
-                    //],3)
             ])
         );
+
+        $formRepair = AdminForm::form()->addElement(
+            new \SleepingOwl\Admin\Form\FormElements([
+                AdminFormElement::text('act_repair.device', 'ремонтируемое устройство'),
+                AdminFormElement::text('act_repair.set_device', 'комплектация'),
+                AdminFormElement::textarea('act_repair.text_defect', 'описание дефекта'),
+                AdminFormElement::text('act_repair.diagnostic', 'диагностика'),
+                AdminFormElement::text('act_repair.cost', 'стоимость'),
+                AdminFormElement::textarea('act_repair.comment', 'коментарий'),
+                AdminFormElement::select('act_repair.user_consent_id', trans('ответ заказчика'))->setModelForOptions(new UserConsent())->setDisplay('name')->setReadOnly(true),
+                AdminFormElement::select('act_repair.status_repair_id', trans('статус ремонта'))->setModelForOptions(new StatusRepair())->setDisplay('name')
+            ])
+        );
+
+        $tabs = AdminDisplay::tabbed();
+        $tabs->appendTab($formPrimary, 'Primary');
         $tabs->appendTab($formCompany, 'Параметры Компании');
-
-        if($model_id->type_order_id == 2) {
-
-            $formRepair = AdminForm::form()->addElement(
-           new FormElements([
-                    AdminFormElement::text('act_repair.device', 'ремонтируемое устройство'),
-                    AdminFormElement::text('act_repair.set_device', 'комплектация'),
-                    AdminFormElement::textarea('act_repair.text_defect', 'описание дефекта'),
-                    AdminFormElement::text('act_repair.diagnostic', 'диагностика'),
-                    AdminFormElement::text('act_repair.cost', 'стоимость'),
-                    AdminFormElement::textarea('act_repair.comment', 'коментарий'),
-                    AdminFormElement::select('act_repair.user_consent_id', trans('ответ заказчика'))->setModelForOptions(new UserConsent())->setDisplay('name')->setReadOnly(true),
-                    AdminFormElement::select('act_repair.status_repair_id', trans('статус ремонта'))->setModelForOptions(new StatusRepair())->setDisplay('name')
-                ])
-            );
+        if($model->type_order_id == 2){
             $tabs->appendTab($formRepair, 'Параметры ремонта');
-
         }
 
         return $tabs;
+
+
 
     }
 

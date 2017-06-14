@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ActRepair;
+use App\History;
 use App\Notifications\CreatedOrder;
 use App\Order;
 use App\TypeOrder;
@@ -161,6 +162,19 @@ class OrderController extends Controller
         $repair->user_consent_id = $request->input('user_consent');
         $repair->comment = $request->input('comment');
         $repair->save();
+
+        // Save History
+        if(History::where('order_id', $order_id)){
+            $history = History::where('order_id', $order_id)->first();
+        }else{
+            $history = new History();
+            $history->order_id = $order_id;
+        }
+
+        $history->comment = $repair->comment;
+        $history->save();
+        // End Save History
+
         Session::flash('ok_message', 'Ваш заказ успешно подтвержден и будет обработан в ближайшее время.');
         return redirect('/user/order/'.$order_id);
     }

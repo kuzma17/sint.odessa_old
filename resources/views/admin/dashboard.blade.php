@@ -9,9 +9,9 @@
 //$metrika3 = \YandexMetrika::getVisitsUsersSearchEngine()->adapt();
 //$chart3 = $metrika3->adaptData;
 
-$analyticsData = LaravelAnalytics::getVisitorsAndPageViews(7);
+//$analyticsData = LaravelAnalytics::getVisitorsAndPageViews(7);
 
-dd($analyticsData);
+//dd($analyticsData);
 
 $orders = \App\Http\Controllers\OrderController::count_day_orders();
 
