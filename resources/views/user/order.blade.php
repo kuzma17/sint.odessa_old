@@ -7,6 +7,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-1" data-toggle="tab">Заказ</a></li>
             <li><a href="#tab-2" data-toggle="tab">Акт ремонта</a></li>
+            <li><a href="#tab-3" data-toggle="tab">История</a></li>
         </ul>
 
         <div class="tab-content">
@@ -74,6 +75,28 @@
                 </form>
 
             </div>
+                <div class="tab-pane fade" id="tab-3">
+                    <?php
+                            $histories = \App\History::where('order_id', $order->id)->get();
+                    ?>
+                    @if(count($histories) > 0)
+                        <table class="table table-striped">
+                            <tbody>
+                            <tr><td>Дата:</td><td>{{ $order->act_repair->status_repair->name }}</td></tr>
+                            <tr><td >Событие:</td><td>{{ $order->act_repair->device }}</td></tr>
+                            <tr><td>Коментарий</td>:</td><td>{{ $order->act_repair->set_device}}</td></tr>
+                            @foreach($histories as $history)
+                                <tr>
+                                    <td>{{ $history->created_at }}</td>
+                                    <td>{{ $history->status_info }}</td>
+                                    <td>{{ $history->comment or '' }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+                </div>
+
         </div>
             @endif
 

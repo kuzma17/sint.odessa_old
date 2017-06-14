@@ -9,7 +9,7 @@ class ActRepair extends Model
     protected $table = 'act_repairs';
 
     public function status_repair(){
-        return $this->belongsTo('App\StatusRepair');
+        return $this->belongsTo('App\StatusRepairs');
     }
 
     public function user_consent(){

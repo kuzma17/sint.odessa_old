@@ -120,7 +120,7 @@ return [
     [
         'title'=>'Статусы ремонта',
         'icon'=>'fa fa-hand-o-right',
-        'model'   => \App\StatusRepair::class,
+        'model'   => \App\StatusRepairs::class,
         'priority' => 1500,
 
     ],

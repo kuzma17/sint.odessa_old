@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-06-10.
+ * Generated for Laravel 5.3.31 on 2017-06-14.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11649,6 +11649,235 @@ namespace Intervention\Image\Facades {
     }         
 }
     
+namespace Spatie\LaravelAnalytics {
+
+    class LaravelAnalyticsFacade {
+        
+        /**
+         * Set the siteId.
+         *
+         * @param string $siteId
+         * @return $this 
+         * @static 
+         */
+        public static function setSiteId($siteId)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::setSiteId($siteId);
+        }
+        
+        /**
+         * Get the siteId
+         *
+         * @return string $siteId
+         * @static 
+         */
+        public static function getSiteId()
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getSiteId();
+        }
+        
+        /**
+         * Get the amount of visitors and pageViews.
+         *
+         * @param int $numberOfDays
+         * @param string $groupBy Possible values: date, yearMonth
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getVisitorsAndPageViews($numberOfDays = 365, $groupBy = 'date')
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getVisitorsAndPageViews($numberOfDays, $groupBy);
+        }
+        
+        /**
+         * Get the amount of visitors and pageviews for the given period.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param string $groupBy Possible values: date, yearMonth
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getVisitorsAndPageViewsForPeriod($startDate, $endDate, $groupBy = 'date')
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getVisitorsAndPageViewsForPeriod($startDate, $endDate, $groupBy);
+        }
+        
+        /**
+         * Get the top keywords.
+         *
+         * @param int $numberOfDays
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopKeywords($numberOfDays = 365, $maxResults = 30)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopKeywords($numberOfDays, $maxResults);
+        }
+        
+        /**
+         * Get the top keywords for the given period.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopKeyWordsForPeriod($startDate, $endDate, $maxResults = 30)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopKeyWordsForPeriod($startDate, $endDate, $maxResults);
+        }
+        
+        /**
+         * Get the top referrers.
+         *
+         * @param int $numberOfDays
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopReferrers($numberOfDays = 365, $maxResults = 20)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopReferrers($numberOfDays, $maxResults);
+        }
+        
+        /**
+         * Get the top referrers for the given period.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopReferrersForPeriod($startDate, $endDate, $maxResults)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopReferrersForPeriod($startDate, $endDate, $maxResults);
+        }
+        
+        /**
+         * Get the top browsers.
+         *
+         * @param int $numberOfDays
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopBrowsers($numberOfDays = 365, $maxResults = 6)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopBrowsers($numberOfDays, $maxResults);
+        }
+        
+        /**
+         * Get the top browsers for the given period.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getTopBrowsersForPeriod($startDate, $endDate, $maxResults)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getTopBrowsersForPeriod($startDate, $endDate, $maxResults);
+        }
+        
+        /**
+         * Get the most visited pages.
+         *
+         * @param int $numberOfDays
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getMostVisitedPages($numberOfDays = 365, $maxResults = 20)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getMostVisitedPages($numberOfDays, $maxResults);
+        }
+        
+        /**
+         * Get the number of active users currently on the site.
+         *
+         * @param array $others
+         * @return int 
+         * @static 
+         */
+        public static function getActiveUsers($others = array())
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getActiveUsers($others);
+        }
+        
+        /**
+         * Get the most visited pages for the given period.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param int $maxResults
+         * @return \Spatie\LaravelAnalytics\Collection 
+         * @static 
+         */
+        public static function getMostVisitedPagesForPeriod($startDate, $endDate, $maxResults = 20)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getMostVisitedPagesForPeriod($startDate, $endDate, $maxResults);
+        }
+        
+        /**
+         * Returns the site id (ga:xxxxxxx) for the given url.
+         *
+         * @param string $url
+         * @throws \Exception
+         * @return string 
+         * @static 
+         */
+        public static function getSiteIdByUrl($url)
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::getSiteIdByUrl($url);
+        }
+        
+        /**
+         * Call the query method on the authenticated client.
+         *
+         * @param \DateTime $startDate
+         * @param \DateTime $endDate
+         * @param string $metrics
+         * @param array $others
+         * @return mixed 
+         * @static 
+         */
+        public static function performQuery($startDate, $endDate, $metrics, $others = array())
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::performQuery($startDate, $endDate, $metrics, $others);
+        }
+        
+        /**
+         * Call the real time query method on the authenticated client.
+         *
+         * @param string $metrics
+         * @param array $others
+         * @return mixed 
+         * @static 
+         */
+        public static function performRealTimeQuery($metrics, $others = array())
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::performRealTimeQuery($metrics, $others);
+        }
+        
+        /**
+         * Return true if this site is configured to use Google Analytics.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isEnabled()
+        {
+            return \Spatie\LaravelAnalytics\LaravelAnalytics::isEnabled();
+        }
+        
+    }         
+}
+    
 namespace KodiCMS\Assets\Facades {
 
     class PackageManager {
@@ -14515,7 +14744,7 @@ namespace SleepingOwl\Admin\Facades {
     class Navigation {
         
         /**
-         * Overload current page
+         * Overload current page.
          *
          * @return \KodiComponents\Navigation\Contracts\PageInterface|null 
          * @static 
@@ -14526,7 +14755,7 @@ namespace SleepingOwl\Admin\Facades {
         }
         
         /**
-         * Set Alias Id to Page
+         * Set Alias Id to Page.
          *
          * @param \SleepingOwl\Admin\Collection $pages
          * @static 
@@ -17405,6 +17634,8 @@ namespace {
     class Debugbar extends \Barryvdh\Debugbar\Facade {}
     
     class Image extends \Intervention\Image\Facades\Image {}
+    
+    class LaravelAnalytics extends \Spatie\LaravelAnalytics\LaravelAnalyticsFacade {}
     
     class PackageManager extends \KodiCMS\Assets\Facades\PackageManager {}
     

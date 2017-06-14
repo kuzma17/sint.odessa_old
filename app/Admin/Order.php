@@ -11,7 +11,7 @@ use App\History;
 use App\Http\Controllers\OrderController;
 use App\Notifications\StatusOrder;
 use App\Status;
-use App\StatusRepair;
+use App\StatusRepairs;
 use App\TypePayment;
 use App\User;
 use App\UserConsent;
@@ -68,37 +68,40 @@ class Order extends Section implements Initializable
 
         $this->updated(function($config, Model $model){
             $status = $model->status_id;
-            $status_repair = $model->act_repair->status_repair_id;
+
             if($status != $this->status) {
                 $status_name = Status::find($status)->name;
                 $model->notify(new StatusOrder($status_name));
 
-               if($model->history){
-                    $history = History::where('order_id', $model->id)->first();
-                }else{
+              // if($model->history){
+                //    $history = History::where('order_id', $model->id)->first();
+                //}else{
                    $history = new History();
                    $history->order_id = $model->id;
-               }
+               //}
 
                 $history->status_info = 'Статус изменен c "'.Status::find($this->status)->name.'" на "'.Status::find($status)->name.'"';
-                //$history->status_repair_info = 'Статус изменен c "'.StatusRepair::find($this->status_repair)->name.'" на "'.StatusRepair::find($status_repair)->name.'"';
+                //$history->status_repair_info = 'Статус изменен c "'.StatusRepair::find($this->status_repair)->name.'" на "'.StatusRepairs::find($status_repair)->name.'"';
                 $history->save();
             }
 
-            if($status_repair != $this->status_repair) {
-                $status_repair_name = StatusRepair::find($status_repair)->name;
-                $model->notify(new StatusOrder($status_repair_name));
+            if($model->act_repair) {
+                $status_repair = $model->act_repair->status_repair_id;
+                if ($status_repair != $this->status_repair) {
+                    $status_repair_name = StatusRepairs::find($status_repair)->name;
+                    $model->notify(new StatusOrder($status_repair_name));
 
-                if($model->history){
-                    $history = History::where('order_id', $model->id)->first();
-                }else{
-                    $history = new History();
-                    $history->order_id = $model->id;
+                    //if ($model->history) {
+                   //     $history = History::where('order_id', $model->id)->first();
+                   // } else {
+                        $history = new History();
+                        $history->order_id = $model->id;
+                  //  }
+
+                    //$history->status_info = 'Статус изменен c "'.Status::find($this->status)->name.'" на "'.Status::find($status)->name.'"';
+                    $history->status_repair_info = 'Статус изменен c "' . StatusRepairs::find($this->status_repair)->name . '" на "' . StatusRepairs::find($status_repair)->name . '"';
+                    $history->save();
                 }
-
-                //$history->status_info = 'Статус изменен c "'.Status::find($this->status)->name.'" на "'.Status::find($status)->name.'"';
-                $history->status_repair_info = 'Статус изменен c "'.StatusRepair::find($this->status_repair)->name.'" на "'.StatusRepair::find($status_repair)->name.'"';
-                $history->save();
             }
         });
     }
@@ -180,7 +183,7 @@ class Order extends Section implements Initializable
                 AdminFormElement::text('act_repair.cost', 'стоимость'),
                 AdminFormElement::textarea('act_repair.comment', 'коментарий'),
                 AdminFormElement::select('act_repair.user_consent_id', trans('ответ заказчика'))->setModelForOptions(new UserConsent())->setDisplay('name')->setReadOnly(true),
-                AdminFormElement::select('act_repair.status_repair_id', trans('статус ремонта'))->setModelForOptions(new StatusRepair())->setDisplay('name')
+                AdminFormElement::select('act_repair.status_repair_id', trans('статус ремонта'))->setModelForOptions(new StatusRepairs())->setDisplay('name')
             ])
         );
 

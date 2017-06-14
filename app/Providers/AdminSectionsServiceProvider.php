@@ -28,7 +28,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         'App\Slider' => 'App\Admin\Slider',
         'App\Stock' => 'App\Admin\Stock',
         'App\Status' => 'App\Admin\Status',
-        'App\StatusRepair' => 'App\Admin\StatusRepair',
+        'App\StatusRepairs' => 'App\Admin\StatusRepairs',
     ];
     /**
      * Register sections.

@@ -164,12 +164,12 @@ class OrderController extends Controller
         $repair->save();
 
         // Save History
-        if(History::where('order_id', $order_id)){
-            $history = History::where('order_id', $order_id)->first();
-        }else{
+       // if(History::where('order_id', $order_id)){
+       //     $history = History::where('order_id', $order_id)->first();
+       // }else{
             $history = new History();
             $history->order_id = $order_id;
-        }
+       // }
 
         $history->comment = $repair->comment;
         $history->save();

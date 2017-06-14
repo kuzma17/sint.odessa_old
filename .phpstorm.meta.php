@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-06-10.
+    * Generated on 2017-06-14.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -56,6 +56,7 @@ namespace PHPSTORM_META {
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
+            'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -193,6 +194,7 @@ namespace PHPSTORM_META {
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
+            'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -330,6 +332,7 @@ namespace PHPSTORM_META {
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
+            'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
@@ -467,6 +470,7 @@ namespace PHPSTORM_META {
             'eloquence.mutator' instanceof \Sofa\Eloquence\Mutator\Mutator,
             'eloquence.joiner' instanceof \Sofa\Eloquence\Relations\JoinerFactory,
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
+            'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'sleeping_owl.message' instanceof \SleepingOwl\Admin\Widgets\Messages\MessageStack,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,

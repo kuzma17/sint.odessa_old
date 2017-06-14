@@ -1,9 +1,9 @@
 <?php
 namespace App\Admin\Policies;
 use App\User;
-use App\Admin\StatusRepair;
+use App\Admin\StatusRepairs;
 use Illuminate\Auth\Access\HandlesAuthorization;
-class StatusRepairSectionModelPolicy
+class StatusRepairsSectionModelPolicy
 {
     use HandlesAuthorization;
     /**
@@ -25,7 +25,7 @@ class StatusRepairSectionModelPolicy
      *
      * @return bool
      */
-    public function display(User $user, StatusRepair $item)
+    public function display(User $user, StatusRepairs $item)
     {
         if($user->isAdmin()){
             return true;
@@ -38,7 +38,7 @@ class StatusRepairSectionModelPolicy
      *
      * @return bool
      */
-    public function create(User $user, StatusRepair $item)
+    public function create(User $user, StatusRepairs $item)
     {
         if($user->isAdmin()){
             return true;
@@ -51,7 +51,7 @@ class StatusRepairSectionModelPolicy
      *
      * @return bool
      */
-    public function edit(User $user, StatusRepair $item)
+    public function edit(User $user, StatusRepairs $item)
     {
         if($user->isAdmin()){
             return true;
@@ -64,7 +64,7 @@ class StatusRepairSectionModelPolicy
      *
      * @return bool
      */
-    public function delete(User $user, StatusRepair $item)
+    public function delete(User $user, StatusRepairs $item)
     {
         if($user->isAdmin()){
             return true;
