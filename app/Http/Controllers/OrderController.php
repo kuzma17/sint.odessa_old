@@ -8,6 +8,7 @@ use App\Notifications\CreatedOrder;
 use App\Order;
 use App\TypeOrder;
 use App\User;
+use App\UserConsent;
 use App\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -164,13 +165,9 @@ class OrderController extends Controller
         $repair->save();
 
         // Save History
-       // if(History::where('order_id', $order_id)){
-       //     $history = History::where('order_id', $order_id)->first();
-       // }else{
-            $history = new History();
-            $history->order_id = $order_id;
-       // }
-
+        $history = new History();
+        $history->order_id = $order_id;
+        $history->status_info = UserConsent::find($repair->user_consent_id)->name;
         $history->comment = $repair->comment;
         $history->save();
         // End Save History

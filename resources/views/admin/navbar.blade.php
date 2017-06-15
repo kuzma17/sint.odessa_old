@@ -10,7 +10,7 @@
             </span>
         </div>
     </li>
-    <li style="padding: 15px; cursor: pointer" title="Время последненго обмена"><div>
+    <li style="padding: 15px; cursor: pointer" title="Время последнего обмена"><div>
             <span class="badge alert-info"><i class="fa fa-clock-o" aria-hidden="true" style="color: white"></i> {{ \App\Http\Controllers\ExchangeController::show() }}</span>
         </div>
     </li>
