@@ -52,10 +52,10 @@ Route::get('/stock', ['as'=>'stock', 'uses'=>'PageController@stock']);
 Route::get('/news', ['as'=>'news', 'uses'=>'NewsController@index']);
 Route::get('/news/{id}', ['as'=>'news_id', 'uses'=>'NewsController@news']);
 
-Route::get('/login_admin', ['as'=>'login.admin', 'uses'=>'Auth\LoginController@showLoginForm']);
-Route::post('/login_admin', ['as'=>'login.admin.auth', 'uses'=>'Auth\LoginController@login']);
-Route::get('/admin', ['as'=>'admin.dashboard']);
-Route::get('/admin/logout', ['as'=>'admin.logout', 'uses'=>'Auth\LoginController@logout']);
+//Route::get('/login_admin', ['as'=>'login.admin', 'uses'=>'Auth\LoginController@showLoginForm']);
+//Route::post('/login_admin', ['as'=>'login.admin.auth', 'uses'=>'Auth\LoginController@login']);
+//Route::get('/admin', ['as'=>'admin.dashboard']);
+//Route::get('/admin/logout', ['as'=>'admin.logout', 'uses'=>'Auth\LoginController@logout']);
 
 Route::post('upload-image', ['as'=>'upload_image', 'uses'=>'FileUploadController@uploader']);
 

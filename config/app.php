@@ -167,23 +167,24 @@ return [
         * SleepingOwl Service Provider
         */
 
-        SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
-        App\Providers\AdminSectionsServiceProvider::class,
+       // SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
+       // App\Providers\AdminSectionsServiceProvider::class,
 
         // Develop
-        Barryvdh\Debugbar\ServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         // Socialise
         SocialiteProviders\Manager\ServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
-        // Yandex
-        //Alexusmai\YandexMetrika\YandexMetrikaServiceProvider::class,
+
         // Search
         Sofa\Eloquence\ServiceProvider::class,
 
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+
+        Encore\Admin\Providers\AdminServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -242,7 +243,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        //'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
 

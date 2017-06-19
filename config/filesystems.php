@@ -67,6 +67,12 @@ return [
             'root'   => storage_path().'/public/images/uploaded',
         ],
 
+        'admin' => [
+            'driver' => 'local',
+            'root' => public_path('upload'),
+            'visibility' => 'public',
+        ],
+
     ],
 
 ];

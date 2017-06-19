@@ -1,16 +1,18 @@
 <?php
 
-//Route::get('', ['as' => 'admin.dashboard', function () {
-//	$content = 'Define your dashboard here.';
-//	return AdminSection::view($content, 'Dashboard');
-//}]);
+use Illuminate\Routing\Router;
 
-Route::get('', ['as' => 'admin.dashboard', function () {
-	$content = view('admin.dashboard');
-	return AdminSection::view($content, 'Dashboard');
-}]);
+Admin::registerHelpersRoutes();
 
-Route::get('information', ['as' => 'admin.information', function () {
-	$content = 'Define your information here.';
-	return AdminSection::view($content, 'Information');
-}]);
+Route::group([
+    'prefix'        => config('admin.prefix'),
+    'namespace'     => Admin::controllerNamespace(),
+    'middleware'    => ['web', 'admin'],
+], function (Router $router) {
+
+    $router->get('/', 'HomeController@index');
+    $router->resource('pages', PageController::class);
+    $router->resource('news', NewsController::class);
+    $router->resource('menu', MenuController::class);
+    $router->resource('sliders', SliderController::class);
+});

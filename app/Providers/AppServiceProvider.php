@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
             return new CustomValidator($translator, $data, $rules, $messages);
         });
 
-        if (file_exists($assetsFile = __DIR__ . '/../../resources/assets/admin/assets.php')) {
-            include $assetsFile;
-        }
+       // if (file_exists($assetsFile = __DIR__ . '/../../resources/assets/admin/assets.php')) {
+         //   include $assetsFile;
+        //}
     }
 
     /**
