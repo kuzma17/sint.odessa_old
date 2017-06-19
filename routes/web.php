@@ -20,6 +20,8 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index');
 
+Route::post('/register_client', ['as'=>'register.client', 'uses'=>'Auth\RegisterController@createClient']);
+
 Route::get('/social/{provider}', 'SocialController@login');
 Route::get('/social/callback/{provider}', 'SocialController@callback');
 

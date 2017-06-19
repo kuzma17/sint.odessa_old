@@ -96,7 +96,7 @@ class Order extends Section implements Initializable
                     $history = new History();
                     $history->order_id = $model->id;
                     $history->status_info = 'Изменен статус ремонта '.StatusRepairs::find($this->status_repair)->name . ' -> ' . StatusRepairs::find($status_repair)->name;
-                    //$history->comment = StatusRepairs::find($this->status_repair)->name . ' -> ' . StatusRepairs::find($status_repair)->name;
+                    $history->comment = StatusRepairs::find($this->status_repair)->name . ' -> ' . StatusRepairs::find($status_repair)->name;
                     $history->save();
                 }
 
@@ -168,7 +168,7 @@ class Order extends Section implements Initializable
                 AdminFormElement::text('client_name', 'ФИО заказчика/Название компании')->setReadOnly(true),
                 AdminFormElement::text('phone', 'телефон')->setReadOnly(true),
                 AdminFormElement::text('address', 'адрес доставки')->setReadOnly(true),
-                AdminFormElement::textarea('comment', 'коментарий')->setReadOnly(true)
+                AdminFormElement::textarea('comment', 'коментарий')->setRows(3)->setReadOnly(true)
             ])
         );
         $formCompany = AdminForm::form()->addElement(
@@ -195,10 +195,10 @@ class Order extends Section implements Initializable
                 AdminFormElement::select('act_repair.status_repair_id', trans('статус ремонта'))->setModelForOptions(new StatusRepairs())->setDisplay('name')->required(),
                 AdminFormElement::text('act_repair.device', 'ремонтируемое устройство')->required(),
                 AdminFormElement::text('act_repair.set_device', 'комплектация'),
-                AdminFormElement::textarea('act_repair.text_defect', 'описание дефекта')->required(),
-                AdminFormElement::text('act_repair.diagnostic', 'диагностика'),
+                AdminFormElement::textarea('act_repair.text_defect', 'описание дефекта')->setRows(3)->required(),
+                AdminFormElement::textarea('act_repair.diagnostic', 'диагностика')->setRows(3),
                 AdminFormElement::text('act_repair.cost', 'стоимость'),
-                AdminFormElement::textarea('act_repair.comment', 'коментарий'),
+                AdminFormElement::textarea('act_repair.comment', 'коментарий')->setRows(3),
                 AdminFormElement::select('act_repair.user_consent_id', trans('ответ заказчика'))->setModelForOptions(new UserConsent())->setDisplay('name')->setReadOnly(true)
             ])
         );
