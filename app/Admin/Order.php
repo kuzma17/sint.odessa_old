@@ -78,7 +78,7 @@ class Order extends Section implements Initializable
 
             if($status != $this->status) {
                 $status_name = Status::find($status)->name;
-                $model->notify(new StatusOrder($status_name)); // Send email
+               // $model->notify(new StatusOrder($status_name)); // Send email
 
                 $history = new History();
                 $history->order_id = $model->id;
@@ -91,7 +91,7 @@ class Order extends Section implements Initializable
                 $status_repair = $model->act_repair->status_repair_id;
                 if ($status_repair != $this->status_repair) {
                     $status_repair_name = StatusRepairs::find($status_repair)->name;
-                    $model->notify(new StatusOrder($status_repair_name)); // Send email
+                    //$model->notify(new StatusOrder($status_repair_name)); // Send email
 
                     $history = new History();
                     $history->order_id = $model->id;
@@ -121,7 +121,7 @@ class Order extends Section implements Initializable
     public function onDisplay()
     {
 
-        return AdminDisplay::datatables()
+        $display = AdminDisplay::datatables()
             ->with('type_order')
             ->setOrder([[3, 'desc']]) // сортировка по номеру столбца отображаемого в админке
             ->setHtmlAttribute('class', 'table-success')
@@ -140,6 +140,10 @@ class Order extends Section implements Initializable
                         }
                 }),
             ])->paginate(20);
+
+
+
+        return $display;
     }
 
     /**
