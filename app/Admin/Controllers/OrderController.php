@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\ActRepair;
 use App\History;
 use App\Order;
 
@@ -21,6 +22,7 @@ class OrderController extends Controller
     use ModelForm;
 
     protected $status;
+    protected $status_repair;
 
     /**
      * Index interface.
@@ -108,7 +110,7 @@ class OrderController extends Controller
         return Admin::form(Order::class, function (Form $form) {
 
 
-            $form->tab('Клиент/Компания', function(Form $form) {
+            $form->tab('Клиент/Компания', function(Form $form) {;
 
                 $form->text('id', 'ID');
                 $form->select('status_id', 'Статус заказа')->options(Status::all()->pluck('name', 'id'));
@@ -122,6 +124,7 @@ class OrderController extends Controller
 
                 $form->display('created_at', 'Created At');
                 $form->display('updated_at', 'Updated At');
+
             })->tab('Реквизиты компании', function(Form $form){
                 $form->display('type_payment.name', 'Тип расчета');
                 $form->display('company_full', 'Полное наименование компании');
@@ -147,19 +150,26 @@ class OrderController extends Controller
             })->tab('История', function(Form $form){
                 $form->html(function($form){
                     $histories = History::where('order_id', $form->model()->id)->get();
+                    //var_dump($form);
                     return view('admin.history', ['histories' => $histories]);
                 });
 
             });
 
+            $form->saving(function ($form){
+
+                $this->status = Order::find($form->id)->status_id;
+                $this->status_repair = ActRepair::where('order_id', $form->id)->first()->status_repair_id;
+            });
 
             $form->saved(function($form){
 
                 $status = $form->status_id;
+                $status_repair = $form->act_repair['status_repair_id'];
 
                 $error = new MessageBag([
-                    'title'   => 'err',
-                    'message' => 'form: '.$this->status.' to: '.$status,
+                    'title'   => 'Order frm: '.$this->status.' to: '.$status,
+                    'message' => 'Repair frm: '.$this->status_repair.' to: '.$status_repair,
                 ]);
 
                 return back()->with(compact('error'));
