@@ -106,14 +106,15 @@ class UserProfileController extends Controller
         }
     }
 
+
     public function avatar(Request $request){
         $user = Auth::user();
         if($request->isMethod('post')) {
-            //if($request->file('avatar')->isValid()) {
-            //}
+
             $this->validate($request, [
                 'avatar'  =>  'required|image|max:100',
             ]);
+
                 $image = $request->file('avatar');
                 Image::make($image->getRealPath())->resize(160, 160)->save();
                 $saveImageName = str_random(10) . '.' . $image->getClientOriginalExtension();
@@ -124,11 +125,10 @@ class UserProfileController extends Controller
                $avatar = new UserAvatar();
             }
 
-            $image->move('images/avatars', $saveImageName);
+            $image->move('upload/avatars', $saveImageName);
 
-            //$avatar->user_id = $user->id;
             $avatar->user()->associate($user);
-            $avatar->avatar = '/images/avatars/'.$saveImageName;
+            $avatar->avatar = 'avatars/'.$saveImageName;
             $avatar->save();
             Session::flash('ok_message', 'Ваш аватар успешно соxранен.');
             return $this->profile();

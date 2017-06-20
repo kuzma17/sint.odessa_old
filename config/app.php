@@ -181,6 +181,8 @@ return [
 
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
 
+        Encore\Admin\Providers\AdminServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
