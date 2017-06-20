@@ -164,11 +164,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-        * SleepingOwl Service Provider
+        *  Service Provider
         */
-
-       // SleepingOwl\Admin\Providers\SleepingOwlServiceProvider::class,
-       // App\Providers\AdminSectionsServiceProvider::class,
 
         // Develop
         //Barryvdh\Debugbar\ServiceProvider::class,
@@ -183,8 +180,6 @@ return [
         Sofa\Eloquence\ServiceProvider::class,
 
         Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
-
-        Encore\Admin\Providers\AdminServiceProvider::class,
 
         /*
          * Application Service Providers...
