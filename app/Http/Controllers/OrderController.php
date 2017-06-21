@@ -148,7 +148,7 @@ class OrderController extends Controller
             $profile->save();
             $user->save();
 
-            $order->notify(new CreatedOrder()); // Send message to mail
+           // $order->notify(new CreatedOrder()); // Send message to mail
 
             Session::flash('ok_message', 'Ваш заказ успешно создан и будет обработан в ближайшее время.');
             return redirect('/user/order/'.$order->id);

@@ -38,6 +38,6 @@ class Order extends Model
     }
 
     public function history(){
-        return $this->hasOne(History::class);
+        return $this->hasMany(History::class);
     }
 }

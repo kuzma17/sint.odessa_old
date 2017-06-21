@@ -156,25 +156,25 @@ class OrderController extends Controller
 
             });
 
-            $form->saving(function ($form){
+            //$form->saving(function ($form){
 
-                $this->status = Order::find($form->id)->status_id;
-                $this->status_repair = ActRepair::where('order_id', $form->id)->first()->status_repair_id;
-            });
+            //    $this->status = Order::find($form->id)->status_id;
+           //     $this->status_repair = ActRepair::where('order_id', $form->id)->first()->status_repair_id;
+           // });
 
-            $form->saved(function($form){
+            //$form->saved(function($form){
 
-                $status = $form->status_id;
-                $status_repair = $form->act_repair['status_repair_id'];
+             //   $status = $form->status_id;
+             //   $status_repair = $form->act_repair['status_repair_id'];
 
-                $error = new MessageBag([
-                    'title'   => 'Order frm: '.$this->status.' to: '.$status,
-                    'message' => 'Repair frm: '.$this->status_repair.' to: '.$status_repair,
-                ]);
+               // $error = new MessageBag([
+              //      'title'   => 'Order frm: '.$this->status.' to: '.$status,
+               //     'message' => 'Repair frm: '.$this->status_repair.' to: '.$status_repair,
+             //   ]);
 
-                return back()->with(compact('error'));
-
-            });
+           //     return back()->with(compact('error'));
+//
+            //});
         });
     }
 }

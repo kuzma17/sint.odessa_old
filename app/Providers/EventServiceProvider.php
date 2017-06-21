@@ -18,12 +18,13 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
+
+       // \SocialiteProviders\Manager\SocialiteWasCalled::class => [
             // Порписываем здесь обработку события провайдерами от SocialiteProviders
-            'SocialiteProviders\VKontakte\VKontakteExtendSocialite@handle',
-            OdnoklassnikiExtendSocialite::class,
-            MailRuExtendSocialite::class,
-        ],
+         //   'SocialiteProviders\VKontakte\VKontakteExtendSocialite@handle',
+          //  OdnoklassnikiExtendSocialite::class,
+          //  MailRuExtendSocialite::class,
+       // ],
     ];
 
     /**

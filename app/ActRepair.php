@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class ActRepair extends Model
 {
+    use Notifiable;
+
     protected $table = 'act_repairs';
 
     public function status_repair(){
@@ -21,5 +24,13 @@ class ActRepair extends Model
             return true;
         }
         return false;
+    }
+
+    public function order(){
+        return $this->belongsTo(Order::class);
+    }
+
+    public function routeNotificationForMail(){
+        return $this->order->user->email;
     }
 }
