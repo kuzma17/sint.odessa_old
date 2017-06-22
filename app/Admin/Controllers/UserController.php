@@ -99,6 +99,15 @@ class UserController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->filter(function ($filter) {
+                $filter->useModal();
+                $filter->like('name', 'Ник');
+                $filter->like('profile.client_name', 'Имя Клиента');
+                $filter->like('email', 'email');
+                $filter->is('profile.type_client_id', 'Тип клиента')->select(TypeClient::all()->pluck('name', 'id'));
+                $filter->is('profile.type_payment_id', 'тип оплаты')->select(TypePayment::all()->pluck('name', 'id'));
+            });
         });
     }
 

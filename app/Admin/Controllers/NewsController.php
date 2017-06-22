@@ -101,6 +101,7 @@ class NewsController extends Controller
             $form->display('id', 'ID');
             $form->text('title', 'Название')->rules('required');
             $form->ckeditor('content', 'Текст страници')->rules('required');
+            $form->image('image', 'image')->resize(300, 200)->uniqueName()->move('images');
             $form->date('published_at', 'Дата');
             $form->switch('published')->states($this->states)->default(1);
 

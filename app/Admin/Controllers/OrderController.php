@@ -8,6 +8,8 @@ use App\Order;
 
 use App\Status;
 use App\StatusRepairs;
+use App\TypeClient;
+use App\TypeOrder;
 use App\UserConsent;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -16,13 +18,20 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 use Illuminate\Support\MessageBag;
+use Request;
 
 class OrderController extends Controller
 {
     use ModelForm;
 
-    protected $status;
+    protected $status ;
     protected $status_repair;
+
+    protected $status_class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
+    protected $status_repair_class = ["1"=>"badge label-danger", "2"=>"badge label-warning", "3"=>"badge label-success", "4"=>"badge label-primary",
+        "5"=>"badge label-danger", "6"=>"badge label-warning", "7"=>"badge label-success", "8"=>"badge label-primary",
+        "9"=>"badge label-danger", "10"=>"badge label-warning", "11"=>"badge label-success", "12"=>"badge label-primary",
+        "13"=>"badge label-danger", "14"=>"badge label-warning"];
 
     /**
      * Index interface.
@@ -78,6 +87,7 @@ class OrderController extends Controller
      *
      * @return Grid
      */
+
     protected function grid()
     {
         return Admin::grid(Order::class, function (Grid $grid) {
@@ -87,7 +97,25 @@ class OrderController extends Controller
             $grid->column('type_order.name', 'Тип услуги');
             $grid->column('type_client.name', 'Тип клиента');
             $grid->column('client_name', 'Клиент');
-            $grid->column('status.name', 'Статус заказа');
+            //$grid->column('status_id', 'Статус заказа')->display(function($id){
+            //    return '<span class="">'.Status::find($id)->name. $this->status.'</span>';
+            //});
+
+            //$grid->column('status_id')->editable(function ($id){
+            //    $t = '<select>';
+            //    foreach (Status::all() as $st){
+             //       $t .= '<option>'.$st->name.'</option>';
+           //     }
+           //     $t .= '</select>';
+             //   return $t;
+          //  });
+
+            //$grid->column('status_id', 'Статус')->select(Status::all()->pluck('name', 'id'));
+
+            $grid->column('status_id')->display(function ($id){
+                return '<span class="link link_order">'.Status::find($id)->name.'</span>';
+            });
+
             $grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
                 if($id != 0){
                     return StatusRepairs::find($id)->name;
@@ -97,6 +125,15 @@ class OrderController extends Controller
 
             $grid->created_at();
             $grid->updated_at();
+
+            $grid->filter(function ($filter) {
+                $filter->useModal();
+                $filter->like('client_name', 'Клиент');
+                $filter->is('type_order_id', 'Тип услуги')->select(TypeOrder::all()->pluck('name', 'id'));
+                $filter->is('type_client_id', 'Тип клиента')->select(TypeClient::all()->pluck('name', 'id'));
+                $filter->is('status_id', 'Статус заказа')->select(Status::all()->pluck('name', 'id'));
+                $filter->is('act_repair.status_repair_id', 'Статус ремонта')->select(StatusRepairs::all()->pluck('name', 'id'));
+            });
         });
     }
 
@@ -176,5 +213,13 @@ class OrderController extends Controller
 //
             //});
         });
+    }
+
+    public function release(Request $request)
+    {
+        foreach (Order::find($request->get('ids')) as $post) {
+            $post->status = $request->get('action');
+            $post->save();
+        }
     }
 }

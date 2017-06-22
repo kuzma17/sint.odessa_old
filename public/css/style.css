@@ -571,6 +571,16 @@ h5{
     margin-top: -20px;
 }
 
+.news_image_list{
+    float: left;
+    width: 150px;
+    height: 100px;
+}
+
+.news_image{
+    float: left;
+}
+
 .order_info{
     font-family: Arial;
     size: 10px;
