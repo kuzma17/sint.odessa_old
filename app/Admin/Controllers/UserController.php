@@ -85,9 +85,11 @@ class UserController extends Controller
             });
             $grid->column('profile.type_client_id', 'тип клиента')->display(function($id = 0){
                 if($id != 0){
-                return TypeClient::find($id)->name;
+                //return TypeClient::find($id)->name;
+                    $class = ["1"=>"label label-danger", "2"=>"label label-warning"];
+                    return '<span class="'.$class[$id].'">'.TypeClient::find($id)->name.'</span>';
                 }
-                return '';
+                return "";
             });
             $grid->column('profile.type_payment_id', 'тип оплаты')->display(function($id = 0){
                 if($id != 0){
