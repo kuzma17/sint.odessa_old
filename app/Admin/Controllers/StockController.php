@@ -30,8 +30,8 @@ class StockController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Акции');
+            $content->description('');
 
             $content->body($this->grid());
         });
@@ -47,8 +47,8 @@ class StockController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Акции');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -93,19 +93,6 @@ class StockController extends Controller
         });
     }
 
-    public static function getFileName($path, $extension='')
-    {
-        $extension = $extension ? '.' . $extension : '';
-        $path = $path ? $path . '/' : '';
-
-        do {
-            $name = md5(microtime() . rand(0, 9999));
-            $file = $path . $name . $extension;
-        } while (file_exists($file));
-
-        return $name;
-    }
-
     /**
      * Make a form builder.
      *
@@ -115,14 +102,10 @@ class StockController extends Controller
     {
         return Admin::form(Stock::class, function (Form $form) {
 
-            $path = $_SERVER['DOCUMENT_ROOT'].'/upload/';
-
-            $name_image = $this->getFileName($path.'banners').'.jpg';
-
             $form->display('id', 'ID');
             $form->text('title', 'Название')->rules('required');
             $form->ckeditor('content', 'Текст')->rules('required');
-            $form->image('banner', 'баннер')->move('slider', $name_image)->rules('required');
+            $form->image('banner', 'баннер')->uniqueName()->move('banners')->rules('required');
             $form->date('from', 'Дата начала');
             $form->date('to', 'Дата окончания');
             $form->switch('active')->states($this->states)->default(1);

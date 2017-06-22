@@ -26,8 +26,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Клиенты');
+            $content->description('');
 
             $content->body($this->grid());
         });
@@ -43,8 +43,8 @@ class UserController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Клиенты');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -111,19 +111,6 @@ class UserController extends Controller
         });
     }
 
-    public static function getFileName($path, $extension='')
-    {
-        $extension = $extension ? '.' . $extension : '';
-        $path = $path ? $path . '/' : '';
-
-        do {
-            $name = md5(microtime() . rand(0, 9999));
-            $file = $path . $name . $extension;
-        } while (file_exists($file));
-
-        return $name;
-    }
-
     /**
      * Make a form builder.
      *
@@ -135,15 +122,11 @@ class UserController extends Controller
 
             $form->tab('Клиент/Компания', function(Form $form){
 
-                $path = $_SERVER['DOCUMENT_ROOT'].'/upload/';
-                $name_image = $this->getFileName($path.'avatars').'.jpg';
-                $this->image = $name_image;
-
                 $form->display('id', 'ID');
                 $form->text('name', 'Ник');
                 $form->text('profile.client_name', 'Имя');
                 $form->email('email','Email');
-                $form->image('avatar.avatar')->resize(160, 180)->move('avatars', $name_image);
+                $form->image('avatar.avatar')->resize(160, 180)->uniqueName()->move('avatars');
                 $form->password('password', 'Пароль');
                 $form->select('profile.type_client_id', 'тип клиента')->options(TypeClient::all()->pluck('name', 'id'));
                 $form->mobile('phone', 'Телефон');

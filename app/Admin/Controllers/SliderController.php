@@ -30,8 +30,8 @@ class SliderController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Слайдер');
+            $content->description('на главной');
 
             $content->body($this->grid());
         });
@@ -47,8 +47,8 @@ class SliderController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Слайдер');
+            $content->description('на главной');
 
             $content->body($this->form()->edit($id));
         });
@@ -92,19 +92,6 @@ class SliderController extends Controller
         });
     }
 
-    public static function getFileName($path, $extension='')
-    {
-        $extension = $extension ? '.' . $extension : '';
-        $path = $path ? $path . '/' : '';
-
-        do {
-            $name = md5(microtime() . rand(0, 9999));
-            $file = $path . $name . $extension;
-        } while (file_exists($file));
-
-        return $name;
-    }
-
     /**
      * Make a form builder.
      *
@@ -114,12 +101,8 @@ class SliderController extends Controller
     {
         return Admin::form(Slider::class, function (Form $form) {
 
-            $path = $_SERVER['DOCUMENT_ROOT'].'/upload/';
-
-            $name_image = $this->getFileName($path.'slider').'.jpg';
-
             $form->display('id', 'ID');
-            $form->image('image')->resize(965, 400)->move('slider', $name_image)->rules('required');
+            $form->image('image')->resize(965, 400)->uniqueName()->move('slider')->rules('required');
             $form->text('slogan', 'слоган');
             $form->number('weight', 'номер')->default(Slider::max('weight')+1);
             $form->switch('active')->states($this->states)->default(1);

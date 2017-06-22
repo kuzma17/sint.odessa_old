@@ -53,7 +53,7 @@ return [
             'file'   => 'file',
         ],
 
-        'host' => 'http://sint.odessa.ru.sint/upload/',
+        'host' => 'http://sint.odessa.ru/upload/',
     ],
 
     /*

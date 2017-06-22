@@ -27,12 +27,6 @@ class OrderController extends Controller
     protected $status ;
     protected $status_repair;
 
-    protected $status_class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
-    protected $status_repair_class = ["1"=>"badge label-danger", "2"=>"badge label-warning", "3"=>"badge label-success", "4"=>"badge label-primary",
-        "5"=>"badge label-danger", "6"=>"badge label-warning", "7"=>"badge label-success", "8"=>"badge label-primary",
-        "9"=>"badge label-danger", "10"=>"badge label-warning", "11"=>"badge label-success", "12"=>"badge label-primary",
-        "13"=>"badge label-danger", "14"=>"badge label-warning"];
-
     /**
      * Index interface.
      *
@@ -42,8 +36,8 @@ class OrderController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Заказы');
+            $content->description('');
 
             $content->body($this->grid());
         });
@@ -59,8 +53,8 @@ class OrderController extends Controller
     {
         return Admin::content(function (Content $content) use ($id) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Заказы');
+            $content->description('');
 
             $content->body($this->form()->edit($id));
         });
@@ -97,9 +91,10 @@ class OrderController extends Controller
             $grid->column('type_order.name', 'Тип услуги');
             $grid->column('type_client.name', 'Тип клиента');
             $grid->column('client_name', 'Клиент');
-            //$grid->column('status_id', 'Статус заказа')->display(function($id){
-            //    return '<span class="">'.Status::find($id)->name. $this->status.'</span>';
-            //});
+            $grid->column('status_id', 'Статус заказа')->display(function($id){
+                $class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
+                return '<span class="'.$class[$id].'">'.Status::find($id)->name.'</span>';
+            });
 
             //$grid->column('status_id')->editable(function ($id){
             //    $t = '<select>';
@@ -112,13 +107,14 @@ class OrderController extends Controller
 
             //$grid->column('status_id', 'Статус')->select(Status::all()->pluck('name', 'id'));
 
-            $grid->column('status_id')->display(function ($id){
-                return '<span class="link link_order">'.Status::find($id)->name.'</span>';
-            });
 
             $grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
                 if($id != 0){
-                    return StatusRepairs::find($id)->name;
+                    $class = ["1"=>"badge label-danger", "2"=>"badge label-warning", "3"=>"badge label-success", "4"=>"badge label-primary",
+                        "5"=>"badge label-danger", "6"=>"badge label-warning", "7"=>"badge label-success", "8"=>"badge label-primary",
+                        "9"=>"badge label-danger", "10"=>"badge label-warning", "11"=>"badge label-success", "12"=>"badge label-primary",
+                        "13"=>"badge label-danger", "14"=>"badge label-warning"];
+                    return '<span class="'.$class[$id].'">'.StatusRepairs::find($id)->name.'</span>';
                 }
                 return '';
             });
@@ -215,11 +211,11 @@ class OrderController extends Controller
         });
     }
 
-    public function release(Request $request)
-    {
-        foreach (Order::find($request->get('ids')) as $post) {
-            $post->status = $request->get('action');
-            $post->save();
-        }
-    }
+    //public function release(Request $request)
+    //{
+        //foreach (Order::find($request->get('ids')) as $post) {
+          //  $post->status = $request->get('action');
+           // $post->save();
+        //}
+   // }
 }
