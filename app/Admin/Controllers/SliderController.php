@@ -63,8 +63,8 @@ class SliderController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Слайдер');
+            $content->description('на главной');
 
             $content->body($this->form());
         });

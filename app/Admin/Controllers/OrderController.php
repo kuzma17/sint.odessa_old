@@ -69,8 +69,8 @@ class OrderController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Заказы');
+            $content->description('');
 
             $content->body($this->form());
         });

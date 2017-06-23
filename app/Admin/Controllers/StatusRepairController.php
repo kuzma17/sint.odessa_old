@@ -59,8 +59,8 @@ class StatusRepairController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Статусы');
+            $content->description('ремонтов');
 
             $content->body($this->form());
         });

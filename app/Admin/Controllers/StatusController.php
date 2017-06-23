@@ -59,8 +59,8 @@ class StatusController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Статусы');
+            $content->description('заказов');
 
             $content->body($this->form());
         });

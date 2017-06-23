@@ -63,8 +63,8 @@ class StockController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Акции');
+            $content->description('');
 
             $content->body($this->form());
         });

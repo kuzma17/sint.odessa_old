@@ -63,8 +63,8 @@ class BannerController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Баннера');
+            $content->description('');
 
             $content->body($this->form());
         });

@@ -63,8 +63,8 @@ class MenuController extends Controller
     {
         return Admin::content(function (Content $content) {
 
-            $content->header('header');
-            $content->description('description');
+            $content->header('Меню');
+            $content->description('');
 
             $content->body($this->form());
         });
