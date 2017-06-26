@@ -3,7 +3,7 @@
     <div class="rcol-sm-6 col-md-9 col-lg-9">
         <h4>Заказ №{{ $order->id }}</h4>
 
-        @if($order->type_order_id == 2 && $order->type_status_id != 1 && $order->act_repair)
+        @if($order->type_order_id == 2 && $order->status_id != 1 && $order->act_repair)
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-1" data-toggle="tab">Заказ</a></li>
             <li><a href="#tab-2" data-toggle="tab">Акт ремонта</a></li>
@@ -15,7 +15,7 @@
             <div class="tab-pane fade in active" id="tab-1">
                 <table class="table table-striped">
                     <tbody>
-                    <tr><td >Статус:</td><td>{{ $order->status->name }}</td></tr>
+                    <tr><td >Статус:</td><td>{{ $order->status->name_site }}</td></tr>
                     <tr><td width="200">Тип услуги:</td><td>{{ $order->type_order->name }}</td></tr>
                     <tr><td>Тип пользователя:</td><td>{{ $order->type_client->name }}</td></tr>
                     <tr><td>@if( $order->type_client_id == 2 )Компания: @else ФИО: @endif</td><td>{{ $order->client_name }}</td></tr>
@@ -47,14 +47,14 @@
                     </tbody>
                 </table>
             </div>
-            @if($order->type_order_id == 2 && $order->type_status_id != 1 && $order->act_repair)
+            @if($order->type_order_id == 2 && $order->status_id != 1 && $order->act_repair)
             <div class="tab-pane fade" id="tab-2">
                 <form name="repair" method="post" action="/user/order/repair_save">
                     {{ csrf_field() }}
                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                 <table class="table table-striped">
                     <tbody>
-                    <tr><td>Статус ремонта:</td><td>{{ $order->act_repair->status_repair->name or ''}}</td></tr>
+                    <tr><td>Статус ремонта:</td><td>{{ $order->act_repair->status_repair->name_site or ''}}</td></tr>
                     <tr><td >Оборудование:</td><td>{{ $order->act_repair->device or ''}}</td></tr>
                     <tr><td width="200">Комплектация:</td><td>{{ $order->act_repair->set_device or ''}}</td></tr>
                     <tr><td>Описание неисправности<br>(со слов заказчика):</td><td>{{ $order->act_repair->text_defect or ''}}</td></tr>

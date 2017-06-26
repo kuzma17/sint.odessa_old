@@ -75,10 +75,9 @@ class StatusController extends Controller
     {
         return Admin::grid(Status::class, function (Grid $grid) {
 
-            $grid->column('id', 'ID')->sortable();
-            $grid->column('id_1c', 'ID_1C')->sortable();
+            $grid->column('id_1c', 'ID')->sortable();
             $grid->column('name', "status");
-            $grid->column('name_1c', "status 1C");
+            $grid->column('name_site', "status site");
             $grid->column('color', "color")->display(function($color){
                 return '<span class="badge" style="background-color: '.$color.'">'.$color.'</span>';
             });
@@ -97,10 +96,9 @@ class StatusController extends Controller
     {
         return Admin::form(Status::class, function (Form $form) {
 
-            $form->display('id', 'ID');
-            $form->text('id_1c', 'ID 1C')->rules('required');
+            $form->number('id_1c', 'ID')->rules('required');
             $form->text('name', 'status')->rules('required');
-            $form->text('name_1c', 'status 1C')->rules('required');
+            $form->text('name_site', 'status site')->rules('required');
             $form->color('color', 'color');
 
             $form->display('created_at', 'Created At');

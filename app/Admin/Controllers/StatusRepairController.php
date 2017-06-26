@@ -75,8 +75,12 @@ class StatusRepairController extends Controller
     {
         return Admin::grid(StatusRepairs::class, function (Grid $grid) {
 
-            $grid->column('id', 'ID')->sortable();
+            $grid->column('id_1c', 'ID')->sortable();
             $grid->column('name', "status");
+            $grid->column('name_site', "status site");
+            $grid->column('color', "color")->display(function($color){
+                return '<span class="badge" style="background-color: '.$color.'">'.$color.'</span>';
+            });
 
             $grid->created_at();
             $grid->updated_at();
@@ -92,8 +96,10 @@ class StatusRepairController extends Controller
     {
         return Admin::form(StatusRepairs::class, function (Form $form) {
 
-            $form->display('id', 'ID');
-            $form->text('name', 'status');
+            $form->number('id_1c', 'ID')->rules('required');
+            $form->text('name', 'status')->rules('required');
+            $form->text('name_site', 'status site')->rules('required');
+            $form->color('color', 'color');
 
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');

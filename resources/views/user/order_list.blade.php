@@ -18,7 +18,7 @@
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->type_order->name }}</td>
                     <td>{{ date_format($order->created_at, "d.m.Y") }}</td>
-                    <td>{{ $order->status->name }}</td>
+                    <td>{{ $order->status->name_site }}</td>
                     <td></td>
                 </tr>
              @endforeach

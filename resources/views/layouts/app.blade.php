@@ -22,7 +22,7 @@
     <![endif]-->
 
     <link href="/css/style.css" rel="stylesheet"/>
-    <link href="8768/css/app.css" rel="stylesheet"/>
+
 
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">

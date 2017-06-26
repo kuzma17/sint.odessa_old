@@ -93,7 +93,7 @@ class OrderController extends Controller
             $grid->column('client_name', 'Клиент');
             $grid->column('status_id', 'Статус заказа')->display(function($id){
                 $class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
-                return '<span class="'.$class[$id].'">'.Status::find($id)->name.'</span>';
+                return '<span class="badge" style="background-color: '.Status::find($id)->color.'">'.Status::find($id)->name.'</span>';
             });
 
             //$grid->column('status_id')->editable(function ($id){
@@ -114,7 +114,7 @@ class OrderController extends Controller
                         "5"=>"badge label-danger", "6"=>"badge label-warning", "7"=>"badge label-success", "8"=>"badge label-primary",
                         "9"=>"badge label-danger", "10"=>"badge label-warning", "11"=>"badge label-success", "12"=>"badge label-primary",
                         "13"=>"badge label-danger", "14"=>"badge label-warning"];
-                    return '<span class="'.$class[$id].'">'.StatusRepairs::find($id)->name.'</span>';
+                    return '<span class="badge" style="background-color: '.StatusRepairs::find($id)->color.'" >'.StatusRepairs::find($id)->name.'</span>';
                 }
                 return '';
             });
@@ -153,7 +153,7 @@ class OrderController extends Controller
                 $form->display('client_name', 'ФИО заказчика/Название компании');
                 $form->display('phone', 'телефон');
                 $form->display('address', 'адрес доставки');
-                $form->display('comment', 'коментарий');
+                $form->display('comment', 'комментарий');
 
                 $form->display('created_at', 'Created At');
                 $form->display('updated_at', 'Updated At');
@@ -175,10 +175,10 @@ class OrderController extends Controller
                 $form->select('act_repair.status_repair_id', 'Статус ремонта')->options(StatusRepairs::all()->pluck('name', 'id'));
                 $form->text('act_repair.device', 'ремонтируемое устройство');
                 $form->text('act_repair.set_device', 'комплектация');
-                $form->textarea('act_repair.text_defect', 'описание дефекта');
+                $form->textarea('act_repair.text_defect', 'описание деффекта');
                 $form->textarea('act_repair.diagnostic', 'диагностика');
-                $form->currency('act_repair.cost', 'стоимость')->symbol('грн.');
-                $form->textarea('act_repair.comment', 'коментарий');
+                $form->text('act_repair.cost', 'стоимость');
+                $form->textarea('act_repair.comment', 'комментарий');
                 $form->select('act_repair.user_consent_id', 'Ответ заказчика')->options(UserConsent::all()->pluck('name', 'id'));
             })->tab('История', function(Form $form){
                 $form->html(function($form){
