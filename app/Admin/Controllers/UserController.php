@@ -91,12 +91,6 @@ class UserController extends Controller
                 }
                 return "";
             });
-            $grid->column('profile.type_payment_id', 'тип оплаты')->display(function($id = 0){
-                if($id != 0){
-                    return TypePayment::find($id)->name;
-                }
-                return '';
-            });
             $grid->column('profile.phone', 'телефон');
 
             $grid->created_at();
@@ -107,8 +101,8 @@ class UserController extends Controller
                 $filter->like('name', 'Ник');
                 $filter->like('profile.client_name', 'Имя Клиента');
                 $filter->like('email', 'email');
+                $filter->like('profile.phone', 'телефон');
                 $filter->is('profile.type_client_id', 'Тип клиента')->select(TypeClient::all()->pluck('name', 'id'));
-                $filter->is('profile.type_payment_id', 'тип оплаты')->select(TypePayment::all()->pluck('name', 'id'));
             });
         });
     }

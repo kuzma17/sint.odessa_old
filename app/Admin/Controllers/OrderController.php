@@ -24,8 +24,8 @@ class OrderController extends Controller
 {
     use ModelForm;
 
-    protected $status ;
-    protected $status_repair;
+    //protected $status;
+    //protected $status_repair;
 
     /**
      * Index interface.
@@ -92,7 +92,6 @@ class OrderController extends Controller
             $grid->column('type_client.name', 'Тип клиента');
             $grid->column('client_name', 'Клиент');
             $grid->column('status_id', 'Статус заказа')->display(function($id){
-                $class = ["1"=>"label label-danger", "2"=>"label label-warning", "3"=>"label label-success", "4"=>"label label-primary"];
                 return '<span class="badge" style="background-color: '.Status::find($id)->color.'">'.Status::find($id)->name.'</span>';
             });
 
@@ -110,10 +109,6 @@ class OrderController extends Controller
 
             $grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
                 if($id != 0){
-                    $class = ["1"=>"badge label-danger", "2"=>"badge label-warning", "3"=>"badge label-success", "4"=>"badge label-primary",
-                        "5"=>"badge label-danger", "6"=>"badge label-warning", "7"=>"badge label-success", "8"=>"badge label-primary",
-                        "9"=>"badge label-danger", "10"=>"badge label-warning", "11"=>"badge label-success", "12"=>"badge label-primary",
-                        "13"=>"badge label-danger", "14"=>"badge label-warning"];
                     return '<span class="badge" style="background-color: '.StatusRepairs::find($id)->color.'" >'.StatusRepairs::find($id)->name.'</span>';
                 }
                 return '';
