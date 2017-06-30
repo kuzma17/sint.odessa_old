@@ -26,5 +26,6 @@ use App\Admin\Extensions\BadgeMenu;
 Encore\Admin\Form::forget(['map', 'editor']);
 Form::extend('ckeditor', CKEditor::class);
 
-//Admin::script(BadgeMenu::countItem());
-//Admin::script(BadgeMenu::countBrand());
+Admin::script(BadgeMenu::countUser());
+Admin::script(BadgeMenu::countOrder());
+Admin::script(BadgeMenu::countRepair());
