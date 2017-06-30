@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-06-20.
+    * Generated on 2017-06-29.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -44,9 +44,9 @@ namespace PHPSTORM_META {
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
-            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
+            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -165,9 +165,9 @@ namespace PHPSTORM_META {
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
-            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
+            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -286,9 +286,9 @@ namespace PHPSTORM_META {
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
-            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
+            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,
@@ -407,9 +407,9 @@ namespace PHPSTORM_META {
             'eloquence.parser' instanceof \Sofa\Eloquence\Searchable\ParserFactory,
             'Spatie\LaravelAnalytics\LaravelAnalytics' instanceof \Spatie\LaravelAnalytics\LaravelAnalytics,
             'blade.compiler' instanceof \Illuminate\View\Compilers\BladeCompiler,
-            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'translation.loader' instanceof \Illuminate\Translation\FileLoader,
             'translator' instanceof \Illuminate\Translation\Translator,
+            'validation.presence' instanceof \Illuminate\Validation\DatabasePresenceVerifier,
             'Illuminate\Broadcasting\BroadcastManager' instanceof \Illuminate\Broadcasting\BroadcastManager,
             'Illuminate\Contracts\Broadcasting\Broadcaster' instanceof \Illuminate\Broadcasting\Broadcasters\LogBroadcaster,
             'Illuminate\Bus\Dispatcher' instanceof \Illuminate\Bus\Dispatcher,

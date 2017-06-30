@@ -1,7 +1,7 @@
 @extends('layouts.container3')
 
 @section('slider')
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="border 1px solid #cccccc; margin-bottom: 10px">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="border: 1px solid #cccccc; margin-bottom: 10px">
         <ol class="carousel-indicators">
             @for($i = 0; $i < count($slider); $i++)
                 @if($i == 0)
@@ -35,7 +35,7 @@
     <h3>{{ $page->title }}</h3>
     {!! $page->content !!}
     @if(count($news) > 0)
-        <h4 style="color: royalblue" ><i class="fa fa-newspaper-o" aria-hidden="true"></i> Новости</h4>
+        <h4 style="color: royalblue" ><i class="fa fa-newspaper-o" aria-hidden="true"></i> Новости111</h4>
         <div style="background-color: #f2f2f2; padding: 10px">
         @foreach($news as $new)
             <div>
@@ -52,4 +52,5 @@
             </div>
     @endif
 	</div>
+
 @endsection

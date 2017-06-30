@@ -8,8 +8,8 @@
                 <th>№</th>
                 <th>вид работ</th>
                 <th>дата</th>
-                <th>статус</th>
-                <th></th>
+                <th>статус заказа</th>
+                <th>статус ремонта</th>
             </tr>
             </thead>
             <tbody>
@@ -19,7 +19,7 @@
                     <td>{{ $order->type_order->name }}</td>
                     <td>{{ date_format($order->created_at, "d.m.Y") }}</td>
                     <td>{{ $order->status->name_site }}</td>
-                    <td></td>
+                    <td>{{ $order->act_repair->status_repair->name or '' }}</td>
                 </tr>
              @endforeach
             </tbody>
