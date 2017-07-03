@@ -24,9 +24,6 @@ class OrderController extends Controller
 {
     use ModelForm;
 
-    //protected $status;
-    //protected $status_repair;
-
     /**
      * Index interface.
      *
@@ -86,8 +83,8 @@ class OrderController extends Controller
     {
         return Admin::grid(Order::class, function (Grid $grid) {
 
-            //$grid->model()->orderBy('id', 'desc');
-            $grid->model()->where('type_order_id', 1)->orderBy('id', 'desc');
+            $grid->model()->orderBy('id', 'desc');
+            //$grid->model()->where('type_order_id', 1)->orderBy('id', 'desc');
             $grid->column('id', 'ID')->sortable();
             $grid->column('type_order.name', 'Тип услуги');
             $grid->column('type_client.name', 'Тип клиента');
@@ -95,32 +92,32 @@ class OrderController extends Controller
             $grid->column('status_id', 'Статус заказа')->display(function($id){
                 return '<span class="badge" style="background-color: '.Status::find($id)->color.'">'.Status::find($id)->name.'</span>';
             });
-
-            //$grid->column('status_id')->editable(function ($id){
-            //    $t = '<select>';
-            //    foreach (Status::all() as $st){
-             //       $t .= '<option>'.$st->name.'</option>';
-           //     }
-           //     $t .= '</select>';
-             //   return $t;
-          //  });
-
-            //$grid->column('status_id', 'Статус')->select(Status::all()->pluck('name', 'id'));
-
-
-            //$grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
-              //  if($id != 0){
-             //       return '<span class="badge" style="background-color: '.StatusRepairs::find($id)->color.'" >'.StatusRepairs::find($id)->name.'</span>';
-             //   }
-             //   return '';
-           // });
+            $grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
+                if($id != 0){
+                    return '<span class="badge" style="background-color: '.StatusRepairs::find($id)->color.'" >'.StatusRepairs::find($id)->name.'</span>';
+                }
+                return '';
+            });
 
             $grid->created_at();
             $grid->updated_at();
             $grid->disableCreation();
             $grid->actions(function($actions){
                 $actions->disableDelete();
+                $actions->disableEdit();
             });
+
+            $grid->column('type_order_id', ' ')->display(function ($type) {
+                if($type == 1){
+                    $url = '/admin/orders/'.$this->id.'/edit';
+                }else{
+                    $url = '/admin/orderrepairs/'.$this->id.'/edit';
+                }
+
+                return '<a href="'.$url.'"><i class="fa fa-edit"></i></a>';
+
+            });
+
 
             $grid->filter(function ($filter) {
                 $filter->useModal();
@@ -170,58 +167,13 @@ class OrderController extends Controller
                 $form->display('house', 'дом');
                 $form->display('house_block', 'корпус');
                 $form->display('office', 'номер офиса, квартиры');
-            //})->tab('Параметры ремонта', function (Form $form) {
-             //       $form->select('act_repair.status_repair_id', 'Статус ремонта')->options(StatusRepairs::all()->pluck('name', 'id'));
-                    //$form->select('act_repair.status_repair_id', 'Статус ремонта')->options(function () {
-                    //    $arr[0] = ' ';
-                    //    foreach (StatusRepairs::all() as $status) {
-                    //        $arr[$status->id] = $status->name;
-                    //    }
-                    //    return $arr;
-                    //});
-              //      $form->text('act_repair.device', 'ремонтируемое устройство');
-             //       $form->text('act_repair.set_device', 'комплектация');
-              //      $form->textarea('act_repair.text_defect', 'описание деффекта');
-            //        $form->textarea('act_repair.diagnostic', 'диагностика');
-             //       $form->text('act_repair.cost', 'стоимость');
-            //        $form->textarea('act_repair.comment', 'комментарий');
-             //       $form->select('act_repair.user_consent_id', 'Ответ заказчика')->options(UserConsent::all()->pluck('name', 'id'));
             })->tab('История', function(Form $form){
                 $form->html(function($form){
                     $histories = History::where('order_id', $form->model()->id)->get();
-                    //var_dump($form);
                     return view('admin.history', ['histories' => $histories]);
                 });
 
             });
-
-            //$form->saving(function ($form){
-
-            //    $this->status = Order::find($form->id)->status_id;
-           //     $this->status_repair = ActRepair::where('order_id', $form->id)->first()->status_repair_id;
-           // });
-
-            //$form->saved(function($form){
-
-             //   $status = $form->status_id;
-             //   $status_repair = $form->act_repair['status_repair_id'];
-
-               // $error = new MessageBag([
-              //      'title'   => 'Order frm: '.$this->status.' to: '.$status,
-               //     'message' => 'Repair frm: '.$this->status_repair.' to: '.$status_repair,
-             //   ]);
-
-           //     return back()->with(compact('error'));
-//
-            //});
         });
     }
-
-    //public function release(Request $request)
-    //{
-        //foreach (Order::find($request->get('ids')) as $post) {
-          //  $post->status = $request->get('action');
-           // $post->save();
-        //}
-   // }
 }

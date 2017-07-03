@@ -91,7 +91,7 @@ return [
     /*
      * By setting this option to open or close operation log in laravel-admin.
      */
-    'operation_log'   => false,
+    'operation_log'   => true,
 
     /*
     |---------------------------------------------------------|

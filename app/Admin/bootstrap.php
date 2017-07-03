@@ -28,4 +28,3 @@ Form::extend('ckeditor', CKEditor::class);
 
 Admin::script(BadgeMenu::countUser());
 Admin::script(BadgeMenu::countOrder());
-Admin::script(BadgeMenu::countRepair());

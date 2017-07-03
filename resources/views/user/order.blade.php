@@ -3,15 +3,15 @@
     <div class="rcol-sm-6 col-md-9 col-lg-9">
         <h4>Заказ №{{ $order->id }}</h4>
 
-        @if($order->type_order_id == 2 && $order->status_id != 1 && $order->act_repair)
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-1" data-toggle="tab">Заказ</a></li>
-            <li><a href="#tab-2" data-toggle="tab">Акт ремонта</a></li>
+            @if($order->type_order_id == 2 && $order->status_id != 1 && $order->act_repair)
+                <li><a href="#tab-2" data-toggle="tab">Акт ремонта</a></li>
+            @endif
             <li><a href="#tab-3" data-toggle="tab">История</a></li>
         </ul>
 
         <div class="tab-content">
-                @endif
             <div class="tab-pane fade in active" id="tab-1">
                 <table class="table table-striped">
                     <tbody>
@@ -75,6 +75,8 @@
                 </form>
 
             </div>
+            @endif
+
                 <div class="tab-pane fade" id="tab-3">
                     <?php
                             $histories = \App\History::where('order_id', $order->id)->get();
@@ -98,7 +100,6 @@
                 </div>
 
         </div>
-            @endif
 
     </div>
 @endsection

@@ -12,6 +12,8 @@ use App\Order;
 use App\Status;
 use App\StatusRepairs;
 use App\User;
+use Encore\Admin\Auth\Database\Administrator;
+use Encore\Admin\Facades\Admin;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -52,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
             if($order->status_id != $this->status_order){
                 $history = new History();
                 $history->order_id = $order->id;
+                $history->admin_user = Admin::user()->name;
                 $old_status = Status::find($this->status_order)->name_site;
                 $new_status = Status::find($order->status_id)->name_site;
                 $history->status_info = 'Изменен статус заказа: '.$old_status.' -> '.$new_status;
@@ -69,6 +72,7 @@ class AppServiceProvider extends ServiceProvider
             if($repair->status_repair_id != $this->status_repair){
                 $history = new History();
                 $history->order_id = $repair->order_id;
+                $history->admin_user = Admin::user()->name;
                 $old_status_repair = StatusRepairs::find($this->status_repair)->name_site;
                 $new_status_repair= StatusRepairs::find($repair->status_repair_id)->name_site;
                 $history->status_info = 'Изменен статус ремонта: '.$old_status_repair.' -> '.$new_status_repair;

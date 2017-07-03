@@ -20,7 +20,7 @@ class ActRepair extends Model
     }
 
     public function is_open(){
-        if($this->status_repair_id == 3 || $this->status_repair_id == 13){
+        if($this->status_repair_id == 3 || $this->status_repair_id == 2){
             return true;
         }
         return false;

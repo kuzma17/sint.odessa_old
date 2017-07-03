@@ -86,18 +86,6 @@ class OrderRepairController extends Controller
                 return '<span class="badge" style="background-color: '.Status::find($id)->color.'">'.Status::find($id)->name.'</span>';
             });
 
-            //$grid->column('status_id')->editable(function ($id){
-            //    $t = '<select>';
-            //    foreach (Status::all() as $st){
-            //       $t .= '<option>'.$st->name.'</option>';
-            //     }
-            //     $t .= '</select>';
-            //   return $t;
-            //  });
-
-            //$grid->column('status_id', 'Статус')->select(Status::all()->pluck('name', 'id'));
-
-
             $grid->column('act_repair.status_repair_id', 'Статус ремонта')->display(function($id = 0){
                 if($id != 0){
                     return '<span class="badge" style="background-color: '.StatusRepairs::find($id)->color.'" >'.StatusRepairs::find($id)->name.'</span>';
@@ -158,7 +146,7 @@ class OrderRepairController extends Controller
                 $form->textarea('act_repair.diagnostic', 'диагностика');
                 $form->text('act_repair.cost', 'стоимость');
                 $form->textarea('act_repair.comment', 'комментарий');
-                $form->select('act_repair.user_consent_id', 'Ответ заказчика')->options(UserConsent::all()->pluck('name', 'id'));
+                $form->select('act_repair.user_consent_id', 'Ответ заказчика')->options(UserConsent::all()->pluck('name', 'id'))->readOnly();
             })->tab('История', function(Form $form){
                 $form->html(function($form){
                     $histories = History::where('order_id', $form->model()->id)->get();
