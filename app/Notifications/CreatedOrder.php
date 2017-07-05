@@ -11,14 +11,16 @@ class CreatedOrder extends Notification
 {
     use Queueable;
 
+    private $order;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -41,11 +43,18 @@ class CreatedOrder extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('У Вас новый заказ!')
-            ->greeting('Здравствуйте!')
-            ->line('Вы получили это письмо, потому что для вашей учетной записи был сформирован новый заказ.')
+            ->subject('Новый заказ № '.$this->order->id)
+            ->greeting('Здравствуйте, '.$this->order->user->name.'!')
+            ->line('Вы оформили заказ № '.$this->order->id.'.')
+            ->line('В ближайшее время Ваш заказ поступит в обработку')
+            ->line('Детали заказа:')
+            ->line('Тип услуги: '.$this->order->type_order->name.'.')
+            ->line('Телефон: '.$this->order->phone.'.')
+            ->line('Адрес доставки: '.$this->order->address.'.')
+            ->line('Комментарий: '.$this->order->comment.'.')
             ->action('Перейти на сайт', url('/'))
-            ->line('Если вы не создавали новый заказ то можете проигнорировать это письмо.');
+            ->line('Как с нами связаться:')
+            ->line('Как с нами связаться:');
     }
 
     /**

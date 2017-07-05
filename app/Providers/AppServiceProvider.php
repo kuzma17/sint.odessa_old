@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         User::created(function($user){
-            $user->notify(new RegisterUser()); // Send email
+            $user->notify(new RegisterUser($user)); // Send email
         });
 
        Order::created(function($order){
@@ -43,7 +43,7 @@ class AppServiceProvider extends ServiceProvider
            $history->status_info = 'Создан новый заказ № '.$order->id;
            $history->save();
 
-           $order->notify(new CreatedOrder()); // Send email
+           $order->notify(new CreatedOrder($order)); // Send email
        });
 
         Order::updating(function($order){
@@ -60,7 +60,7 @@ class AppServiceProvider extends ServiceProvider
                 $history->status_info = 'Изменен статус заказа: '.$old_status.' -> '.$new_status;
                 $history->save();
 
-                $order->notify(new StatusOrder($new_status)); // Send email
+                $order->notify(new StatusOrder($order, $new_status)); // Send email
             }
         });
 
@@ -78,7 +78,9 @@ class AppServiceProvider extends ServiceProvider
                 $history->status_info = 'Изменен статус ремонта: '.$old_status_repair.' -> '.$new_status_repair;
                 $history->save();
 
-                $repair->notify(new StatusOrder($new_status_repair)); // Send email
+                $order = Order::find($repair->order_id);
+
+                $repair->notify(new StatusOrder($order, $new_status_repair)); // Send email
             }
         });
     }

@@ -11,14 +11,16 @@ class RegisterUser extends Notification
 {
     use Queueable;
 
+    private $user;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -41,11 +43,14 @@ class RegisterUser extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Поздравляем с успешеой регистрацией!')
-            ->greeting('Здравствуйте!')
-            ->line('Вы получили это письмо, потому что были зарегистрированны на нашем сайте.')
+            ->subject('Поздравляем с успешной регистрацией!')
+            ->greeting('Здравствуйте, '.$this->user->name.'!')
+            ->line('Вы получили это письмо, потому что были зарегистрированы на нашем сайте.')
+            ->line('Ваш логин: '.$this->user->email)
             ->action('Перейти на сайт', url('/'))
-            ->line('Если вы не регистрировались то можете проигнорировать это письмо.');
+            ->line('Если вы не регистрировались, то можете проигнорировать это письмо.')
+            ->line('Как с нами связаться:')
+            ->line('Как с нами связаться:');
 
     }
 
