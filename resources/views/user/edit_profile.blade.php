@@ -24,7 +24,7 @@
                     <label id="name_account" for="phone" class="col-md-3 control-label">@if($user->is_company(old('type_client'))) Компания @else ФИО @endif<span class="red">*</span></label>
 
                     <div class="col-md-9">
-                        <input id="phone" type="text" class="form-control" name="client_name" value="{{ $user->profile->client_name or '' }}" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && $user->is_company(old('type_client'))) Краткое наименование организации @else  Фамилия Имя Отчество @endif">
+                        <input id="phone" type="text" class="form-control" name="client_name" value="@if(old()){{ old('client_name') }}@else{{ $user->profile->client_name or '' }}@endif" @if(isset($user->profile->client_name)) readonly @endif placeholder="@if(!old() && $user->is_company(old('type_client'))) Краткое наименование организации @else  Фамилия Имя Отчество @endif">
 
                         @if ($errors->has('client_name'))
                             <span class="help-block">

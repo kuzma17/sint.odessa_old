@@ -81,7 +81,10 @@ class UserController extends Controller
             $grid->column('profile.client_name', 'Имя');
             $grid->column('email','Email');
             $grid->column('avatar.avatar', 'аватар')->display(function ($img){
-                return '<img src="/upload/'.$img.'" style="width:60px; height:60px">';
+                if($img) {
+                    return '<img src="/upload/' . $img . '" style="width:60px; height:60px">';
+                }
+                return '<img src="/images/no_img.png" style="width:60px; height:60px">';
             });
             $grid->column('profile.type_client_id', 'тип клиента')->display(function($id = 0){
                 if($id != 0){
