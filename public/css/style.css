@@ -592,3 +592,9 @@ h5{
 .search_list img{
     width:100px;
 }
+
+.error_login_message{
+    background-color: white;
+    color: red;
+    padding: 5px;
+}

@@ -9,8 +9,8 @@
             <li><a href="{{ url('/info') }}"><i class="fa fa-info-circle"></i> Как сделать заказ</a></li>
             <li><a href="{{ url('/delivery') }}"><i class="fa fa-truck" aria-hidden="true"></i> Доставка</a></li>
             @if (Auth::guest())
-                <li class="dropdown">
-                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <li class="dropdown noclose">
+                    <a id="drop1" href="" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i> Вход</a>
 
                     <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
@@ -34,7 +34,7 @@
                                             <label class="sr-only" for="email">Email</label>
                                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
                                             @if ($errors->has('email'))
-                                                <span class="help-block">
+                                                <span class="help-block error_login_message">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                             @endif
@@ -43,7 +43,7 @@
                                             <label class="sr-only" for="password">Пароль</label>
                                             <input id="password" type="password" class="form-control" name="password" placeholder="Пароль" required>
                                             @if ($errors->has('password'))
-                                                <span class="help-block">
+                                                <span class="help-block error_login_message">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                             @endif
@@ -52,11 +52,11 @@
                                         <div class="form-group">
                                             <button type="submit" class="btn btn-success btn-block">Вход</button>
                                         </div>
-                                        <div class="checkbox">
+                                        <!-- <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="remember"> Запомнить пароль
                                             </label>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
                                 <div class="bottom text-center">

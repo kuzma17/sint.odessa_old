@@ -58,3 +58,8 @@ $('.type_user').click(function () {
     $('.client_company_order').animate({height: "hide"}, 500);
 });
 
+
+if ($('.error_login_message').length > 0) {
+    $('#login-dp').show();
+}
+

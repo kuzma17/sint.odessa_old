@@ -36,6 +36,9 @@
             <li><a href="{{ url('/user/password') }}" >Изменить пароль</a></li>
             <li><a href="#" @if(URL::current() != url('/order')) data-toggle="modal" data-target="#orderModal" @endif>Сделать заказ</a></li>
             <li><a href="{{ url('/user/orders') }}" >Мои заказы</a></li>
+            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out"></i> Выход
+                </a></li>
         </ul>
     </div>
        @yield('profile')

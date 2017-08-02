@@ -168,7 +168,7 @@ return [
         */
 
         // Develop
-       // Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         // Socialise
@@ -179,7 +179,7 @@ return [
         // Search
         Sofa\Eloquence\ServiceProvider::class,
 
-        Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
+        //Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
 
         Encore\Admin\Providers\AdminServiceProvider::class,
 
@@ -240,13 +240,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        //'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
 
         //'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
 
-        'LaravelAnalytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
+        //'LaravelAnalytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
     ],
 
 ];

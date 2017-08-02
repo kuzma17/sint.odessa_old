@@ -100,7 +100,8 @@ class UserProfileController extends Controller
             //$user->save();
             $profile->save();
             Session::flash('ok_message', 'Данные Вашего профиля успешно сохранены.');
-                return $this->profile();
+                //return $this->profile();
+                return redirect('/user?act=save');
         }else {
                 return view('user.edit_profile', ['user' => $user]);
         }
