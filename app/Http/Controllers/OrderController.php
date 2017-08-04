@@ -197,8 +197,8 @@ class OrderController extends Controller
         }
 
         $adapt_data = [
-            'dataArray' => json_encode( $array_order, JSON_UNESCAPED_UNICODE),
-            'dateArray' => json_encode( $array_date, JSON_UNESCAPED_UNICODE),
+            'dataArray' => $array_order,
+            'dateArray' => $array_date
             ];
         return $adapt_data;
     }

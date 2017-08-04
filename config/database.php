@@ -66,6 +66,21 @@ return [
             'engine' => null,
         ],
 
+        'tracker' => [
+            'driver' => 'mysql',
+            'host' => env('DB_STAT_HOST', 'localhost'),
+            'port' => env('DB_STAT_PORT', '3306'),
+            'database' => env('DB_STAT_DATABASE', 'forge'),
+            'username' => env('DB_STAT_USERNAME', 'forge'),
+            'password' => env('DB_STAT_PASSWORD', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'strict' => false,    // to avoid problems on some MySQL installs
+            'engine' => null,
+
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),

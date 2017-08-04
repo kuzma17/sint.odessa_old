@@ -18,6 +18,7 @@ use Encore\Admin\Widgets\Collapse;
 use Encore\Admin\Widgets\InfoBox;
 use Encore\Admin\Widgets\Tab;
 use Encore\Admin\Widgets\Table;
+use Tracker;
 
 class HomeController extends Controller
 {
@@ -29,73 +30,85 @@ class HomeController extends Controller
             $content->description('Description...');
 
             $content->row(function ($row) {
-                $row->column(3, new InfoBox('New Users', 'users', 'aqua', '/admin/users', '1024'));
-                $row->column(3, new InfoBox('New Orders', 'shopping-cart', 'green', '/admin/orders', '150%'));
-                $row->column(3, new InfoBox('Articles', 'book', 'yellow', '/admin/articles', '2786'));
-                $row->column(3, new InfoBox('Documents', 'file', 'red', '/admin/files', '698726'));
+                $row->column(3, new InfoBox('Новых клиентов', 'users', 'aqua', '/admin/users', \App\Http\Controllers\UserProfileController::count_users()));
+                $row->column(3, new InfoBox('Новых заказов', 'shopping-cart', 'green', '/admin/orders',  \App\Http\Controllers\OrderController::count_new_orders()));
+                $row->column(3, new InfoBox('Всего клиентов', 'users', 'yellow', '/admin/users', \App\User::count() ));
+                $row->column(3, new InfoBox('Всего заказов', 'shopping-cart', 'red', '/admin/orders', \App\Order::count()));
             });
 
             $content->row(function (Row $row) {
 
                 $row->column(6, function (Column $column) {
 
-                    $tab = new Tab();
+                    $sessions = Tracker::sessions(60 * 24 * 30);
+                    $views = [];
+                    foreach ($sessions as $session) {
+                        $key = $session->updated_at->format("d.m");
+                        if(array_key_exists($key, $views)){
+                            $views[$key][1] = $views[$key][1] + 1;
+                        }else{
+                            $views[$key] = [$key, 1];
+                        }
+                    }
 
-                    $pie = new Pie([
-                        ['Stracke Ltd', 450], ['Halvorson PLC', 650], ['Dicki-Braun', 250], ['Russel-Blanda', 300],
-                        ['Emmerich-O\'Keefe', 400], ['Bauch Inc', 200], ['Leannon and Sons', 250], ['Gibson LLC', 250],
-                    ]);
+                    asort($views);
 
-                    $tab->add('Pie', $pie);
-                    $tab->add('Table', new Table());
-                    $tab->add('Text', 'blablablabla....');
+                    $arr_views = [];
+                    $arr_date = [];
+                    foreach ($views  as $view){
+                        $arr_views[] = $view[0];
+                        $arr_date[] = $view[1];
+                    }
+                    $arr = [
+                        'dataArray' => json_encode( $arr_date, JSON_UNESCAPED_UNICODE),
+                        'dateArray' => json_encode( $arr_views, JSON_UNESCAPED_UNICODE),
+                    ];
 
-                    $tab->dropDown([['Orders', '/admin/orders'], ['administrators', '/admin/administrators']]);
-                    $tab->title('Tabs');
+                   $column->append((new Box('Визиты за последние 30 дней', new Line($arr)))->removable()->collapsable()->style('danger'));
 
-                    $column->append($tab);
+                    $arr_path = [];
+                    foreach (\PragmaRX\Tracker\Vendor\Laravel\Models\Path::all() as $path){
+                        if(strstr($path->path, '_') || strstr($path->path, 'admin')  || strstr($path->path, 'order-modal')){
+                            continue;
+                        }
+                        $count_path = \PragmaRX\Tracker\Vendor\Laravel\Models\Log::where('path_id', $path->id)->count();
+                        if($count_path > 10){
+                            $arr_path[] = [$path->path, $count_path];
+                        }
+                    }
 
-                    $collapse = new Collapse();
+                    $column->append((new Box('Наиболее посещяемые страницы', new Pie($arr_path)))->removable()->collapsable()->style('info'));
 
-                    $bar = new Bar(
-                        ["January", "February", "March", "April", "May", "June", "July"],
-                        [
-                            ['First', [40,56,67,23,10,45,78]],
-                            ['Second', [93,23,12,23,75,21,88]],
-                            ['Third', [33,82,34,56,87,12,56]],
-                            ['Forth', [34,25,67,12,48,91,16]],
-                        ]
-                    );
-                    $collapse->add('Bar', $bar);
-                    $collapse->add('Orders', new Table());
-                    $column->append($collapse);
-
-                    $doughnut = new Doughnut([
-                        ['Chrome', 700],
-                        ['IE', 500],
-                        ['FireFox', 400],
-                        ['Safari', 600],
-                        ['Opera', 300],
-                        ['Navigator', 100],
-                    ]);
-                    $column->append((new Box('Doughnut', $doughnut))->removable()->collapsable()->style('info'));
                 });
 
                 $row->column(6, function (Column $column) {
 
-                    $column->append(new Box('Radar', new Radar()));
+                    $sessions = Tracker::sessions(60 * 24 * 30);
+                    $browsers = [];
+                    foreach ($sessions as $session) {
+                        if(array_key_exists($session->agent->browser, $browsers)){
+                            $browsers[$session->agent->browser][1] = $browsers[$session->agent->browser][1] + 1;
+                        }else{
+                            $browsers[$session->agent->browser] = [$session->agent->browser, 1];
+                        }
+                    }
+                    $arr_browsers = [];
+                    foreach ($browsers  as $browser){
+                        $arr_browsers[] = [$browser[0], $browser[1]];
+                    }
 
-                    $polarArea = new PolarArea([
-                        ['Red', 300],
-                        ['Blue', 450],
-                        ['Green', 700],
-                        ['Yellow', 280],
-                        ['Black', 425],
-                        ['Gray', 1000],
-                    ]);
-                    $column->append((new Box('Polar Area', $polarArea))->removable()->collapsable());
+                    $doughnut = new Doughnut($arr_browsers);
+                    $column->append((new Box('Браузеры', $doughnut))->removable()->collapsable()->style('info'));
 
-                    $column->append((new Box('Line', new Line()))->removable()->collapsable()->style('danger'));
+
+
+                    $orders = \App\Http\Controllers\OrderController::count_day_orders();
+
+                   // $column->append((new Box('Заказы за 30 дней', new Line($orders)))->removable()->collapsable()->style('danger'));
+
+                    $column->append((new Box('Заказы за 30 дней', new Bar($orders['dateArray'], [['bar', $orders['dataArray']]])))->removable()->collapsable()->style('success'));
+
+
                 });
 
             });

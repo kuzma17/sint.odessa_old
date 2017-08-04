@@ -4,29 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ \App\Settings::first()->title }}</title>
-
     <meta name="keywords" content="{{ \App\Settings::first()->keywords }}@if(isset($page) && $page->keywords != ''), {{ $page->keywords }}@endif">
     <!-- Styles -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" >
-
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-
     <link href="/css/style.css" rel="stylesheet"/>
-
-
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
-
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -194,7 +186,7 @@
 </div>
 <div class="copyright-wrapper">
     <div class="container">
-        <div class="copyright">Copyright 2016 @ Designed by <a href="mailto:v.kuzma@mail.ru">Kuzma</a></div>
+        <div class="copyright">Copyright 2017 @ Designed by <a href="mailto:v.kuzma@mail.ru">Kuzma</a></div>
     </div>
 </div>
 

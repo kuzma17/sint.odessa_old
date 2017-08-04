@@ -181,6 +181,8 @@ return [
 
         //Spatie\LaravelAnalytics\LaravelAnalyticsServiceProvider::class,
 
+        PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
+
         Encore\Admin\Providers\AdminServiceProvider::class,
 
         /*
@@ -247,6 +249,7 @@ return [
         //'YandexMetrika' => Alexusmai\YandexMetrika\YandexMetrikaFacade::class,
 
         //'LaravelAnalytics' => Spatie\LaravelAnalytics\LaravelAnalyticsFacade::class,
+        'Tracker' => PragmaRX\Tracker\Vendor\Laravel\Facade::class,
     ],
 
 ];
