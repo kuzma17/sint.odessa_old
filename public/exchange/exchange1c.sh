@@ -15,14 +15,14 @@ table_user='test_users'
 table_user_profile='test_user_profiles'
 table_order='orders'
 
-export_user='/home/kuzma/Worck/exchange1c/files/1c_user.csv'
-export_order='/home/kuzma/Worck/exchange1c/files/1c_order.csv'
-import_user='/home/kuzma/Worck/exchange1c/files/site_user.csv'
-import_order='/home/kuzma/Worck/exchange1c/files/site_order.csv'
+export_user='/var/www/sint.odessa/public/exchange/files/1c_user.csv'
+export_order='/var/www/sint.odessa/public/exchange/files/1c_order.csv'
+import_user='/var/www/sint.odessa/public/exchange/files/site_user.csv'
+import_order='/var/www/sint.odessa/public/exchange/files/site_order.csv'
 
 # Export to 1C
-mysql -u$USER -p$PASSWD -D$BASE -e "SELECT ${table_user}.id,1c_id,type_client_id,type_payment_id,client_name,address,phone,user_company,company_full,edrpou,inn,code_index,region,area,city,street,house,house_block,office,${table_user_profile}.created_at,${table_user_profile}.updated_at,name,email FROM ${table_user_profile} LEFT JOIN ${table_user} ON ${table_user_profile}.user_id = ${table_user}.id WHERE ${table_user}.updated_at > '$date_old' OR ${table_user_profile}.updated_at > '$date_old'" | sed "s/'/\'/;s/\t/$quotes$delimiter$quotes/g;s/^/$quotes/;s/$/$quotes/;s/\n//g" > ${export_user}
-mysql -u$USER -p$PASSWD -D$BASE -e "SELECT id,user_id,1c_id,1cuser_id,type_order_id,type_client_id,client_name,user_company,phone,address,type_payment_id,company_full,edrpou,inn,code_index,region,area,city,street,house,house_block,office,comment,status_id,created_at,updated_at FROM ${table_order} WHERE created_at > '$date_old'" | sed "s/'/\'/;s/\t/$quotes$delimiter$quotes/g;s/^/$quotes/;s/$/$quotes/;s/\n//g" > ${export_order}
+mysql -u$USER -p$PASSWD -D$BASE -e "SELECT ${table_user}.id,1c_id,type_client_id,type_payment_id,client_name,delivery_town,delivery_street,delivery_house,delivery_house_block,delivery_office,phone,user_company,company_full,edrpou,inn,code_index,region,area,city,street,house,house_block,office,${table_user_profile}.created_at,${table_user_profile}.updated_at,name,email FROM ${table_user_profile} LEFT JOIN ${table_user} ON ${table_user_profile}.user_id = ${table_user}.id WHERE ${table_user}.updated_at > '$date_old' OR ${table_user_profile}.updated_at > '$date_old'" | sed "s/'/\'/;s/\t/$quotes$delimiter$quotes/g;s/^/$quotes/;s/$/$quotes/;s/\n//g" > ${export_user}
+mysql -u$USER -p$PASSWD -D$BASE -e "SELECT id,user_id,1c_id,1cuser_id,type_order_id,type_client_id,client_name,user_company,phone,delivery_town,delivery_street,delivery_house,delivery_house_block,delivery_office,type_payment_id,company_full,edrpou,inn,code_index,region,area,city,street,house,house_block,office,comment,status_id,created_at,updated_at FROM ${table_order} WHERE created_at > '$date_old'" | sed "s/'/\'/;s/\t/$quotes$delimiter$quotes/g;s/^/$quotes/;s/$/$quotes/;s/\n//g" > ${export_order}
 
 # Import from 1C
 readarray array < ${import_user}
@@ -32,30 +32,34 @@ do
     if [ "${id_str}" ]
         then
 		mysql -u$USER -p$PASSWD -D$BASE -e "UPDATE ${table_user} SET
-		    name = $(echo ${array[$a]} | awk -F ';' '{print $22}'),
-		    email = $(echo ${array[$a]} | awk -F ';' '{print $23}')
+		    name = $(echo ${array[$a]} | awk -F ';' '{print $26}'),
+		    email = $(echo ${array[$a]} | awk -F ';' '{print $27}')
 		WHERE id = ${id_str};
         UPDATE ${table_user_profile} SET
             1c_id = $(echo ${array[$a]} | awk -F ';' '{print $2}'),
             type_client_id = $(echo ${array[$a]} | awk -F ';' '{print $3}'),
             type_payment_id = $(echo ${array[$a]} | awk -F ';' '{print $4}'),
             client_name = $(echo ${array[$a]} | awk -F ';' '{print $5}'),
-            address = $(echo ${array[$a]} | awk -F ';' '{print $6}'),
-            phone = $(echo ${array[$a]} | awk -F ';' '{print $7}'),
-            user_company = $(echo ${array[$a]} | awk -F ';' '{print $8}'),
-            company_full = $(echo ${array[$a]} | awk -F ';' '{print $9}'),
-            edrpou = $(echo ${array[$a]} | awk -F ';' '{print $10}'),
-            inn = $(echo ${array[$a]} | awk -F ';' '{print $11}'),
-            code_index = $(echo ${array[$a]} | awk -F ';' '{print $12}'),
-            region = $(echo ${array[$a]} | awk -F ';' '{print $13}'),
-            area = $(echo ${array[$a]} | awk -F ';' '{print $14}'),
-            city = $(echo ${array[$a]} | awk -F ';' '{print $15}'),
-            street = $(echo ${array[$a]} | awk -F ';' '{print $16}'),
-            house = $(echo ${array[$a]} | awk -F ';' '{print $17}'),
-            house_block = $(echo ${array[$a]} | awk -F ';' '{print $18}'),
-            office = $(echo ${array[$a]} | awk -F ';' '{print $19}'),
-            created_at = $(echo ${array[$a]} | awk -F ';' '{print $20}'),
-            updated_at = $(echo ${array[$a]} | awk -F ';' '{print $21}')
+            delivery_town = $(echo ${array[$a]} | awk -F ';' '{print $6}'),
+            delivery_street = $(echo ${array[$a]} | awk -F ';' '{print $7}'),
+            delivery_house = $(echo ${array[$a]} | awk -F ';' '{print $8}'),
+            delivery_house_block = $(echo ${array[$a]} | awk -F ';' '{print $9}'),
+            delivery_office = $(echo ${array[$a]} | awk -F ';' '{print $10}'),
+            phone = $(echo ${array[$a]} | awk -F ';' '{print $11}'),
+            user_company = $(echo ${array[$a]} | awk -F ';' '{print $12}'),
+            company_full = $(echo ${array[$a]} | awk -F ';' '{print $13}'),
+            edrpou = $(echo ${array[$a]} | awk -F ';' '{print $14}'),
+            inn = $(echo ${array[$a]} | awk -F ';' '{print $15}'),
+            code_index = $(echo ${array[$a]} | awk -F ';' '{print $16}'),
+            region = $(echo ${array[$a]} | awk -F ';' '{print $17}'),
+            area = $(echo ${array[$a]} | awk -F ';' '{print $18}'),
+            city = $(echo ${array[$a]} | awk -F ';' '{print $19}'),
+            street = $(echo ${array[$a]} | awk -F ';' '{print $20}'),
+            house = $(echo ${array[$a]} | awk -F ';' '{print $21}'),
+            house_block = $(echo ${array[$a]} | awk -F ';' '{print $22}'),
+            office = $(echo ${array[$a]} | awk -F ';' '{print $23}'),
+            created_at = $(echo ${array[$a]} | awk -F ';' '{print $24}'),
+            updated_at = $(echo ${array[$a]} | awk -F ';' '{print $25}')
         WHERE user_id = ${id_str}"
 	else
 	    # Insert data
@@ -82,23 +86,27 @@ do
                     client_name = $(echo ${array[$a]} | awk -F ';' '{print $7}'),
                     user_company = $(echo ${array[$a]} | awk -F ';' '{print $8}'),
                     phone = $(echo ${array[$a]} | awk -F ';' '{print $9}'),
-                    address = $(echo ${array[$a]} | awk -F ';' '{print $10}'),
-                    type_payment_id = $(echo ${array[$a]} | awk -F ';' '{print $11}'),
-                    company_full = $(echo ${array[$a]} | awk -F ';' '{print $12}'),
-                    edrpou = $(echo ${array[$a]} | awk -F ';' '{print $13}'),
-                    inn = $(echo ${array[$a]} | awk -F ';' '{print $14}'),
-                    code_index = $(echo ${array[$a]} | awk -F ';' '{print $15}'),
-                    region = $(echo ${array[$a]} | awk -F ';' '{print $16}'),
-                    area = $(echo ${array[$a]} | awk -F ';' '{print $17}'),
-                    city = $(echo ${array[$a]} | awk -F ';' '{print $18}'),
-                    street = $(echo ${array[$a]} | awk -F ';' '{print $19}'),
-                    house = $(echo ${array[$a]} | awk -F ';' '{print $20}'),
-                    house_block = $(echo ${array[$a]} | awk -F ';' '{print $21}'),
-                    office = $(echo ${array[$a]} | awk -F ';' '{print $22}'),
-                    comment = $(echo ${array[$a]} | awk -F ';' '{print $23}'),
-                    status_id = $(echo ${array[$a]} | awk -F ';' '{print $24}'),
-                    created_at = $(echo ${array[$a]} | awk -F ';' '{print $25}'),
-                    updated_at = $(echo ${array[$a]} | awk -F ';' '{print $26}')
+                    delivery_town = $(echo ${array[$a]} | awk -F ';' '{print $10}'),
+                    delivery_street = $(echo ${array[$a]} | awk -F ';' '{print $11}'),
+                    delivery_house = $(echo ${array[$a]} | awk -F ';' '{print $12}'),
+                    delivery_house_block = $(echo ${array[$a]} | awk -F ';' '{print $13}'),
+                    delivery_office = $(echo ${array[$a]} | awk -F ';' '{print $14}'),
+                    type_payment_id = $(echo ${array[$a]} | awk -F ';' '{print $15}'),
+                    company_full = $(echo ${array[$a]} | awk -F ';' '{print $16}'),
+                    edrpou = $(echo ${array[$a]} | awk -F ';' '{print $17}'),
+                    inn = $(echo ${array[$a]} | awk -F ';' '{print $18}'),
+                    code_index = $(echo ${array[$a]} | awk -F ';' '{print $19}'),
+                    region = $(echo ${array[$a]} | awk -F ';' '{print $20}'),
+                    area = $(echo ${array[$a]} | awk -F ';' '{print $21}'),
+                    city = $(echo ${array[$a]} | awk -F ';' '{print $22}'),
+                    street = $(echo ${array[$a]} | awk -F ';' '{print $23}'),
+                    house = $(echo ${array[$a]} | awk -F ';' '{print $24}'),
+                    house_block = $(echo ${array[$a]} | awk -F ';' '{print $25}'),
+                    office = $(echo ${array[$a]} | awk -F ';' '{print $26}'),
+                    comment = $(echo ${array[$a]} | awk -F ';' '{print $27}'),
+                    status_id = $(echo ${array[$a]} | awk -F ';' '{print $28}'),
+                    created_at = $(echo ${array[$a]} | awk -F ';' '{print $29}'),
+                    updated_at = $(echo ${array[$a]} | awk -F ';' '{print $30}')
 		        WHERE id = ${id_str}"
 
 	else

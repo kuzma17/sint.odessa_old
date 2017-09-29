@@ -99,7 +99,29 @@ $type_order = \App\TypeOrder::all();
 <label  class="col-md-3 control-label">Адрес доставки<span class="red">*</span></label>
 
 <div class="col-md-9">
-<input  type="text" class="form-control" name="order_address" value="{{$user->profile->address or ''}}" required>
+    <div class="col-md-6" style=" padding:5px">
+        <input  type="text" class="form-control" name="order_delivery_town" value="{{$user->profile->delivery_town or ''}}" required>
+    </div>
+    город, населенный пункт<span class="red">*</span>
+</div>
+    <div class="col-md-3"></div>
+    <div class="col-md-9">
+    <div class="col-md-6" style=" padding:5px">
+    <input  type="text" class="form-control" name="order_delivery_street" value="{{$user->profile->delivery_street or ''}}" required>
+    улица<span class="red">*</span>
+    </div>
+    <div class="col-md-2" style=" padding: 5px">
+    <input  type="text" class="form-control" name="order_delivery_house" value="{{$user->profile->delivery_house or ''}}" required>
+        дом<span class="red">*</span>
+    </div>
+    <div class="col-md-2" style=" padding: 5px">
+        <input  type="text" class="form-control" name="order_delivery_house_block" value="{{$user->profile->delivery_house_block or ''}}">
+        корпус
+    </div>
+    <div class="col-md-2" style=" padding: 5px">
+        <input  type="text" class="form-control" name="order_delivery_office" value="{{$user->profile->delivery_office or ''}}">
+        квартира
+    </div>
 
 @if ($errors->has('order_address'))
     <span class="help-block">

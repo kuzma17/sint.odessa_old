@@ -46,7 +46,9 @@ class OrderController extends Controller
                 'order_client_name' => 'required',
                 'order_email' => 'required',
                 'order_phone' => 'required|max:10',
-                'order_address' => 'required'
+                'order_delivery_town' => 'required',
+                'order_delivery_street' => 'required',
+                'order_delivery_house' => 'required'
             ];
 
             if($request->input('add_all_order')){
@@ -81,6 +83,9 @@ class OrderController extends Controller
             //$profile->user_id = $user->id;
             $profile->user()->associate($user);
 
+            $delivery_house_bloc = $request->input('order_delivery_house_block') ? $request->input('order_delivery_house_block') : '';
+            $delivery_office = $request->input('order_delivery_office') ? $request->input('order_delivery_office') : '';
+
             $order->type_order_id = $request->input('type_order');
 
             $order->type_client_id = $request->input('order_type_client');
@@ -94,8 +99,20 @@ class OrderController extends Controller
             $order->phone = $request->input('order_phone');
             $profile->phone = $request->input('order_phone');
 
-            $order->address = $request->input('order_address');
-            $profile->address = $request->input('order_address');
+            $order->delivery_town = $request->input('order_delivery_town');
+            $profile->delivery_town = $request->input('order_delivery_town');
+
+            $order->delivery_street = $request->input('order_delivery_street');
+            $profile->delivery_street = $request->input('order_delivery_street');
+
+            $order->delivery_house = $request->input('order_delivery_house');
+            $profile->delivery_house = $request->input('order_delivery_house');
+
+            $order->delivery_house_block = $delivery_house_bloc;
+            $profile->delivery_house_block = $delivery_house_bloc;
+
+            $order->delivery_office = $delivery_office;
+            $profile->delivery_office = $delivery_office;
 
             if($order->type_client_id == 2) {
 

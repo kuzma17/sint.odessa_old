@@ -148,12 +148,16 @@ class OrderController extends Controller
                 $form->display('type_client.name', 'тип клиента');
                 $form->display('client_name', 'ФИО заказчика/Название компании');
                 $form->display('phone', 'телефон');
-                $form->display('address', 'адрес доставки');
                 $form->display('comment', 'комментарий');
 
                 $form->display('created_at', 'Created At');
                 $form->display('updated_at', 'Updated At');
-
+            })->tab('Адрес доставки', function(Form $form){
+                $form->display('delivery_town', 'город, населенный пункт');
+                $form->display('delivery_street', 'улицаt');
+                $form->display('delivery_house', 'дом');
+                $form->display('delivery_house_block', 'корпус');
+                $form->display('delivery_office', 'квартира');
             })->tab('Реквизиты компании', function(Form $form){
                 $form->display('type_payment.name', 'Тип расчета');
                 $form->display('company_full', 'Полное наименование компании');

@@ -128,10 +128,16 @@ class UserController extends Controller
                 $form->image('avatar.avatar')->resize(160, 180)->uniqueName()->move('avatars');
                 $form->password('password', 'Пароль');
                 $form->select('profile.type_client_id', 'тип клиента')->options(TypeClient::all()->pluck('name', 'id'));
-                $form->mobile('phone', 'Телефон');
-                $form->text('address', 'Адрес доставки');
+                $form->mobile('profile.phone', 'Телефон');
+                //$form->text('address', 'Адрес доставки');
                 $form->display('created_at', 'Created At');
                 $form->display('updated_at', 'Updated At');
+            })->tab('Адрес доставки', function(Form $form){
+                $form->text('profile.delivery_town', 'город, населенный пункт');
+                $form->text('profile.delivery_street', 'улица');
+                $form->text('profile.delivery_house', 'дом');
+                $form->text('profile.delivery_house_block', 'корпус');
+                $form->text('profile.delivery_office', 'квартира');
             })->tab('Реквизиты компании', function(Form $form){
                 $form->text('profile.user_company', 'представитель компании');
                 $form->text('profile.company_full', 'Полное наименование организации');

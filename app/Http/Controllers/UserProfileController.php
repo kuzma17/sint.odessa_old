@@ -33,7 +33,6 @@ class UserProfileController extends Controller
                 'client_name' => 'required|max:200',
                 'email' => 'required|email',
                 'phone' => 'required|max:10'
-                //'address' => 'required'
             ];
 
             if($request->input('type_client') == 2){
@@ -73,7 +72,11 @@ class UserProfileController extends Controller
             //$user->email = $request->input('email');
             $profile->type_client_id = $request->input('type_client');
             $profile->phone = $request->input('phone');
-            $profile->address = $request->input('address');
+            $profile->delivery_town = $request->input('delivery_town');
+            $profile->delivery_street = $request->input('delivery_street');
+            $profile->delivery_house = $request->input('delivery_house');
+            $profile->delivery_house_block = $request->input('delivery_house_block');
+            $profile->delivery_office = $request->input('delivery_office');
 
             if($profile->type_client_id == 2) {
                 $profile->user_company = $request->input('user_company');

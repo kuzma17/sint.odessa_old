@@ -23,7 +23,12 @@
                         <tr><td>ФИО представителя компании:</td><td>{{ $order->	user_company }}</td></tr>
                     @endif
                     <tr><td>Телефон:</td><td>{{ $order->phone }}</td></tr>
-                    <tr><td>Адрес:</td><td>{{ $order->address }}</td></tr>
+                    <tr><td>Адрес доставки:</td><td>
+                            @if($user->profile->delivery_town) г. {{ $user->profile->delivery_town}} @endif
+                            @if($user->profile->delivery_street) ул. {{ $user->profile->delivery_street}} @endif
+                            {{ $user->profile->delivery_house or '' }} {{ $user->profile->delivery_house_block or '' }}
+                            @if($user->profile->delivery_office) кв.{{ $user->profile->delivery_office }} @endif
+                        </td></tr>
                     <tr><td >E-mail</td><td>{{ $user->email }}</td></tr>
                     @if( $order->type_client_id == 2 )
                         <tr><td >Форма оплаты</td><td>{{ $order->type_payment->name }}</td></tr>

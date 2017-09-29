@@ -72,17 +72,32 @@
                         @endif
                     </div>
                 </div>
-                <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                <div class="form-group">
                     <label for="address" class="col-md-3 control-label">Адрес доставки</label>
-
                     <div class="col-md-9">
-                        <input id="address" type="text" class="form-control" name="address" value="@if(old()){{ old('address') }}@else{{ $user->profile->address or '' }}@endif" >
-
-                        @if ($errors->has('address'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('address') }}</strong>
-                                    </span>
-                        @endif
+                        <div class="col-md-6" style=" padding:5px">
+                            <input  type="text" class="form-control" name="delivery_town" value="@if(old()){{ old('delivery_town') }}@else{{ $user->profile->delivery_town or '' }}@endif" >
+                        </div>
+                        <label  class="control-label">город, населенный пункт</label>
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9">
+                        <div class="col-md-6" style=" padding:5px">
+                            <input  type="text" class="form-control" name="delivery_street" value="@if(old()){{ old('delivery_street') }}@else{{ $user->profile->delivery_street or '' }}@endif" >
+                            <label  class="control-label">улица</label>
+                        </div>
+                        <div class="col-md-2" style=" padding: 5px">
+                            <input  type="text" class="form-control" name="delivery_house" value="@if(old()){{ old('delivery_house') }}@else{{ $user->profile->delivery_house or '' }}@endif" >
+                            <label  class="control-label">дом</label>
+                        </div>
+                        <div class="col-md-2" style=" padding: 5px">
+                            <input  type="text" class="form-no-control" name="delivery_house_block" value="@if(old()){{ old('delivery_house_block') }}@else{{ $user->profile->delivery_house_block or '' }}@endif">
+                            <label>корпус</label>
+                        </div>
+                        <div class="col-md-2" style=" padding: 5px">
+                            <input  type="text" class="form-no-control" name="delivery_office" value="@if(old()){{ old('delivery_office') }}@else{{ $user->profile->delivery_office or '' }}@endif">
+                            <label>квартира</label>
+                        </div>
                     </div>
                 </div>
                 <div class="client_company" @if($user->is_person(old('type_client'))) style="display: none" @endif>

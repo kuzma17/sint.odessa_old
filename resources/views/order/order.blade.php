@@ -91,16 +91,37 @@
                     @endif
                 </div>
             </div>
-            <div class="form-group{{ $errors->has('order_address') ? ' has-error' : '' }}">
+            <div class="form-group{{ $errors->has('order_delivery_town') || $errors->has('order_delivery_street') || $errors->has('order_delivery_house') ? ' has-error' : '' }}">
                 <label  class="col-md-3 control-label">Адрес доставки<span class="red">*</span></label>
-
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="order_address" value="@if(old()){{ old('order_address') }}@else{{ $order->order_address or '' }}@endif" >
-
-                    @if ($errors->has('order_address'))
+                    <div class="col-md-6" style=" padding:5px">
+                        <input  type="text" class="form-control" name="order_delivery_town" value="@if(old()){{ old('order_delivery_town') }}@else{{ $order->order_delivery_town or '' }}@endif" >
+                    </div>
+                        <label  class="control-label">город, населенный пункт<span class="red">*</span></label>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    <div class="col-md-6" style=" padding:5px">
+                        <input  type="text" class="form-control" name="order_delivery_street" value="@if(old()){{ old('order_delivery_street') }}@else{{ $order->order_delivery_street or '' }}@endif" >
+                        <label  class="control-label">улица<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-2" style=" padding: 5px">
+                        <input  type="text" class="form-control" name="order_delivery_house" value="@if(old()){{ old('order_delivery_house') }}@else{{ $order->order_delivery_house or '' }}@endif" >
+                        <label  class="control-label">дом<span class="red">*</span></label>
+                    </div>
+                    <div class="col-md-2" style=" padding: 5px">
+                        <input  type="text" class="form-no-control" name="order_delivery_house_block" value="@if(old()){{ old('order_delivery_house_block') }}@else{{ $order->order_delivery_house_block or '' }}@endif">
+                        <label>корпус</label>
+                    </div>
+                    <div class="col-md-2" style=" padding: 5px">
+                        <input  type="text" class="form-no-control" name="order_delivery_office" value="@if(old()){{ old('order_delivery_office') }}@else{{ $order->order_delivery_office or '' }}@endif">
+                        <label>квартира</label>
+                    </div>
+                    @if ($errors->has('order_delivery_town') || $errors->has('order_delivery_street') || $errors->has('order_delivery_house'))
+                       <div class="clear"></div>
                         <span class="help-block">
-                                        <strong>{{ $errors->first('order_address') }}</strong>
-                                    </span>
+                <strong>Поля обязательные для заполнения.</strong>
+            </span>
                     @endif
                 </div>
             </div>
