@@ -82,7 +82,7 @@
                 <label  class="col-md-3 control-label">телефон<span class="red">*</span></label>
 
                 <div class="col-md-9">
-                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="placeholder="номер мобильного телефона (050xxxxxxx)">
+                    <input  type="text" class="form-control" name="order_phone" value="@if(old()){{ old('order_phone') }}@else{{ $order->order_phone or '' }}@endif" @if($user->is_person() && isset($user->profile->phone)) readonly @endif placeholder="номер мобильного телефона (050xxxxxxx)">
 
                     @if ($errors->has('order_phone'))
                         <span class="help-block">
@@ -95,27 +95,27 @@
                 <label  class="col-md-3 control-label">Адрес доставки<span class="red">*</span></label>
                 <div class="col-md-9">
                     <div class="col-md-6" style=" padding:5px">
-                        <input  type="text" class="form-control" name="order_delivery_town" value="@if(old()){{ old('order_delivery_town') }}@else{{ $order->order_delivery_town or '' }}@endif" >
+                        <input type="text" class="form-control" name="order_delivery_town" value="@if(old()){{ old('order_delivery_town') }}@else{{ $order->order_delivery_town or '' }}@endif" placeholder="город, населенный пункт">
                     </div>
-                        <label  class="control-label">город, населенный пункт<span class="red">*</span></label>
+                        <label  class="control-label label1">город, населенный пункт<span class="red">*</span></label>
                 </div>
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
                     <div class="col-md-6" style=" padding:5px">
-                        <input  type="text" class="form-control" name="order_delivery_street" value="@if(old()){{ old('order_delivery_street') }}@else{{ $order->order_delivery_street or '' }}@endif" >
-                        <label  class="control-label">улица<span class="red">*</span></label>
+                        <input type="text" class="form-control" name="order_delivery_street" value="@if(old()){{ old('order_delivery_street') }}@else{{ $order->order_delivery_street or '' }}@endif" placeholder="улица">
+                        <label class="control-label label1">улица<span class="red">*</span></label>
                     </div>
                     <div class="col-md-2" style=" padding: 5px">
-                        <input  type="text" class="form-control" name="order_delivery_house" value="@if(old()){{ old('order_delivery_house') }}@else{{ $order->order_delivery_house or '' }}@endif" >
-                        <label  class="control-label">дом<span class="red">*</span></label>
+                        <input type="text" class="form-control" name="order_delivery_house" value="@if(old()){{ old('order_delivery_house') }}@else{{ $order->order_delivery_house or '' }}@endif" placeholder="номер">
+                        <label class="control-label label1">дом<span class="red">*</span></label>
                     </div>
                     <div class="col-md-2" style=" padding: 5px">
-                        <input  type="text" class="form-no-control" name="order_delivery_house_block" value="@if(old()){{ old('order_delivery_house_block') }}@else{{ $order->order_delivery_house_block or '' }}@endif">
-                        <label>корпус</label>
+                        <input type="text" class="form-no-control" name="order_delivery_house_block" value="@if(old()){{ old('order_delivery_house_block') }}@else{{ $order->order_delivery_house_block or '' }}@endif" placeholder="корпус">
+                        <label class="label1">корпус</label>
                     </div>
                     <div class="col-md-2" style=" padding: 5px">
-                        <input  type="text" class="form-no-control" name="order_delivery_office" value="@if(old()){{ old('order_delivery_office') }}@else{{ $order->order_delivery_office or '' }}@endif">
-                        <label>квартира</label>
+                        <input type="text" class="form-no-control" name="order_delivery_office" value="@if(old()){{ old('order_delivery_office') }}@else{{ $order->order_delivery_office or '' }}@endif" placeholder="квартира">
+                        <label class="label1">квартира</label>
                     </div>
                     @if ($errors->has('order_delivery_town') || $errors->has('order_delivery_street') || $errors->has('order_delivery_house'))
                        <div class="clear"></div>

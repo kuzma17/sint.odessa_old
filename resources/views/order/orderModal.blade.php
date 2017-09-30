@@ -100,27 +100,27 @@ $type_order = \App\TypeOrder::all();
 
 <div class="col-md-9">
     <div class="col-md-6" style=" padding:5px">
-        <input  type="text" class="form-control" name="order_delivery_town" value="{{$user->profile->delivery_town or ''}}" required>
+        <input  type="text" class="form-control" name="order_delivery_town" value="{{$user->profile->delivery_town or ''}}" required placeholder="город, населенный пункт">
     </div>
-    город, населенный пункт<span class="red">*</span>
+    <label  class="control-label label1">город, населенный пункт<span class="red">*</span></label>
 </div>
     <div class="col-md-3"></div>
     <div class="col-md-9">
     <div class="col-md-6" style=" padding:5px">
-    <input  type="text" class="form-control" name="order_delivery_street" value="{{$user->profile->delivery_street or ''}}" required>
-    улица<span class="red">*</span>
+    <input  type="text" class="form-control" name="order_delivery_street" value="{{$user->profile->delivery_street or ''}}" required placeholder="улица">
+        <label  class="control-label label1">улица<span class="red">*</span></label>
     </div>
     <div class="col-md-2" style=" padding: 5px">
-    <input  type="text" class="form-control" name="order_delivery_house" value="{{$user->profile->delivery_house or ''}}" required>
-        дом<span class="red">*</span>
+    <input  type="text" class="form-control" name="order_delivery_house" value="{{$user->profile->delivery_house or ''}}" required placeholder="номер">
+        <label  class="control-label label1">дом<span class="red">*</span></label>
     </div>
     <div class="col-md-2" style=" padding: 5px">
-        <input  type="text" class="form-control" name="order_delivery_house_block" value="{{$user->profile->delivery_house_block or ''}}">
-        корпус
+        <input  type="text" class="form-control" name="order_delivery_house_block" value="{{$user->profile->delivery_house_block or ''}}" placeholder="корпус">
+        <label  class="label1">корпус</label>
     </div>
     <div class="col-md-2" style=" padding: 5px">
-        <input  type="text" class="form-control" name="order_delivery_office" value="{{$user->profile->delivery_office or ''}}">
-        квартира
+        <input  type="text" class="form-control" name="order_delivery_office" value="{{$user->profile->delivery_office or ''}}" placeholder="квартира">
+        <label  class="label1">квартира</label>
     </div>
 
 @if ($errors->has('order_address'))
