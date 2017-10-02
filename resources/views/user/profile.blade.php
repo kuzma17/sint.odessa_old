@@ -13,10 +13,10 @@
             @endif
             <tr><td>Телефон:</td><td>{{ $user->profile->phone or '' }}</td></tr>
             <tr><td>Адрес доставки:</td><td>
-                    @if($user->profile->delivery_town) г. {{ $user->profile->delivery_town}} @endif
-                    @if($user->profile->delivery_street) ул. {{ $user->profile->delivery_street}} @endif
+                    @if(isset($user->profile->delivery_town)) г. {{ $user->profile->delivery_town}} @endif
+                    @if(isset($user->profile->delivery_street)) ул. {{ $user->profile->delivery_street}} @endif
                     {{ $user->profile->delivery_house or '' }} {{ $user->profile->delivery_house_block or '' }}
-                    @if($user->profile->delivery_office) кв.{{ $user->profile->delivery_office }} @endif </td></tr>
+                    @if(isset($user->profile->delivery_office)) кв.{{ $user->profile->delivery_office }} @endif </td></tr>
             <tr><td >E-mail:</td><td>{{ $user->email or '' }}</td></tr>
             @if(isset($user->profile) && $user->profile->type_client_id == 2 )
                 <tr><td >Предпочтительная форма оплаты:</td><td>{{ $user->profile->type_payment->name or '' }}</td></tr>

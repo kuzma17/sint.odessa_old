@@ -24,10 +24,10 @@
                     @endif
                     <tr><td>Телефон:</td><td>{{ $order->phone }}</td></tr>
                     <tr><td>Адрес доставки:</td><td>
-                            @if($user->profile->delivery_town) г. {{ $user->profile->delivery_town}} @endif
-                            @if($user->profile->delivery_street) ул. {{ $user->profile->delivery_street}} @endif
+                            @if(isset($user->profile->delivery_town)) г. {{ $user->profile->delivery_town}} @endif
+                            @if(isset($user->profile->delivery_street)) ул. {{ $user->profile->delivery_street}} @endif
                             {{ $user->profile->delivery_house or '' }} {{ $user->profile->delivery_house_block or '' }}
-                            @if($user->profile->delivery_office) кв.{{ $user->profile->delivery_office }} @endif
+                            @if(isset($user->profile->delivery_office)) кв.{{ $user->profile->delivery_office }} @endif
                         </td></tr>
                     <tr><td >E-mail</td><td>{{ $user->email }}</td></tr>
                     @if( $order->type_client_id == 2 )
