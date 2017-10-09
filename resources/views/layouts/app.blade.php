@@ -57,7 +57,7 @@
         @else
             <a href="#" class="btn btn-success btn-top" @if(URL::current() != url('/order')) data-toggle="modal" data-target="#orderModal" @endif><i class="glyphicon glyphicon-plus"></i> Сделать заказ </a>
         @endif
-        <a href="http://sint-market.com" class="btn btn-info btn-top" target="_blank"><i class="glyphicon glyphicon-shopping-cart"></i> Перейти в магазин</a>
+        <a href="http://sint-market.com" class="btn  btn-warning btn-top" target="_blank"><i class="glyphicon glyphicon-shopping-cart"></i> Перейти в магазин</a>
     </div>
     <div class="clear"></div>
         @include('layouts.menu')
@@ -78,7 +78,7 @@
             <h4>Контакты</h4>
 
             <ul class="address-bottom">
-                <li><i class="glyphicon glyphicon-phone"></i> +380 503923925, +380 931929878, +380 675576567</li>
+                <li><i class="glyphicon glyphicon-phone"></i> +38(050)392-392-5, +38(093)192-98-78, +38(067)557-65-67</li>
                 <li><i class="glyphicon glyphicon-envelope"></i> info@sint.odessa.ua</li>
                 <li><a href="http://sint.odessa.ua"><i class="glyphicon glyphicon-globe"></i> http://sint.odessa.ua</a></li>
                 <li><a href="http://sint-market.com"><i class="glyphicon glyphicon-shopping-cart"></i> http://sint-market.com</a></li>
