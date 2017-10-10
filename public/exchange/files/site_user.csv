@@ -1,0 +1,2 @@
+id,1c_id,type_client_id,type_payment_id,client_name,delivery_town,delivery_street,delivery_house,delivery_house_block,delivery_office,phone,user_company,company_full,edrpou,inn,code_index,region,area,city,street,house,house_block,office,created_at,updated_at,name,email
+,NULL,2,2,ИвановИ.И,,,0,,0,432432431,Елтекс_FORT,NULL,NULL,347584,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2017-03-30 20:27:52,2017-08-04 20:33:56,user2user12312_3km,user2user12312_3@km.ru
