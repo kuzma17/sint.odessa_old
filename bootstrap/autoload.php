@@ -33,4 +33,4 @@ if (file_exists($compiledPath)) {
     require $compiledPath;
 }
 
-ini_set('xdebug.max_nesting_level', 110);
+ini_set('xdebug.max_nesting_level', 300);

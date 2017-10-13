@@ -8,6 +8,7 @@ use App\History;
 use App\Notifications\CreatedOrder;
 use App\Notifications\RegisterUser;
 use App\Notifications\StatusOrder;
+use App\Notifications\StatusOrderRepair;
 use App\Order;
 use App\Status;
 use App\StatusRepairs;
@@ -80,7 +81,7 @@ class AppServiceProvider extends ServiceProvider
 
                 $order = Order::find($repair->order_id);
 
-                $repair->notify(new StatusOrder($order, $new_status_repair)); // Send email
+                $repair->notify(new StatusOrderRepair($order, $new_status_repair)); // Send email
             }
         });
     }

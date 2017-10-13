@@ -53,7 +53,6 @@ class CreatedOrder extends Notification
             ->line('Адрес доставки: '.$this->order->address.'.')
             ->line('Комментарий: '.$this->order->comment.'.')
             ->action('Перейти на сайт', url('/'))
-            ->line('Как с нами связаться:')
             ->line('Как с нами связаться:');
     }
 

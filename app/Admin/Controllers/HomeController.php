@@ -77,7 +77,7 @@ class HomeController extends Controller
                         }
                     }
 
-                    $column->append((new Box('Наиболее посещяемые страницы', new Pie($arr_path)))->removable()->collapsable()->style('info'));
+                    $column->append((new Box('Наиболее посещаемые страницы', new Pie($arr_path)))->removable()->collapsable()->style('info'));
 
                 });
 

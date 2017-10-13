@@ -49,7 +49,6 @@ class StatusOrder extends Notification
             ->greeting('Здравствуйте, '.$this->order->user->name.'!')
             ->line('Статус Вашего заказа № '.$this->order->id.' изменен на "'.$this->status.'"')
             ->action('Перейти на сайт', url('/'))
-            ->line('Как с нами связаться:')
             ->line('Как с нами связаться:');
     }
 
