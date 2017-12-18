@@ -8,4 +8,5 @@ CKEDITOR.editorConfig = function( config ) {
     config.language = 'ru';
     config.uiColor = '#e7e7e7';
     config.filebrowserUploadUrl = '/upload-image';
+    config.allowedContent = true;
 };

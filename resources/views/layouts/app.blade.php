@@ -19,6 +19,7 @@
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="/css/bootstrap-social.css" />
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/lightbox.min.css">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -194,6 +195,7 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/lightbox.min.js') }}"></script>
 
 @if(URL::current() == url('/user/order-modal'))
 <script type="text/javascript">
