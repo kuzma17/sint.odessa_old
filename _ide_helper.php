@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-09-26.
+ * Generated for Laravel 5.3.31 on 2017-12-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11995,6 +11995,28 @@ namespace PragmaRX\Tracker\Vendor\Laravel {
         public static function users($minutes, $results = true)
         {
             return \PragmaRX\Tracker\Tracker::users($minutes, $results);
+        }
+        
+        /**
+         * Get the messages.
+         *
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function getMessages()
+        {
+            return \PragmaRX\Tracker\Tracker::getMessages();
+        }
+        
+        /**
+         * Update the GeoIp2 database.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function updateGeoIp()
+        {
+            return \PragmaRX\Tracker\Tracker::updateGeoIp();
         }
          
     }
