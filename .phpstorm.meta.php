@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-12-18.
+    * Generated on 2017-12-23.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -37,8 +37,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -170,8 +168,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -303,8 +299,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -436,8 +430,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -569,8 +561,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -702,8 +692,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
@@ -835,8 +823,6 @@ namespace PHPSTORM_META {
         'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         'view.finder' => \Illuminate\View\FileViewFinder::class,
         'view' => \Illuminate\View\Factory::class,
-        'debugbar' => \Barryvdh\Debugbar\LaravelDebugbar::class,
-        'command.debugbar.clear' => \Barryvdh\Debugbar\Console\ClearCommand::class,
         'image' => \Intervention\Image\ImageManager::class,
         'eloquence.mutator' => \Sofa\Eloquence\Mutator\Mutator::class,
         'eloquence.joiner' => \Sofa\Eloquence\Relations\JoinerFactory::class,
