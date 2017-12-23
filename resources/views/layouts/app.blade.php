@@ -241,7 +241,7 @@
         $('#orderModal').modal('show');
     </script>
 @endif
-<!--
+
 <script type="text/javascript">
     imageDir = "http://mvcreative.ru/example/6/2/snow/";
     sflakesMax = 65;
@@ -258,7 +258,7 @@
     sflakeHeight = 15;
 </script>
 <script type="text/javascript" src="http://mvcreative.ru/example/6/2/snow.js"></script>
--->
+
 <!-- BEGIN JIVOSITE CODE {literal} -->
 <!--
 <script type='text/javascript'>
