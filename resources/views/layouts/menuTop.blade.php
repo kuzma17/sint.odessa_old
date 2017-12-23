@@ -6,9 +6,9 @@
                    onclick="window.external.AddFavorite('http://sint.odessa.ua',
                            '{{ config('app.name', 'Laravel') }}'); return false;" rel="sidebar"><i class="glyphicon glyphicon-heart"></i> В избранное</a></li>
             <li><a href="{{ url('/mail') }}"><i class="glyphicon glyphicon-envelope"></i> Написать нам</a></li>
-            <!--<li><a href="{{ url('/info') }}"><i class="fa fa-info-circle"></i> Как сделать заказ</a></li>
+            <!--<li><a href="{{ url('/info') }}"><i class="fa fa-info-circle"></i> Как сделать заказ</a></li>-->
             <li><a href="{{ url('/delivery') }}"><i class="fa fa-truck" aria-hidden="true"></i> Доставка</a></li>
-            @if (Auth::guest())
+           <!-- @if (Auth::guest())
                 <li class="dropdown noclose">
                     <a id="drop1" href="" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i> Вход</a>

@@ -10,7 +10,7 @@
             @foreach($results as $result)
                 <a href="@if($result->url == 'news' || $result->url == 'post'){{ url($result->url.'/'.$result->id) }}@else{{ url($result->url) }}@endif" >
                     <h5>{{ $result->title }}</h5></a>
-                    {!! \Illuminate\Support\Str::words($result->content, 30) !!}
+                    {!! \Illuminate\Support\Str::words(strip_tags($result->content), 30) !!}
                 <a href="@if($result->url == 'news' || $result->url == 'post'){{ url($result->url.'/'.$result->id) }}@else{{ url($result->url) }}@endif" ><h5>Подробнее...</h5></a>
                 <div class="clear"></div>
             @endforeach

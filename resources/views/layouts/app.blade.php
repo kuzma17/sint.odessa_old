@@ -102,9 +102,7 @@
                 <h4>Контакты</h4>
 
                 <ul class="address-bottom">
-                    <li><i class="glyphicon glyphicon-phone"></i> +38(050)392-392-5, +38(093)192-98-78,
-                        +38(067)557-65-67
-                    </li>
+                    <li><i class="glyphicon glyphicon-phone"></i> +38(050)392-392-5</li>
                     <li><i class="glyphicon glyphicon-envelope"></i> info@sint.odessa.ua</li>
                     <li><a href="http://sint.odessa.ua"><i class="glyphicon glyphicon-globe"></i> http://sint.odessa.ua</a>
                     </li>

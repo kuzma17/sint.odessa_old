@@ -105,7 +105,7 @@ class StockController extends Controller
             $form->display('id', 'ID');
             $form->text('title', 'Название')->rules('required');
             $form->ckeditor('content', 'Текст')->rules('required');
-            $form->image('banner', 'баннер')->uniqueName()->move('banners')->rules('required');
+            $form->image('banner', 'баннер')->uniqueName()->move('banners');
             $form->date('from', 'Дата начала');
             $form->date('to', 'Дата окончания');
             $form->switch('active')->states($this->states)->default(1);

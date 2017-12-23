@@ -8,8 +8,8 @@
     <div class="col-sm-12 col-md-2 col-lg-2 right_panel">
         <div class="row">
             @include('layouts.map')
-            @if($banner_right = \App\Banner::find(3)->banner)
-                <div class="banner">{!! $banner_right !!}</div>
+            @if(\App\Banner::find(3)->active == 1)
+                <div class="banner">{!! \App\Banner::find(3)->banner !!}</div>
             @endif
         </div>
     </div>
