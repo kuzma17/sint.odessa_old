@@ -1,6 +1,4 @@
-/public/storage
 /node_modules
-/storage
 /vendor
 /.idea
 .env
@@ -9,5 +7,4 @@
 .htaccess
 .phpstorm.meta.php
 _ide_helper.php
-artisan
 
