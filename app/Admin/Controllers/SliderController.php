@@ -80,7 +80,8 @@ class SliderController extends Controller
         return Admin::grid(Slider::class, function (Grid $grid) {
 
             $grid->column('id', 'ID')->sortable();
-            $grid->column('weight', 'Номер')->sortable();
+            //$grid->column('weight', 'Номер')->sortable();
+            $grid->column('weight', 'Номер')->editable()->sortable();
             $grid->column('image', 'Картинка')->display(function ($img){
                 return '<img src="/upload/'.$img.'" style="width:200px; height:60px">';
             });

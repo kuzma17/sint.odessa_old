@@ -53,7 +53,7 @@ return [
             'file'   => 'file',
         ],
 
-        'host' => 'http://sint.odessa.ru/upload/',
+        'host' => 'http://'.$_SERVER['HTTP_HOST'].'/upload/',
     ],
 
     /*

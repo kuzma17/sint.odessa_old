@@ -9,7 +9,6 @@
     @if($new->image)
         <img class="news_image_list" src="{{ url('/upload/'.$new->image) }}">
      @endif
-    {#!! \Illuminate\Support\Str::words(strip_tags($new->content), 50) !!#}
         {!! \Illuminate\Support\Str::words($new->content, 50) !!}
     <a href="{{ url('/news/'.$new->id) }}">подробнее</a>
 <div class="clear"></div>
