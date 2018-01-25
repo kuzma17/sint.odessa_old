@@ -106,7 +106,7 @@ class SliderController extends Controller
 
             $form->display('id', 'ID');
             $form->image('image')->resize(965, 400)->uniqueName()->move('slider')->rules('required');
-            $form->select('url', 'url')->options(Page::all()->pluck('title', 'url'));
+            $form->url('url', 'url');
             $form->text('slogan', 'слоган');
             $form->number('weight', 'номер')->default(Slider::max('weight')+1);
             $form->switch('active')->states($this->states)->default(1);
