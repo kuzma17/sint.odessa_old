@@ -2,6 +2,7 @@
 
 namespace App\Admin\Controllers;
 
+use App\Page;
 use App\Slider;
 
 use Encore\Admin\Form;
@@ -85,6 +86,7 @@ class SliderController extends Controller
             $grid->column('image', 'Картинка')->display(function ($img){
                 return '<img src="/upload/'.$img.'" style="width:200px; height:60px">';
             });
+            $grid->column('url', 'url');
             $grid->column('slogan', 'Слоган')->editable();
             $grid->column('active', 'Статус')->switch($this->states);
 
@@ -104,10 +106,10 @@ class SliderController extends Controller
 
             $form->display('id', 'ID');
             $form->image('image')->resize(965, 400)->uniqueName()->move('slider')->rules('required');
+            $form->select('url', 'url')->options(Page::all()->pluck('title', 'url'));
             $form->text('slogan', 'слоган');
             $form->number('weight', 'номер')->default(Slider::max('weight')+1);
             $form->switch('active')->states($this->states)->default(1);
-
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
         });

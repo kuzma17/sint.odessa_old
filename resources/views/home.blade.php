@@ -15,7 +15,9 @@
             <?php $s = 0; ?>
             @foreach($slider as $image)
                 <div class="item @if($s == 0) active @endif">
-                    <img src="{{ url('/upload/'.$image->image) }}" alt="{{ $image->slogan }}">
+                    <a href="{{ $image->url }}">
+                        <img src="{{ url('/upload/'.$image->image) }}" alt="{{ $image->slogan }}">
+                    </a>
                 </div>
                 <?php $s++; ?>
             @endforeach
