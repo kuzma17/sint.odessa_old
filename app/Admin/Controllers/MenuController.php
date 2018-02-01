@@ -102,7 +102,7 @@ class MenuController extends Controller
             $form->display('id', 'ID');
             $form->text('title', 'Название')->rules('required');
             $form->text('url', 'url')->rules('required');
-            $form->date('weight', 'Номер');
+            $form->number('weight', 'Номер');
             $form->switch('active')->states($this->states)->default(1);
 
             $form->display('created_at', 'Created At');

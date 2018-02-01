@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.31 on 2017-12-24.
+ * Generated for Laravel 5.3.31 on 2018-01-27.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1838,6 +1838,18 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if the current user is authenticated.
          *
+         * @return \App\User 
+         * @throws \Illuminate\Auth\AuthenticationException
+         * @static 
+         */ 
+        public static function authenticate()
+        {
+            return \Illuminate\Auth\SessionGuard::authenticate();
+        }
+        
+        /**
+         * Determine if the current user is authenticated.
+         *
          * @return bool 
          * @static 
          */ 
@@ -1855,18 +1867,6 @@ namespace Illuminate\Support\Facades {
         public static function guest()
         {
             return \Illuminate\Auth\SessionGuard::guest();
-        }
-        
-        /**
-         * Determine if the current user is authenticated.
-         *
-         * @return \App\User 
-         * @throws \Illuminate\Auth\AuthenticationException
-         * @static 
-         */ 
-        public static function authenticate()
-        {
-            return \Illuminate\Auth\SessionGuard::authenticate();
         }
          
     }
@@ -2895,60 +2895,6 @@ namespace Illuminate\Support\Facades {
         public static function getQueuedCookies()
         {
             return \Illuminate\Cookie\CookieJar::getQueuedCookies();
-        }
-         
-    }
-
-    class Crypt {
-        
-        /**
-         * Determine if the given key and cipher combination is valid.
-         *
-         * @param string $key
-         * @param string $cipher
-         * @return bool 
-         * @static 
-         */ 
-        public static function supported($key, $cipher)
-        {
-            return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
-        }
-        
-        /**
-         * Encrypt the given value.
-         *
-         * @param mixed $value
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\EncryptException
-         * @static 
-         */ 
-        public static function encrypt($value)
-        {
-            return \Illuminate\Encryption\Encrypter::encrypt($value);
-        }
-        
-        /**
-         * Decrypt the given value.
-         *
-         * @param mixed $payload
-         * @return string 
-         * @throws \Illuminate\Contracts\Encryption\DecryptException
-         * @static 
-         */ 
-        public static function decrypt($payload)
-        {
-            return \Illuminate\Encryption\Encrypter::decrypt($payload);
-        }
-        
-        /**
-         * Get the encryption key.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getKey()
-        {
-            return \Illuminate\Encryption\Encrypter::getKey();
         }
          
     }
@@ -11103,377 +11049,6 @@ namespace Intervention\Image\Facades {
  
 }
 
-namespace PragmaRX\Tracker\Vendor\Laravel { 
-
-    class Facade {
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function allSessions()
-        {
-            return \PragmaRX\Tracker\Tracker::allSessions();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function boot()
-        {
-            return \PragmaRX\Tracker\Tracker::boot();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function checkCurrentUser()
-        {
-            return \PragmaRX\Tracker\Tracker::checkCurrentUser();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function currentSession()
-        {
-            return \PragmaRX\Tracker\Tracker::currentSession();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function errors($minutes, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::errors($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function events($minutes, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::events($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getConfig($key)
-        {
-            return \PragmaRX\Tracker\Tracker::getConfig($key);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getCookieId()
-        {
-            return \PragmaRX\Tracker\Tracker::getCookieId();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getDeviceId()
-        {
-            return \PragmaRX\Tracker\Tracker::getDeviceId();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getLanguageId()
-        {
-            return \PragmaRX\Tracker\Tracker::getLanguageId();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getDomainId($domain)
-        {
-            return \PragmaRX\Tracker\Tracker::getDomainId($domain);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getPathId()
-        {
-            return \PragmaRX\Tracker\Tracker::getPathId();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getQueryId()
-        {
-            return \PragmaRX\Tracker\Tracker::getQueryId();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getSessionId($updateLastActivity = false)
-        {
-            return \PragmaRX\Tracker\Tracker::getSessionId($updateLastActivity);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getUserId()
-        {
-            return \PragmaRX\Tracker\Tracker::getUserId();
-        }
-        
-        /**
-         * 
-         *
-         * @param \Exception $exception
-         * @static 
-         */ 
-        public static function handleException($exception)
-        {
-            return \PragmaRX\Tracker\Tracker::handleException($exception);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isEnabled()
-        {
-            return \PragmaRX\Tracker\Tracker::isEnabled();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function isRobot()
-        {
-            return \PragmaRX\Tracker\Tracker::isRobot();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function logByRouteName($name, $minutes = null)
-        {
-            return \PragmaRX\Tracker\Tracker::logByRouteName($name, $minutes);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function logEvents()
-        {
-            return \PragmaRX\Tracker\Tracker::logEvents();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function logSqlQuery($query, $bindings, $time, $name)
-        {
-            return \PragmaRX\Tracker\Tracker::logSqlQuery($query, $bindings, $time, $name);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function pageViews($minutes, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::pageViews($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function pageViewsByCountry($minutes, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::pageViewsByCountry($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function allowConsole()
-        {
-            return \PragmaRX\Tracker\Tracker::allowConsole();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function parserIsAvailable()
-        {
-            return \PragmaRX\Tracker\Tracker::parserIsAvailable();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function routerMatched($log)
-        {
-            return \PragmaRX\Tracker\Tracker::routerMatched($log);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function sessionLog($uuid, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::sessionLog($uuid, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function sessions($minutes = 1440, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::sessions($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function onlineUsers($minutes = 3, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::onlineUsers($minutes, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function track()
-        {
-            return \PragmaRX\Tracker\Tracker::track();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function trackEvent($event)
-        {
-            return \PragmaRX\Tracker\Tracker::trackEvent($event);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function trackVisit($route, $request)
-        {
-            return \PragmaRX\Tracker\Tracker::trackVisit($route, $request);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function userDevices($minutes, $user_id = null, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::userDevices($minutes, $user_id, $results);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function users($minutes, $results = true)
-        {
-            return \PragmaRX\Tracker\Tracker::users($minutes, $results);
-        }
-        
-        /**
-         * Get the messages.
-         *
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function getMessages()
-        {
-            return \PragmaRX\Tracker\Tracker::getMessages();
-        }
-        
-        /**
-         * Update the GeoIp2 database.
-         *
-         * @return bool 
-         * @static 
-         */ 
-        public static function updateGeoIp()
-        {
-            return \PragmaRX\Tracker\Tracker::updateGeoIp();
-        }
-         
-    }
- 
-}
-
 namespace Bllim\Datatables\Facade { 
 
     class Datatables {
@@ -11902,8 +11477,6 @@ namespace  {
     class Config extends \Illuminate\Support\Facades\Config {}
 
     class Cookie extends \Illuminate\Support\Facades\Cookie {}
-
-    class Crypt extends \Illuminate\Support\Facades\Crypt {}
 
     class DB extends \Illuminate\Support\Facades\DB {}
 
