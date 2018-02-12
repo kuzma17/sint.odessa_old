@@ -2,9 +2,9 @@
  * Created by kuzma on 09.04.17.
  */
 
-$('.carousel-slogan').html($('.carousel-inner .active img').attr('alt'));
+$('.carousel-slogan').html($('.carousel-inner .active a').attr('title'));
 $('.carousel').on('slide.bs.carousel', function (e) {
-    $('.carousel-slogan').html(e.relatedTarget.children[0].alt);
+    $('.carousel-slogan').html(e.relatedTarget.children[0].title);
 });
 
 $('.edit_panel').hide();
