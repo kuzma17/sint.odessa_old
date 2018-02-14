@@ -68,7 +68,7 @@
                 Днепропетровская дор. 94
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(0482)379-141
+                                                       style="color: orangered"></i> +38(066)290-50-02
             </div>
             <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i>
