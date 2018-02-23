@@ -54,14 +54,14 @@
                 Адмиральский пр-т. 33А
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(0482)333-767
+                                                       style="color: orangered"></i> +38(067)5576567
             </div>
             <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i>
                 Соборная пл. 12
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(048)777-16-85
+                                                       style="color: orangered"></i> +38(067)488-083
             </div>
             <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i>
@@ -75,7 +75,7 @@
                 Ак. Королева 33
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(0482)323-505
+                                                       style="color: orangered"></i> +38(098)879-30-48
             </div>
             <div class="clear"></div>
         </div>
