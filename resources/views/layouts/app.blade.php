@@ -61,7 +61,7 @@
                 Соборная пл. 12
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(067)488-083
+                                                       style="color: orangered"></i> +38(067)488-04-83
             </div>
             <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i>
