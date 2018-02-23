@@ -54,7 +54,7 @@
                 Адмиральский пр-т. 33А
             </div>
             <div style="float: left; width: 160px;"><i class="glyphicon glyphicon-earphone"
-                                                       style="color: orangered"></i> +38(067)5576567
+                                                       style="color: orangered"></i> +38(067)557-65-67
             </div>
             <div class="clear"></div>
             <div style="float: left; width: 240px"><i class="glyphicon glyphicon-map-marker" style="color: #107fbe"></i>
