@@ -45,7 +45,7 @@
 <div class="container">
     <div class="row">
         <div class="rcol-sm-12 col-md-12 col-lg-4">
-            <div class="logo"><img src="/images/logo_snow.jpg"></div>
+            <div class="logo"><img src="/images/logo.jpg"></div>
         </div>
         <div class="col-sm-12 col-md-6 col-lg-4"
              style="padding-top: 10px; padding-left: 0px; color: #808080; font-family: 'Lato', sans-serif; font-size: 12px">
@@ -251,7 +251,7 @@
     </script>
 @endif
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     imageDir = "http://mvcreative.ru/example/6/2/snow/";
     sflakesMax = 65;
     sflakesMaxActive = 65;
@@ -267,7 +267,7 @@
     sflakeHeight = 15;
 </script>
 <script type="text/javascript" src="http://mvcreative.ru/example/6/2/snow.js"></script>
-
+-->
 <!-- BEGIN JIVOSITE CODE {literal} -->
 <!--
 <script type='text/javascript'>
